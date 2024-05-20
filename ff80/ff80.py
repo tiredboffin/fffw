@@ -1,70 +1,124 @@
+#ad-hoc command line wrapper around experimental ff80 functions
+
 import usb1
+import argparse
+
 import sys
-import time
-import struct
-import hashlib
-import argparse, readline
+
+import ff80_cmd
 
 import fftlib
 import ffjlib
-
-import ff80_cmd
 
 VENDOR_ID = 0x04cb
 PRODUCT_ID = 0xff80
 
 trace = 0
 
-parser = argparse.ArgumentParser(description='Process jig commands.')
+def cmd_parser():
 
-subparsers = parser.add_subparsers(dest='command')
+    def Int(x):
+        #double try to make python int() accept leading zeroes
+        try: return int(x, base=0)
+        except ValueError:
+            try: return int(x, base=10)
+            except: raise
 
-parse_bootrom = subparsers.add_parser('bootrom', help='Check bootrom presense at known location and optionally save it to a file')
-parse_bootrom.add_argument('file', nargs = '?', help = 'save bootrom to file')
+    parser = argparse.ArgumentParser(description='Process jig commands.')
+    commands = parser.add_subparsers(dest='command', required=True)
 
-syslog = subparsers.add_parser('syslog', help='Check debug syslog content and optinally save it to a file')
-syslog.add_argument('file', nargs = '?', help = 'save bootrom to file')
+    #command bootrom
+    cmd = commands.add_parser('bootrom', help='Check bootrom presense at known location and optionall save it to a file')
+    cmd.add_argument('-o', '--output', metavar='filename', nargs = '?', help = 'Output file name')
+    cmd.add_argument('-s', '--size', metavar='size', nargs = '?', help = 'size of data to read', const = 0x4000)
 
-subparsers.add_parser('info', help='Show camera info')
-subparsers.add_parser('ping', help='Ping camera')
-subparsers.add_parser('dummy', help='Read 64K of dummy data to test connectivity')
-subparsers.add_parser('echo', help='Send/receive/validate data')
+    #command syslog
+    cmd = commands.add_parser('syslog', help = 'Save debug syslog content')
+    cmd.add_argument('-o', '--output', nargs = '?',  help = 'Output file name')
 
-args = parser.parse_args()
+    #command cfgdata
+    cmd = commands.add_parser('cfgdata', help='Read/write/save/load config data')
+    actions = cmd.add_subparsers(dest='action', required=True)
 
-with usb1.USBContext() as context:
-    usb_h = context.openByVendorIDAndProductID(VENDOR_ID, PRODUCT_ID, skip_on_error=False)
+    #action cfgdata.read
+    action = actions.add_parser('read', help='Read config data')
+    action.add_argument('address', metavar='address', help = 'start address to read from', type = Int)
+    action.add_argument('-o', '--output', metavar='filename', nargs = '?', help = 'save data to file')
+    action.add_argument('-s', '--size', metavar='size', nargs = '?', help = 'size of data to read or 1 byte by default', default = 1, const = 1, type=Int)
+    action.add_argument('--dontuse', help=argparse.SUPPRESS, action='store_true')
 
-    if usb_h is None:
-        print("usb open failed")
-        sys.exit(2)
+    #action cfgdata.write
+    action = actions.add_parser('write', help='Write config data')
+    action.add_argument('address', metavar='address', help = 'starting address of data', type = Int)
+    action.add_argument('data', metavar='data', help='hex string of data to write')
 
-    fft = fftlib.ftl(usb_h)
-    jig = ffjlib.jig(fft)
+    #actions cfgdata.load and cfgdata.save with no options
+    actions.add_parser('load', help='load config data from nvram to ram')
+    actions.add_parser('save', help='save config data from ram to nvram')
 
-    with usb_h.claimInterface(0):
-        try:
+    #action cfgdata.dump
+    action = actions.add_parser('dump', help='Dump all cfg data to file')
+    action.add_argument('-o', '--output', metavar='filename', help = 'output file name', required=True)
 
-            fft.open_session()
+    #command ram
+    cmd = commands.add_parser('ram', help='Read/Write/Dump RAM')
+    actions = cmd.add_subparsers(dest='action')
 
-            if args.command == 'info':
-                ff80_cmd.info(jig)
-            elif args.command in ['ping', 'nop']:
-                ff80_cmd.ping(jig)
-            elif args.command  == 'dummy':
-                ff80_cmd.dummy(jig)
-            elif args.command  == 'echo':
-                ff80_cmd.echo(jig)
-            elif args.command == 'bootrom':
-                ff80_cmd.bootrom(jig, args.file)
-            elif args.command == 'syslog':
-                ff80_cmd.syslog(jig, args.file)
+    #action ram.read
+    action = actions.add_parser('read', help='Read RAM')
+    action.add_argument('address', metavar='address', help = 'memory address', type=Int)
+    action.add_argument('-s', '--size', metavar='size', nargs='?', help = 'size of data to read, default 4 bytes', default=4, const=4, type=Int)
+    action.add_argument('-o', '--output', metavar='filename', nargs = '?', help = 'output file name')
 
-        except usb1.USBErrorTimeout as err:
-            print('timeout:', err.received)
-        except ffjlib.jig_exception as err:
-            print('jig err:', err)
-        finally:
-            fft.close_session()
+    #action ram.write
+    action = actions.add_parser('write', help='Write RAM')
+    action.add_argument('address', metavar='address', help = 'memory address', type=Int)
+    action.add_argument('data', metavar='data', help='hex string of data to write')
+    action.add_argument('-i', '--input', metavar='filename', nargs = '?', help = 'input file name')
 
+    #action ram.dump
+    action = actions.add_parser('dump', help='Dump RAM to file')
+    action.add_argument('address', metavar='address', help = 'starting RAM address', type=Int)
+    action.add_argument('-s', '--size', metavar='size', nargs='?', help = 'size of data to dump, default is as much as possible', default=0, const=0, type=Int)
+    action.add_argument('-o', '--output', metavar='filename', help = 'output file name', required=True)
 
+    #commands with no actions/options
+    commands.add_parser('info',  help='Show camera info')
+    commands.add_parser('ping',  help='Ping camera')
+    commands.add_parser('dummy', help='Read 64K of dummy data generated by camera to test connectivity')
+    commands.add_parser('echo',  help='Send/receive/validate dummy data')
+
+    return parser
+
+def main():
+    args = cmd_parser().parse_args()
+    with usb1.USBContext() as context:
+        usb_h = context.openByVendorIDAndProductID(VENDOR_ID, PRODUCT_ID, skip_on_error=False)
+
+        if usb_h is None:
+            print("usb open failed")
+            sys.exit(2)
+
+        fft = fftlib.ftl(usb_h)
+        jig = ffjlib.jig(fft)
+
+        with usb_h.claimInterface(0):
+            try:
+
+                fft.open_session()
+                #commands moved to a standalone file
+                fcmd = getattr(ff80_cmd, 'cmd_' + args.command, None)
+                if fcmd is not None:
+                    fcmd(jig, args)
+                else:
+                    print('command', args.command, 'not implemented')
+
+            except usb1.USBErrorTimeout as err:
+                print('timeout:', err.received)
+            except ffjlib.jig_exception as err:
+                print('jig err:', err)
+            finally:
+                fft.close_session()
+
+if __name__ == '__main__':
+    main()

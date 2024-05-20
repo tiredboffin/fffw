@@ -1,4 +1,6 @@
-fffw - a set of research tools for ff firmware.
+# fffw
+
+fffw is a set of research tools for Fujifilm firmware.
 
 - ff80 - jig mode 
   - research native interface provided by the firmware for adjustments and debugging.
@@ -9,4 +11,6 @@ fffw - a set of research tools for ff firmware.
 - ffre - recovery
   - bricked camera recovery
 
+## License
 
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).

@@ -198,7 +198,6 @@ class jig:
             data += r[16:]
         return data
 
-
     def debug_write_ram(self, mem_addr, data):
         #write RAM, debug must be enabled
         params = bytearray(16)
@@ -376,14 +375,6 @@ class jig:
                         pfmt = '{:02X}.{:02X}'
                 pfmt = '{:03X} {:s}: ' + pfmt
                 print(pfmt.format(tag, desc, *v))
-
-    def print_info(self):
-        tag_names = self.info_tags()
-        print('===Info:')
-        for tag in [1,2,4,8,0x10,0x20, 0x40]:
-            r = self.get_device_info(tag)
-            if len(r) > 0:
-                print(hex(tag), tag_names.get(tag, ''),  r)
 
     def dump_config_data(self, file_name, mb = 1):
         ff = self.ftl

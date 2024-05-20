@@ -7,13 +7,13 @@
 #   03 -- ?? returns a constant
 #   1d -- ?? returns err
 #   c0 -- open a 'session'
-#   c2 -- ping? or check session is alive - returns 2 bytes
+#   c2 -- ping? or check session is alive - returns 2 bytes 'session id'
 #   c4 -- close session
-#   d0 -- write_cmd  - send a command
+#   d0 -- write_cmd  - send a command request
 #   d1 -- read_cmd   - get command result
-#   e0 -- write_data - bult write
-#   e1 -- read_data  - bult read
-#   e8 -- nop ?      - returns 4 bytes
+#   e0 -- write_data - bulk write
+#   e1 -- read_data  - bulk read
+#   e8 -- nop ?      - returns 4 bytes, zero-es confirm confirmation of long op (?)
 
 import usb1
 import struct
