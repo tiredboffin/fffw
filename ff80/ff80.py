@@ -1,5 +1,4 @@
 #ad-hoc command line wrapper around experimental ff80 functions
-
 import usb1
 import argparse
 

@@ -233,7 +233,7 @@ def cfgdata_dump(jig,argv):
         ofs += len(r)
         data += r
     elapsed = time.time()-start_time+0.000001
-    print('read {:d} bytes in {:.02f} seconds {:.01f} kB/s'.format(ofs, elapsed, count/elapsed/1000.0))
+    print('read {:d} bytes in {:.02f} seconds {:.01f} kB/s'.format(ofs, elapsed, ofs/elapsed/1000.0))
     if len(data) and fn is not None:
         with open(fn, 'wb') as out:
             l = out.write(data)
