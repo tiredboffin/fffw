@@ -2,6 +2,8 @@
 
 fffw is a set of research tools for Fujifilm firmware.
 
+Usage: python ff80 -h
+
 - ff80 - jig mode 
   - research native interface provided by the firmware for adjustments and debugging.
 
