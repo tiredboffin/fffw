@@ -253,7 +253,6 @@ def ramdata_read(jig, argv):
     size = argv.size
     ofs  = argv.address
     fn   = argv.output
-
     if fn is None:
         if size > jig.ftl.max_pkt_size:
             print('To read more than ', jig.ftl.max_pkt_size, 'bytes', 'specify an output file name')
@@ -270,12 +269,11 @@ def ramdata_read(jig, argv):
                                                                 len(data), data.hex().upper()))
     else:
         with open(fn, 'wb') as out:
-            ofs = 0
             l = 0
             try:
                 xf7 = jig.set_config_usb_debug(1)
                 while size > 0:
-                    if ofs> 0 and ofs % 0x40000 == 0:
+                    if ofs> 0 and ofs % 0x40000 < jig.ftl.max_pkt_size:
                         print('Ofs: {:06x}'.format(ofs))
                     r = jig.debug_read_ram(ofs, size)
                     if len(r) == 0:
@@ -285,7 +283,7 @@ def ramdata_read(jig, argv):
                     l += out.write(r)
             finally:
                 jig.set_config_usb_debug(xf7)
-            print('saved {:d} bytes [0x{:0x}..0x{:0x}] to {:s}'.format(l, ofs, l + ofs, fn))
+            print('saved {:d} bytes [0x{:0x}..0x{:0x}] to {:s}'.format(l, argv.address, argv.address + l, fn))
 
 def ramdata_write(jig, argv):
 
