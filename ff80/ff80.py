@@ -111,12 +111,16 @@ def main():
                     fcmd(jig, args)
                 else:
                     print('command', args.command, 'not implemented')
-
+                fft.close_session()
             except usb1.USBErrorTimeout as err:
                 print('timeout:', err.received)
+                fft.close_session()
+            except usb1.USBErrorIO as err:
+                print('USB:', err)
+            except usb1.USBErrorNoDevice as err:
+                print('USB:', err)
             except ffjlib.jig_exception as err:
                 print('jig err:', err)
-            finally:
                 fft.close_session()
 
 if __name__ == '__main__':
