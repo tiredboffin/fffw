@@ -72,7 +72,7 @@ def cmd_parser():
     #action ram.write
     action = actions.add_parser('write', help='Write RAM')
     action.add_argument('address', metavar='address', help = 'memory address', type=Int)
-    action.add_argument('data', metavar='data', help='hex string of data to write')
+    action.add_argument('data', metavar='data', help='bcd hex string of data to write')
     action.add_argument('-i', '--input', metavar='filename', nargs = '?', help = 'input file name')
 
     #action ram.dump
