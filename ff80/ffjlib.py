@@ -168,6 +168,10 @@ class jig:
         self.set_config_data_byte(0xf7, v)
         return old_v
 
+    def get_config_usb_debug(self):
+        old_v = self.get_config_data_byte(0xf7)
+        return old_v
+
     def debug_read_log(self, size = 0x100):
         #read debug log, the log must be enabled otherwise return empty data
         params = bytearray(16)
@@ -197,6 +201,18 @@ class jig:
             size -= len(r[16:])
             data += r[16:]
         return data
+
+    def debug_read_ram_b(self,tag):
+        r = self.debug_read_ram(tag, 1)
+        return struct.unpack('B', r)[0]
+
+    def debug_read_ram_w(self,tag):
+        r = self.debug_read_ram(tag, 2)
+        return struct.unpack('<H', r)[0]
+
+    def debug_read_ram_dw(self,tag):
+        r = self.debug_read_ram(tag, 4)
+        return struct.unpack('<I', r)[0]
 
     def debug_write_ram(self, mem_addr, data):
         #write RAM, debug must be enabled
