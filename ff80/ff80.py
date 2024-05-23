@@ -81,6 +81,16 @@ def cmd_parser():
     action.add_argument('-s', '--size', metavar='size', nargs='?', help = 'size of data to dump, default is as much as possible', default=0, const=0, type=Int)
     action.add_argument('-o', '--output', metavar='filename', help = 'output file name', required=True)
 
+    #command xe2 -- experimenatl
+    cmd = commands.add_parser('xe2', help='xe2 specifics, do not use!')
+    actions = cmd.add_subparsers(dest='action')
+
+    #action xe2.readtime
+    action = actions.add_parser('readtime', help='Check real time location')
+    action = actions.add_parser('deae', help='Check deae location and optionaly save deae to a file')
+    action.add_argument('-o', '--output', metavar='filename', help = 'output file name', required=False)
+
+
     #commands with no actions/options
     commands.add_parser('info',  help='Show camera info')
     commands.add_parser('ping',  help='Ping camera')
