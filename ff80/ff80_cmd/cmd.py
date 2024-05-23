@@ -1,7 +1,4 @@
 #experimental ff80 functions
-
-import ffjlib
-
 def cmd_syslog(jig, args):
     fn = args.output
     if fn is not None:
@@ -23,20 +20,37 @@ def cmd_syslog(jig, args):
 def dump_syslog(jig, fn, size = 0):
     #experimental, press Ctrl-C to interrupt
     import time
+    import struct
+    hdr_s = struct.Struct('<20sH2B4HI')
+    msg_structs = {
+        0x09 : {'s': struct.Struct('<2B3HHH2I'), 'fmt':'{:02x} p1 {:02x} p2 {:04x} p3 {:04x} pid {:04x} tt {:d} td {:d}' },
+        0x0f : {'s' :struct.Struct('<2BHI2HI'),  'fmt' :'{:02x} pid {:02x} td {:d} p1 {:0x} p2 {:0x} p3 {:0x} tt {:d}'},
+        0x62 : {'s' :struct.Struct('<2B14s'),    'fmt' : None },
+        0x71 : {'s' :struct.Struct('<2BH3I'),    'fmt': '{:02x} pid {:02x} td {:d} tt {:d} p1 {:0x} p2 {:0x}' } ,
+        0x72 : {'s' :struct.Struct('<2BHI8s'),   'fmt': '{:02x} pid {:02x} td {:d} tt {:d} {:}'},
+        0x73 : {'s' :struct.Struct('<2BHI8s'),   'fmt': '{:02x} pid {:02x} td {:d} tt {:d} {:}'},
+        0x81 : {'s' :struct.Struct('<2BH3I'),    'fmt': None},
+    }
     read_bytes = 0
 
-    print('syslog: dumping to', fn, '\n', 'Ctrl-C to interrupt.')
+    print('syslog: writing to', fn, '\n', 'Ctrl-C to interrupt.')
 
-    xf7 = jig.set_config_usb_debug(1)
+    xf7 = jig.get_config_usb_debug()
+    if xf7 == 0:
+        xf7 = jig.set_config_usb_debug(1)
     try:
         with open(fn, 'wb') as log:
+            last_time = time.time()
             while size == 0 or read_bytes < size:
                 r = jig.debug_read_log(0x100)
                 if len(r) == 0:
                     time.sleep(0.5)
-                else:
-                    log.write(r)
-                    read_bytes += len(r)
+                    continue
+                log.write(r)
+                read_bytes += len(r)
+                if time.time() - last_time > 5:
+                    print('saved {:d} bytes'.format(read_bytes))
+                    last_time = time.time()
                 if size !=0 and read_bytes >= size:
                     break;
     except KeyboardInterrupt:
@@ -295,7 +309,7 @@ def ramdata_write(jig, argv):
         try:
             data = bytearray.fromhex(argv.data)
         except ValueError:
-            print('wrong data: invalid hex string')
+            print('wrong data: invalid bcd hex string')
             return
     else:
         with open (fn, 'rb') as inp:
