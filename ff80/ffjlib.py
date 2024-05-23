@@ -156,7 +156,7 @@ class jig:
         assert len(params) <= 32
         buf = bytearray(33)
         buf[0] = cmd
-        buf[1:len(params)] = params[:]
+        buf[1:1+len(params)] = params[:]
         self.write_config_data(0, 0x80, buf)
 
     def app80_response(self):
@@ -165,7 +165,8 @@ class jig:
 
     def set_config_usb_debug(self, v = 1):
         old_v = self.get_config_data_byte(0xf7)
-        self.set_config_data_byte(0xf7, v)
+        if old_v != v:
+            self.set_config_data_byte(0xf7, v)
         return old_v
 
     def get_config_usb_debug(self):

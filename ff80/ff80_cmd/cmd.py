@@ -2,7 +2,7 @@
 def cmd_syslog(jig, args):
     fn = args.output
     if fn is not None:
-        dump_syslog(jig, fn)
+        _dump_syslog(jig, fn)
         return
     xf7 = jig.set_config_usb_debug(1)
     print('syslog:', end = '')
@@ -17,7 +17,7 @@ def cmd_syslog(jig, args):
     print(' got', log_size, 'bytes')
     jig.set_config_usb_debug(xf7)
 
-def dump_syslog(jig, fn, size = 0):
+def _dump_syslog(jig, fn, size = 0):
     #experimental, press Ctrl-C to interrupt
     import time
     import struct
@@ -139,7 +139,7 @@ def cmd_cfgdata(jig, argv):
     elif argv.action == 'write':
         return cfgdata_write(jig, argv)
     elif argv.action == 'dump':
-        return cfgdata_dump(jig, argv)
+        return _cfgdata_dump(jig, argv)
     else:
         print(argv.command, 'action', argv.action, 'not implemented')
 
@@ -217,7 +217,7 @@ def cfgdata_read(jig, argv):
                                                                      len(data),
                                                                      data.hex().upper()))
 
-def cfgdata_dump(jig,argv):
+def _cfgdata_dump(jig,argv):
     import time
 
     fn = argv.output
@@ -255,15 +255,15 @@ def cfgdata_dump(jig,argv):
 
 def cmd_ram(jig, argv):
     if argv.action == 'read':
-        return ramdata_read(jig, argv)
+        return _ramdata_read(jig, argv)
     elif argv.action == 'write':
-        return ramdata_write(jig, argv)
+        return _ramdata_write(jig, argv)
     elif argv.action == 'dump':
-        return ramdata_dump(jig, argv)
+        return _ramdata_dump(jig, argv)
     else:
         print(argv.command, 'action', argv.action, 'not implemented')
 
-def ramdata_read(jig, argv):
+def _ramdata_read(jig, argv):
     size = argv.size
     ofs  = argv.address
     fn   = argv.output
@@ -299,7 +299,7 @@ def ramdata_read(jig, argv):
                 jig.set_config_usb_debug(xf7)
             print('saved {:d} bytes [0x{:0x}..0x{:0x}] to {:s}'.format(l, argv.address, argv.address + l, fn))
 
-def ramdata_write(jig, argv):
+def _ramdata_write(jig, argv):
 
     ofs  = argv.address
 
@@ -333,7 +333,7 @@ def ramdata_write(jig, argv):
                                                                     len(data),
                                                                     data.hex().upper()))
 
-def ramdata_dump(jig, argv):
+def _ramdata_dump(jig, argv):
     import time
 
     fn = argv.output

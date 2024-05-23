@@ -89,6 +89,10 @@ def cmd_parser():
     action = actions.add_parser('readtime', help='Check real time location')
     action = actions.add_parser('deae', help='Check deae location and optionaly save deae to a file')
     action.add_argument('-o', '--output', metavar='filename', help = 'output file name', required=False)
+    action = actions.add_parser('load', help='Load factory config data from EEP')
+    action = actions.add_parser('save', help='Save config data to EEP')
+    action = actions.add_parser('jig', help='Enable/disable jig mode')
+    action.add_argument('op', choices=['status', 'on', 'off'], metavar='op', help = 'on/off')
 
 
     #commands with no actions/options
@@ -124,7 +128,6 @@ def main():
                 fft.close_session()
             except usb1.USBErrorTimeout as err:
                 print('timeout:', err.received)
-                fft.close_session()
             except usb1.USBErrorIO as err:
                 print('USB:', err)
             except usb1.USBErrorNoDevice as err:
