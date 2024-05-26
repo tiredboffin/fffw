@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+.vscode/
+
+build/
+downloads/
+samples/
+dumps/
+
+#Binary files
+*.bin
+*.zip
+*.dump
