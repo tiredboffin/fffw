@@ -285,7 +285,9 @@ def _ramdata_read(jig, argv):
         with open(fn, 'wb') as out:
             l = 0
             try:
-                xf7 = jig.set_config_usb_debug(1)
+                xf7 = jig.get_config_usb_debug()
+                if xf7 == 0:
+                    xf7 = jig.set_config_usb_debug(1)
                 while size > 0:
                     if ofs> 0 and ofs % 0x40000 < jig.ftl.max_pkt_size:
                         print('Ofs: {:06x}'.format(ofs))
@@ -320,9 +322,10 @@ def _ramdata_write(jig, argv):
         print('Writing of more than ', jig.ftl.max_pkt_size, 'bytes', 'not implemented (yet)')
         return
     try:
-        xf7 = jig.set_config_usb_debug(1)
+        xf7 = jig.get_config_usb_debug()
+        if xf7 == 0:
+            xf7 = jig.set_config_usb_debug(1)
         r = jig.debug_write_ram(ofs, data)
-        print('Unk:', r)
     finally:
         jig.set_config_usb_debug(xf7)
         if len(data) == 1:
@@ -349,7 +352,9 @@ def _ramdata_dump(jig, argv):
     with open(fn, 'wb') as out:
         count = 0
         try:
-            xf7 = jig.set_config_usb_debug(1)
+            xf7 = jig.get_config_usb_debug()
+            if xf7 == 0:
+                xf7 = jig.set_config_usb_debug(1)
             start_time = time.time()
             while size is None or size > 0:
                 if (count % 0x10000) < 0x100:

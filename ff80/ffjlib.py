@@ -155,8 +155,10 @@ class jig:
     def app80_request(self, cmd, params = bytearray(0)):
         assert len(params) <= 32
         buf = bytearray(33)
-        buf[0] = cmd
-        buf[1:1+len(params)] = params[:]
+        buf[0] = cmd & 0xff
+        if len(params) > 0:
+            buf[1:1+len(params)] = params[:]
+        self.write_config_data(0, 0x81, buf[1:])
         self.write_config_data(0, 0x80, buf)
 
     def app80_response(self):

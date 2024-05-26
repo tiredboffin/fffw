@@ -93,8 +93,18 @@ def cmd_parser():
     action = actions.add_parser('save', help='Save config data to EEP')
     action = actions.add_parser('jig', help='Enable/disable jig mode')
     action.add_argument('op', choices=['status', 'on', 'off'], metavar='op', help = 'on/off')
-
-
+    action = actions.add_parser('key', help='Send key events')
+    action.add_argument('name',  metavar='name',  help = 'key name')
+    action.add_argument('value', metavar='value', help = 'on/off')
+    action = actions.add_parser('cmdline', help='interactive shell')
+    action.add_argument('-o', '--output', metavar='filename',  help = 'saved session trace file name')
+    action = actions.add_parser('media', help='get media info')
+    action = actions.add_parser('playback', help='playback')
+    action.add_argument('op',   choices = ['start', 'stop', 'next', 'prev'],  metavar='op',  help = 'start/stop playback')
+    action.add_argument('dst',  choices = ['lcd', 'evf'],  metavar='dst',  help = 'playback type')
+    action = actions.add_parser('beep', help='beep')
+    action.add_argument('sound', metavar='sound',  help = '17-22 beeps, 23-31 shutter clicks', type=Int)
+    action.add_argument('volume', metavar='volume',  help = 'volume 0-2', type=Int)
     #commands with no actions/options
     commands.add_parser('info',  help='Show camera info')
     commands.add_parser('ping',  help='Ping camera')
