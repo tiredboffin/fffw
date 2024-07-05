@@ -254,10 +254,11 @@ class jig:
         r = ff.read_cmd(0x32)
         if self.trace:
             print('debug_cmdline_req', r.hex())
-        assert r[0:24] == buf[0:24]
-        return r[24:]
+        u0, errcode1, errcode2, u1 = struct.unpack('<4I', r[0:16])
+        assert u0 == 0x200001
+        return errcode1, errcode2
 
-    def debug_cmd_line_rsp(self, rsize = 0x100):
+    def debug_cmdline_rsp(self, rsize = 0x100):
         ff = self.ftl
         buf = bytearray(32)
         buf[0:4]= 0x200001.to_bytes(4, 'little')
@@ -268,7 +269,8 @@ class jig:
         if self.trace:
             print('debug_cmdline_rsp', r.hex())
         u0, u1, u2, u3, u4 = struct.unpack('<5I', r[0:20])
-        assert r[0:20] == buf[0:20]
+        if r[0:20] != buf[0:20]:
+            print('TBC:', r[0:20].hex())
         u0, u1, u2 = struct.unpack('<3I', r[20:32])
         return u0, u1, r[32:32+u2].decode('ascii') if u2 > 0 else ''
 
@@ -347,7 +349,6 @@ class jig:
             op = 0x100
         else:
             op = 0
-
         ff = self.ftl
         cmd = bytearray(32)
         cmd[0:4] = 0x760001.to_bytes(4, 'little')
@@ -366,6 +367,40 @@ class jig:
         else:
             raise jig_exception({'write_data_test' : hex(op), 'err1': hex(errcode1), 'err2': hex(errcode2)})
         return r
+
+    #TODO: still a sketch
+    def firmware_upload(self, data):
+        print("Easy way to brick the camera -- do not use!!!")
+        return
+        ff = self.ftl
+        op = 0
+        #TODO: 1) validate the data format and checksums
+        #TODO: 2) check on camera firmware update status
+        cmd = bytearray(32)
+        cmd[0:4] = 0x660002.to_bytes(4, 'little')
+        cmd[20:24] = len(data).to_bytes(4, 'little')
+        cmd[24:28] = op.to_bytes(4, 'little')
+        ff.write_cmd(cmd)
+        r = ff.read_cmd(0x20)
+        if self.trace:
+            print('firmware_update rc:', r.hex())
+        #TODO: 3) process error codes
+        cmd_code, errcode1, errcode2, u1, u2, size, u3, u4  = struct.unpack('<8I', r[0:0x20])
+        assert cmd_code == 0x660002
+        if errcode1 == 0:
+            ofs = 0
+            while size > 0:
+                #TODO: 4) timeout
+                r = ff.write_data(data[ofs:ofs+min(0x10000, size)])
+                if trace:
+                    print('firmware_update wd:', hex(r))
+                ofs += r
+                size -= r
+            #TODO: 5) seems to need some dummy (0?) usb command to complete the update. TBC
+        else:
+            raise jig_exception({'firmware_update' : hex(op), 'err1': hex(errcode1), 'err2': hex(errcode2)})
+        return r
+
 
     ####
     #TODO: examples do not belong here

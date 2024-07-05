@@ -351,8 +351,9 @@ def _ramdata_dump(jig, argv):
     print('Dump RAM at 0x{:08X} to {:s}'.format(ofs, fn))
     with open(fn, 'wb') as out:
         count = 0
+        start_time = time.time()
+        xf7 = jig.get_config_usb_debug()
         try:
-            xf7 = jig.get_config_usb_debug()
             if xf7 == 0:
                 xf7 = jig.set_config_usb_debug(1)
             start_time = time.time()
