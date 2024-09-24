@@ -61,7 +61,7 @@ def cmd_parser():
 
     #command ram
     cmd = commands.add_parser('ram', help='Read/Write/Dump RAM')
-    actions = cmd.add_subparsers(dest='action')
+    actions = cmd.add_subparsers(dest='action', required=True)
 
     #action ram.read
     action = actions.add_parser('read', help='Read RAM')
@@ -115,6 +115,13 @@ def cmd_parser():
     action.add_argument('op', choices=[0, 1, 2], metavar='op',  help = 'op', type=Int)
     action.add_argument('-d', '--data', metavar='data', help = 'hex data', required=False)
     action = actions.add_parser('cmd12', help='cmd12')
+    action = actions.add_parser('cmd00', help='cmd00')
+    action.add_argument('port', choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13 ,14, 15], metavar='port',  help = 'GPIO output port', type=Int)
+    action.add_argument('data', metavar='data',  help = 'hex 4 bytes')
+    action = actions.add_parser('cmd01', help='cmd01')
+    action.add_argument('port', choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13 ,14, 15], metavar='port',  help = 'GPIO input port', type=Int)
+    action = actions.add_parser('cmd02', help='cmd02')
+    action.add_argument('sensor', choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], metavar='sensor',  help = 'Analog sensor', type=Int)
     #commands with no actions/options
     commands.add_parser('info',  help='Show camera info')
     commands.add_parser('ping',  help='Ping camera')
