@@ -11,7 +11,7 @@ Quick usage: python ff80 -h
   - can be used to copy (dump) RAM content, for code injections and to selectively enable native debug logging susbsytem(s). 
   - can read, modify and save adjustemt and calibration data. 
     
-- ffun (unpublished yet) - dat file 
+- ffun (unpublished yet) - tool to manipulate firmware image DAT files. 
   - split DAT files (camers, lenses etc) into pieces, decompress compressed 'segments' and construct a new valid DAT files out of the modified pieces. 
   - convert the decompressed DAT into ELF container for furher analysis in Ghidra. Supports models from EXR processor (for e.g XF1) and up to "X Processor 4" cameras (X-T4). Only for ARM portions of the image are included into ELF, RX/RL78 is not supprted. (work in progress).
 
