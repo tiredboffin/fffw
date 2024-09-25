@@ -43,7 +43,7 @@ python ff80 info
 
 ### Windows
 
-Additional step is required to install WinUSB(libusb) driver for 04CB:FF80
+Additional step is required to install WinUSB driver for 04CB:FF80 :
 
 ![image](https://github.com/user-attachments/assets/d4283128-ad91-4102-8ba1-ee36715b9ffb)
 
