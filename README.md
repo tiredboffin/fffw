@@ -2,7 +2,9 @@
 
 fffw is a set of research tools for Fujifilm firmware.
 
-Usage: python ff80 -h
+Quick usage: python ff80 -h
+
+## Functions
 
 - ff80 - jig mode.
   - tool to research native interface provided by the firmware for adjustments and debugging.
@@ -24,6 +26,25 @@ Usage: python ff80 -h
   - code to emulate (select) functions. At this stage can be used to 
     - demangle the event driven parts of the code
     - research SD and NAND controllers that are used by ffre
+
+
+## Instructions
+
+To put the camera into service ("ff80") mode 
+  - Power off the camera
+  - Connect USB cable to PC
+  - Power on the camera holding the Shutter and Up buttons
+
+Then test connectivity with
+```
+python ff80 info
+```
+
+### Windows
+
+Additional step is requied to install a generic USB driver for 04CB:FF80
+![image](https://github.com/user-attachments/assets/d4283128-ad91-4102-8ba1-ee36715b9ffb)
+
 
 ## License
 
