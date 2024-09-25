@@ -9,7 +9,7 @@ Quick usage: python ff80 -h
 - ff80 - jig mode.
   - tool to research native interface provided by the firmware for adjustments and debugging.
   - can be used to copy (dump) RAM content, for code injections and to selectively enable native debug logging susbsytem(s). 
-  - can read, modify and save adjustemt and calibration data. 
+  - can read, modify and save adjustment and calibration data. 
     
 - ffun (unpublished yet) - tool to manipulate firmware image DAT files. 
   - split DAT files (camers, lenses etc) into pieces, decompress compressed 'segments' and construct a new valid DAT files out of the modified pieces. 
