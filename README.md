@@ -13,8 +13,8 @@ Quick usage: python ff80 -h
     
 - ffun (unpublished yet) - tool to manipulate firmware image DAT files. 
   - split DAT files (camers, lenses etc) into pieces, decompress compressed 'segments' and construct a new valid DAT files out of the modified pieces. 
-  - convert the decompressed DAT into ELF container for furher analysis in Ghidra. Supports most models starting from EXR processor (for e.g XF1) and up to "X Processor 4" cameras (X-T4).
-  - Note: Only ARM portions of the image are included into ELF, RX/RL78 code is not supported. The "X Processor 5" images are not supported yet. (work in progress).
+  - convert the decompressed DAT into ELF container for furher analysis in Ghidra. Supports most models starting from EXR processor (for e.g XF1) and up to "X Processor 5" cameras (X-T5, X100VI).
+  - Note: Only ARM portions of the image are included into ELF, RX/RL78 code is not supported. GFX is work in progress.
 
 - ffui (todo)
   - extract and convert UI localized text resources (menu, help etc) into an editable format (work in porgress)
