@@ -9,6 +9,8 @@ import ff80_cmd
 import fftlib
 import ffjlib
 
+import pprint
+
 VENDOR_ID = 0x04cb
 PRODUCT_ID = 0xff80
 
@@ -122,6 +124,16 @@ def cmd_parser():
     action.add_argument('port', choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13 ,14, 15], metavar='port',  help = 'GPIO input port', type=Int)
     action = actions.add_parser('cmd02', help='cmd02')
     action.add_argument('sensor', choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], metavar='sensor',  help = 'Analog sensor', type=Int)
+
+    action_hack = actions.add_parser('hack', help='dynamic code')
+    actions = action_hack.add_subparsers(dest='op')
+
+    action = actions.add_parser('load', help='load function code (max 64K)')
+    action.add_argument('-i', '--input', metavar='filename', help = 'input binary pic file name', required=True)
+    action = actions.add_parser('exec', help='call function')
+    action.add_argument('-d', '--data', metavar='data', help = 'probe func argument (bcd hex)', required=False)
+    action = actions.add_parser('demo', help='load and execute demo')
+
     #commands with no actions/options
     commands.add_parser('info',  help='Show camera info')
     commands.add_parser('ping',  help='Ping camera')
@@ -132,6 +144,8 @@ def cmd_parser():
 
 def main():
     args = cmd_parser().parse_args()
+#    pprint.pprint(args)
+
     with usb1.USBContext() as context:
         usb_h = context.openByVendorIDAndProductID(VENDOR_ID, PRODUCT_ID, skip_on_error=False)
 
