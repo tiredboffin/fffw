@@ -35,6 +35,14 @@ To put the camera into service ("ff80") mode
   - Power off the camera
   - Connect USB cable to PC
   - Power on the camera holding the Shutter and Up buttons
+  - Run
+
+      ```lsusb -d 04cb:ff80```
+
+    It should return
+
+      ```ID 04cb:ff80 Fuji Photo Film Co., Ltd```
+   
 
 Then test connectivity with
 ```
