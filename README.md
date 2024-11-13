@@ -52,9 +52,14 @@ python ff80 info
 ### Linux
 
 To run the script as a non-admin user put the ff80/60-fjig.rules file to the udev rules directory (typically /etc/udev/rules.d) and reload the rules with
-'''
+```
 sudo udevadm control --reload-rules
-'''
+```
+
+Then add your username to usbdev group
+
+```sudo usermod -a -G usbdev <username>```
+
 ### Windows
 
 Additional step is required to install WinUSB driver for 04CB:FF80 :
