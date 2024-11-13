@@ -34,7 +34,7 @@ Quick usage: python ff80 -h
 To put the camera into service ("ff80") mode 
   - Power off the camera
   - Connect USB cable to PC
-  - Power on the camera holding the Shutter and Up buttons
+  - Power on the camera holding the Shutter and Up buttons to put into service ("jig" or "ff80") mode
   - Run
 
       ```lsusb -d 04cb:ff80```
