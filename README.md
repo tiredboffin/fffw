@@ -34,7 +34,7 @@ Quick usage: python ff80 -h
 To put the camera into service ("ff80") mode 
   - Power off the camera
   - Connect USB cable to PC
-  - Power on the camera holding the Shutter and Up buttons
+  - Power on the camera holding the Shutter and Up buttons to put into service ("jig" or "ff80") mode
   - Run
 
       ```lsusb -d 04cb:ff80```
@@ -52,9 +52,14 @@ python ff80 info
 ### Linux
 
 To run the script as a non-admin user put the ff80/60-fjig.rules file to the udev rules directory (typically /etc/udev/rules.d) and reload the rules with
-'''
+```
 sudo udevadm control --reload-rules
-'''
+```
+
+Then add your username to usbdev group
+
+```sudo usermod -a -G usbdev <username>```
+
 ### Windows
 
 Additional step is required to install WinUSB driver for 04CB:FF80 :
