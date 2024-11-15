@@ -1,0 +1,751 @@
+0,  Shooting frame management
+1,  CPU processing
+2,  WB fine adjustment calculation
+3,  Multi-frame processing
+4,  STP processing
+5,  String embedding process
+6,  CCDIF
+7,  PFP (scratch correction)
+8,  IFP (phase difference correction)
+9,  RECC
+10, DCN
+11, RESZ
+12, JPEG
+13, RETCH
+14, ROT
+15, TCUBE
+16, TCUBE-PR
+17, MEDIA
+18, DMA
+19, Remote shooting WLAN area
+20, Remote shooting through image compression area
+21, Exposure capture area
+22, unused
+23, Dimming information storage area
+24, Work area for face offset correction
+25, Face AWB calculation work area
+26, [RAW]YC area
+27, [Book] YC area
+28, unused
+29, [RAF] Thumbnail work YC
+30, Zoom navigation image display area
+31, Continuous shooting preview display area (2x2) for VGA output
+32, Display image area
+33, YC multi-stage work area
+34, [book] compression (minimum size)
+35, [Inner] Compression work area
+36, Work area for string embedding
+37, AUTO debug information area
+38, [inside] YC area
+39, unused
+40, Continuous shooting preview display area (2x2) for XGA output
+41, [KB] [DVS] Signal processing work area
+42, Unused (EXR exclusive area)
+43, Unused (EXR exclusive area)
+44, [EX1] Exposure capture area
+45, [EX2] Exposure capture area
+46, unused
+47, unused
+48, unused
+49, Bokeh parameter area
+50, [DCN] [Recording YC] Area after resizing
+51, [DCN] [RAWYC] YC post area_distance image (reference image)
+52, [DCN] [RAWYC] Post-DST area_distance image (reference image)
+53, [DCN][RAWYC] YC back area_distance image
+54, [DCN] [RAWYC] Post-DST area_distance image
+55, [DCN][RAWYC]Retch area
+56, [DCN][RAWYC] Post-YC area
+57, [DCN][RAWYC] Post-DST area
+58, [DCN] [RAWYC] Area after blur enhancement
+59, 1/4YC area
+60, 1/16YC area
+61, [DCN]PR processing layered image area (ALL)
+62, Distance image area
+63, inter-frame shared data area
+64, SP coordinate data area
+65, TP coordinate data area
+66, Work area for GME
+67, [DIS] [Recording YC] Area after resizing
+68, [DIS] [RAWYC] YC post area (reference image)
+69, [DIS][RAWYC] Post-YC area
+70, [DIS][RAWYC]Retch area
+71, [DIS][RAWYC]DCN post-synthesis area
+72, [DIS][RAWYC]YC_NR post area
+73, [DIS] [RAWYC] DCN post-composition area (reference image)
+74, [DIS][RAWYC]YC_Post-processing area
+75, TP coordinate data area
+76, SP coordinate data area
+77, [DIS]PR processing layered image area (ALL)
+78, Work area for GME
+79, inter-frame shared data area
+80, Synthetic MAD data area
+81, Synthetic MAP data area
+82, Red eye correction overall YC
+83, Red eye correction face YC1
+84, Red eye correction face YC2
+85, Red eye correction face YC3
+86, Red eye correction face YC4
+87, Work area for red eye correction module
+88, unused
+89, unused
+90, unused
+91, unused
+92, unused
+93, unused
+94, Exposure capture area
+95, unused
+96, dimming information storage area
+97, Work area for face offset correction
+98, Face AWB calculation work area
+99, [RAW]YC area
+100, [Book] YC area
+101, unused
+102, [RAF] Thumbnail work YC
+103, Zoom navigation image display area
+104, unused
+105, Display image area
+106, YC multi-stage work area
+107, [book] compression (minimum size)
+108, [Inner] Compression work area
+109, Work area for string embedding
+110, AUTO debug information area
+111, [inside] YC area
+112, unused
+113, unused
+114, [KB] [DVS] Signal processing work area
+115, unused
+116, unused
+117, unused
+118, [ADVF] Map data
+119, [Book] YC area
+120, [Book] YC area
+121, Adv filter DCN processing YC
+122, [Book] YC area
+123, Adv filter DCN processing YC
+124, [Book] YC area
+125, super low resolution YC
+126, Very low frequency map (brightness only)
+127, very low frequency map intermediate YC
+128, [ADVF] Hierarchical image entire area
+129, unused
+130, unused
+131, unused
+132, unused
+133, unused
+134, unused
+135, unused
+136, unused
+137, unused
+138, unused
+139, unused
+140, unused
+141, unused
+142, unused
+143, unused
+144, unused
+145, unused
+146, unused
+147, unused
+148, unused
+149, unused
+150, unused
+151, unused
+152, unused
+153, unused
+154, unused
+155, unused
+156, unused
+157, unused
+158, unused
+159, unused
+160, unused
+161, unused
+162, unused
+163, unused
+164, unused
+165, unused
+166, unused
+167, [GP] Exposure capture area
+168, unused
+169, unused
+170, unused
+171, unused
+172, [GP][RAW]YC area
+173, [GP][Book]YC area
+174, [inside] YC area
+175, unused
+176, unused
+177, unused
+178, Display image area
+179, [GP]YC multi-stage work area
+180, [GP] [Book] Compressed area (panoramic image)
+181, [Inner] Compression work area
+182, unused
+183, AUTO debug information area
+184, [GP] [Book] YC area (after rotation)
+185, [GP] 1/4YC area for template matching
+186, [KB] [DVS] Signal processing work area
+187, [GP] [Panorama] YC area (after buffering)
+188, [GP] [Panorama] YC area (after crop rotation)
+189, [GP][SGP] 1/4YC area
+190, [GP][SGP] 1/4YC area
+191, [GP]TP coordinate data area
+192, unused
+193, unused
+194, [GP]SP coordinate data area
+195, [GP][SGP]Warping image YC area
+196, [GP][SGP]Warping affine parameter data area
+197, [GP][SGP]Key map data area
+198, [GP][SGP]Left image YC area (for warping image synthesis)
+199, [GP][SGP]Left image YC area (for outputting horizontal correction results)
+200, [GP][SGP]Right image YC area (for horizontal correction result output)
+201, [GP][SGP]Composition buffer YC area
+202, [GP][SGP]Main image YC area (resize output destination)
+203, [GP][SGP]Main image YC area (output destination after rotation)
+204, [GP][SGP][Book]Compressed area (panoramic image)
+205, [GP][SGP]PR processing layer image entire area
+206, unused
+207, [GP]YC multi-stage work area
+208, unused
+209, [Inner] Compression work area
+210, [GP][SGP]TP image area (after copying)
+211, [GP][SGP]SP image area (after copying)
+212, unused
+213, unused
+214, unused
+215, unused
+216, unused
+217, unused
+218, unused
+219, unused
+220, unused
+221, unused
+222, unused
+223, unused
+224, unused
+225, unused
+226, unused
+227, unused
+228, unused
+229, unused
+230, unused
+231, unused
+232, unused
+233, unused
+234, unused
+235, unused
+236, unused
+237, unused
+238, unused
+239, unused
+240, Exposure capture area for jig
+241, unused
+242, dimming information storage area
+243, unused
+244, unused
+245, Exposure capture area for jig
+246, unused
+247, unused
+248, unused
+249, unused
+250, unused
+251, unused
+252, unused
+253, unused
+254, unused
+255, unused
+256, AUTO debug information area
+257, unused
+258, unused
+259, unused
+260, [KB][DVS] Signal processing work area
+261, unused
+262, unused
+263, unused
+264, unused
+265, unused
+266, unused
+267, unused
+268, unused
+269, unused
+270, unused
+271, unused
+272, unused
+273, unused
+274, unused
+275, unused
+276, unused
+277, unused
+278, unused
+279, unused
+280, unused
+281, unused
+282, unused
+283, unused
+284, unused
+285, unused
+286, unused
+287, unused
+288, unused
+289, unused
+290, unused
+291, unused
+292, unused
+293, unused
+294, unused
+295, unused
+296, unused
+297, unused
+298, unused
+299, unused
+300, unused
+301, unused
+302, unused
+303, unused
+304, unused
+305, unused
+306, unused
+307, unused
+308, unused
+309, unused
+310, unused
+311, unused
+312, unused
+313, Exposure capture area for jig
+314, unused
+315, unused
+316, unused
+317, unused
+318, unused
+319, unused
+320, unused
+321, unused
+322, unused
+323, unused
+324, unused
+325, unused
+326, unused
+327, unused
+328, unused
+329, AUTO debug information area
+330, unused
+331, unused
+332, unused
+333, unused
+334, unused
+335, unused
+336, unused
+337, unused
+338, unused
+339, unused
+340, unused
+341, unused
+342, unused
+343, unused
+344, unused
+345, unused
+346, unused
+347, unused
+348, unused
+349, unused
+350, unused
+351, unused
+352, unused
+353, unused
+354, unused
+355, unused
+356, unused
+357, unused
+358, unused
+359, unused
+360, unused
+361, unused
+362, unused
+363, unused
+364, unused
+365, unused
+366, unused
+367, unused
+368, unused
+369, unused
+370, unused
+371, unused
+372, unused
+373, unused
+374, unused
+375, unused
+376, unused
+377, unused
+378, unused
+379, unused
+380, unused
+381, unused
+382, unused
+383, unused
+384, unused
+385, unused
+386, Exposure capture area
+387, unused
+388, dimming information storage area
+389, unused
+390, unused
+391, [MV][RAW]YC area
+392, [Book] YC area
+393, unused
+394, unused
+395, unused
+396, unused
+397, unused
+398,YC multi-stage work area
+399, [Book] Compression (maximum size: still image in video)
+400, [Inside] Compression work area
+401, Work area for string embedding
+402, unused
+403, [inside] YC area
+404, unused
+405, unused
+406, [KB] [DVS] Signal processing work area
+407, unused
+408, unused
+409, unused
+410, unused
+411, unused
+412, unused
+413, unused
+414, unused
+415, unused
+416, unused
+417, unused
+418, unused
+419, unused
+420, unused
+421, unused
+422, unused
+423, unused
+424, unused
+425, unused
+426, unused
+427, unused
+428, unused
+429, unused
+430, unused
+431, unused
+432, unused
+433, unused
+434, unused
+435, unused
+436, unused
+437, unused
+438, unused
+439, unused
+440, unused
+441, unused
+442, unused
+443, unused
+444, unused
+445, unused
+446, unused
+447, unused
+448, unused
+449, unused
+450, unused
+451, unused
+452, unused
+453, unused
+454, unused
+455, unused
+456, unused
+457, unused
+458, unused
+459, Exposure capture area
+460, unused
+461, Dimming information storage area
+462, unused
+463, unused
+464, [MV][RAW]YC area
+465, [Book] YC area
+466, unused
+467, unused
+468, unused
+469, unused
+470, unused
+471, YC multi-stage work area
+472, [Book] Compression (maximum size: still image in video)
+473, [Inner] Compression work area
+474, Work area for string embedding
+475, unused
+476, [inside] YC area
+477, unused
+478, unused
+479, [KB] [DVS] Signal processing work area
+480, unused
+481, unused
+482, unused
+483, unused
+484, unused
+485, unused
+486, unused
+487, unused
+488, unused
+489, unused
+490, unused
+491, unused
+492, unused
+493, unused
+494, unused
+495, unused
+496, unused
+497, unused
+498, unused
+499, unused
+500, unused
+501, unused
+502, unused
+503, unused
+504, unused
+505, unused
+506, unused
+507, unused
+508, unused
+509, unused
+510, unused
+511, unused
+512, unused
+513, unused
+514, unused
+515, unused
+516, unused
+517, unused
+518, unused
+519, unused
+520, unused
+521, unused
+522, unused
+523, unused
+524, unused
+525, unused
+526, unused
+527, unused
+528, unused
+529, unused
+530, unused
+531, unused
+532, unused
+533, unused
+534, dimming information storage area
+535, unused
+536, unused
+537, unused
+538, unused
+539, unused
+540, unused
+541, unused
+542, unused
+543, unused
+544, YC multi-stage work area
+545, [book] Compression (maximum size: still image in video)
+546, [Inner] Compression work area
+547, Work area for string embedding
+548, unused
+549, [inside] YC area
+550, unused
+551, unused
+552, unused
+553, unused
+554, unused
+555, unused
+556, unused
+557, unused
+558, unused
+559, unused
+560, unused
+561, unused
+562, unused
+563, unused
+564, unused
+565, unused
+566, unused
+567, unused
+568, unused
+569, unused
+570, unused
+571, unused
+572, unused
+573, unused
+574, unused
+575, unused
+576, unused
+577, unused
+578, unused
+579, unused
+580, unused
+581, unused
+582, unused
+583, unused
+584, unused
+585, unused
+586, unused
+587, unused
+588, unused
+589, unused
+590, unused
+591, unused
+592, unused
+593, unused
+594, unused
+595, unused
+596, unused
+597, unused
+598, unused
+599, unused
+600, unused
+601, unused
+602, unused
+603, unused
+604, unused
+605, unused
+606, unused
+607, Dimming information storage area
+608, unused
+609, unused
+610, unused
+611, unused
+612, unused
+613, unused
+614, unused
+615, unused
+616, unused
+617, YC multi-stage work area
+618, [Book] Compression (maximum size: still image in video)
+619, [Inner] Compression work area
+620, Work area for string embedding
+621, unused
+622, [inside] YC area
+623, unused
+624, unused
+625, unused
+626, unused
+627, unused
+628, unused
+629, unused
+630, unused
+631, unused
+632, unused
+633, unused
+634, unused
+635, unused
+636, unused
+637, unused
+638, unused
+639, unused
+640, unused
+641, unused
+642, unused
+643, unused
+644, unused
+645, unused
+646, unused
+647, unused
+648, unused
+649, unused
+650, unused
+651, unused
+652, unused
+653, unused
+654, unused
+655, unused
+656, unused
+657, unused
+658, unused
+659, unused
+660, unused
+661, unused
+662, unused
+663, unused
+664, unused
+665, unused
+666, unused
+667, unused
+668, unused
+669, unused
+670, unused
+671, unused
+672, unused
+673, unused
+674, unused
+675, unused
+676, unused
+677, unused
+678, Exposure capture area
+679, unused
+680, unused
+681, unused
+682, unused
+683, [RAW]YC area
+684, [Book] YC area (for RAW development)
+685, unused
+686, [RAF]Thumbnail work YC
+687, unused
+688, unused
+689, Display image area
+690, YC multi-stage work area
+691, [book] Compression (maximum size)
+692, [Inner] Compression work area
+693, unused
+694, AUTO debug information area
+695, [inside] YC area
+696, unused
+697, unused
+698, [KB] [DVS] Signal processing work area
+699, unused
+700, unused
+701, unused
+702, unused
+703, unused
+704, unused
+705, unused
+706, unused
+707, unused
+708, unused
+709, unused
+710, unused
+711, unused
+712, unused
+713, unused
+714, unused
+715, unused
+716, unused
+717, unused
+718, unused
+719, unused
+720, unused
+721, unused
+722, unused
+723, unused
+724, unused
+725, unused
+726, unused
+727, unused
+728, unused
+729, unused
+730, unused
+731, unused
+732, unused
+733, unused
+734, unused
+735, unused
+736, unused
+737, unused
+738, unused
+739, unused
+740, unused
+741, unused
+742, unused
+743, unused
+744, unused
+745, unused
+746, unused
+747, unused
+748, unused
+749, unused
+750, unused
