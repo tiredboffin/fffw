@@ -50,7 +50,8 @@ class jig:
         cmd_code, errcode1, errcode2, u1 = struct.unpack('<4I', r[0:16])
         assert cmd_code == 0x150000
         if errcode1 == 0:
-            return r[16:].decode('UTF-16').encode('ascii').rstrip(b'\0').decode('ascii')
+            i = r[16:].find(b"\x00\x00\x00")
+            return r[16:16+i+1].decode('UTF-16LE')
         elif not (errcode1 == 9 and errcode2 == 3): #not found?
             raise jig_exception({'ged_device_info err1': hex(errcode1), 'err2': hex(errcode2)})
         return ''
@@ -138,6 +139,8 @@ class jig:
         params[4:8] = page_no.to_bytes(4, 'little')
         params[8:12] = ofs.to_bytes(4, 'little')
         params[12:16] = len(data).to_bytes(4, 'little')
+        if self.trace:
+            print('write_config_data. params:', params.hex(), 'data:', data.hex())
         r = self._mem_op(0x1a0002, 3, params, data = data)
         if self.trace:
             print('write_config_data', r.hex())

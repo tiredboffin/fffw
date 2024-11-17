@@ -58,7 +58,8 @@ class ftl:
         if self.trace:
             print('ftl.open_session br', r.hex())
         self.sid, self.max_pkt_size = struct.unpack('<H', r[0:2])[0], struct.unpack('>I', r[-4:])[0]
-
+        if self.trace:
+            print('max pkt size %x' % (self.max_pkt_size))
     def ping(self):
         cmd = bytearray([0xc2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00])
         cmd [10:12] = self.sid.to_bytes(2, 'big')
