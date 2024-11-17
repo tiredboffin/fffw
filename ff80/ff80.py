@@ -9,8 +9,6 @@ import ff80_cmd
 import fftlib
 import ffjlib
 
-import pprint
-
 VENDOR_ID = 0x04cb
 PRODUCT_ID = 0xff80
 
@@ -144,38 +142,38 @@ def cmd_parser():
 
 def main():
     args = cmd_parser().parse_args()
-#    pprint.pprint(args)
 
     with usb1.USBContext() as context:
-        usb_h = context.openByVendorIDAndProductID(VENDOR_ID, PRODUCT_ID, skip_on_error=False)
+        try:
+            usb_h = context.openByVendorIDAndProductID(VENDOR_ID, PRODUCT_ID, skip_on_error=True)
 
-        if usb_h is None:
-            print("usb open failed")
-            sys.exit(2)
+            if usb_h is None:
+                print("Error: device %04x:%04x not found." % (VENDOR_ID, PRODUCT_ID))
+                sys.exit(2)
 
-        fft = fftlib.ftl(usb_h)
-        jig = ffjlib.jig(fft)
+            fft = fftlib.ftl(usb_h)
+            jig = ffjlib.jig(fft)
 
-        with usb_h.claimInterface(0):
-            try:
-
-                fft.open_session()
-                #commands moved to a standalone file
-                fcmd = getattr(ff80_cmd, 'cmd_' + args.command, None)
-                if fcmd is not None:
-                    fcmd(jig, args)
-                else:
-                    print('command', args.command, 'not implemented')
-                fft.close_session()
-            except usb1.USBErrorTimeout as err:
-                print('timeout:', err.received)
-            except usb1.USBErrorIO as err:
-                print('USB:', err)
-            except usb1.USBErrorNoDevice as err:
-                print('USB:', err)
-            except ffjlib.jig_exception as err:
-                print('jig err:', err)
-                fft.close_session()
+            with usb_h.claimInterface(0):
+                    fft.open_session()
+                    #commands moved to a standalone file
+                    fcmd = getattr(ff80_cmd, 'cmd_' + args.command, None)
+                    if fcmd is not None:
+                        fcmd(jig, args)
+                    else:
+                        print('command', args.command, 'not implemented')
+                    fft.close_session()
+        except usb1.USBErrorAccess as e:
+            print("USB Insufficient user access rights: %s" % (e))
+        except usb1.USBErrorTimeout as e:
+            print("USB timeout: %s\nPlease remove the battery, then reinsert it to perform a cold boot." % e)
+        except usb1.USBErrorIO as e:
+            print('USB:', e)
+        except usb1.USBErrorNoDevice as e:
+            print('USB:', e)
+        except ffjlib.jig_exception as e:
+            print('jig error:', e)
+            fft.close_session()
 
 if __name__ == '__main__':
     main()

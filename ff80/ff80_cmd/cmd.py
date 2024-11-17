@@ -54,8 +54,8 @@ def _dump_syslog(jig, fn, size = 0):
                 if size !=0 and read_bytes >= size:
                     break;
     except KeyboardInterrupt:
-        pass
-    finally:
+        jig.set_config_usb_debug(xf7)
+    else:
         jig.set_config_usb_debug(xf7)
     print('syslog: read', read_bytes, 'bytes')
 
@@ -74,33 +74,31 @@ def cmd_bootrom(jig, args):
     import hashlib
     fn = args.output
     size = args.size
+    addr = 0x80000000
+    if size is None:
+        size = 0x4000
 
     n = jig.get_device_info(4)
-    if n in ['X-E2', 'X-A2', 'X-T1', 'X-M1', 'X-T10']:
-        addr = 0x80000000
-        if size is None:
-            size = 0x4000
-        try:
-            xf7 = jig.set_config_usb_debug(1)
-            r = jig.debug_read_ram(addr+0x3ff0, size = 0x10)
-            if len(r) == 0x10 and r[0:4] == b'JASM':
-                r = jig.debug_read_ram(addr, size = size)
-                if len(r) == 0x4000:
-                    if hashlib.sha1(r).hexdigest() == 'bed698ed1d91b5c29ce7c5d650156e6100c32cce':
-                        print('Found FF4227 bootrom at', hex(addr))
-                    else:
-                        print('Found unknown bootrom', len(r), hashlib.sha1(r).hexdigest() )
-                if fn is not None:
-                    with open(fn, 'wb') as f:
-                        l = f.write(r)
-                        print('Saved' , l, 'bytes to', fn)
+    if not n in ['X-E2', 'X-A2', 'X-T1', 'X-M1', 'X-T10']:
+        print('bootrom: model', n, 'is not supported')
+        return
+
+    xf7 = jig.set_config_usb_debug(1)
+    r = jig.debug_read_ram(addr+0x3ff0, size = 0x10)
+    if len(r) == 0x10 and r[0:4] == b'JASM':
+        r = jig.debug_read_ram(addr, size = size)
+        if len(r) == 0x4000:
+            if hashlib.sha1(r).hexdigest() == 'bed698ed1d91b5c29ce7c5d650156e6100c32cce':
+                print('Found FF4227 bootrom at', hex(addr))
             else:
-                print('No bootrom at 0x80000000', r[0:16])
-                jig.set_config_usb_debug(xf7)
-        except:
-            pass
+                print('Found unknown bootrom', len(r), hashlib.sha1(r).hexdigest() )
+        if fn is not None:
+            with open(fn, 'wb') as f:
+                l = f.write(r)
+                print('Saved' , l, 'bytes to', fn)
     else:
-        print('boorom: model', n, 'is not supported')
+        print('No bootrom at 0x80000000', r[0:16])
+    jig.set_config_usb_debug(xf7)
 
 def cmd_dummy(jig, args):
     import hashlib
@@ -273,32 +271,28 @@ def _ramdata_read(jig, argv):
             return
         if size == 0:
             size = jig.ftl.max_pkt_size
-        try:
-            xf7 = jig.set_config_usb_debug(1)
-            data = jig.debug_read_ram(ofs, size)
-        finally:
-            jig.set_config_usb_debug(xf7)
+        xf7 = jig.set_config_usb_debug(1)
+        data = jig.debug_read_ram(ofs, size)
+        jig.set_config_usb_debug(xf7)
         print('ram [0x{:0x}..0x{:0x}] {:d} bytes  = {:s}'.format(argv.address,
                                                                 argv.address + len(data),
                                                                 len(data), data.hex().upper()))
     else:
         with open(fn, 'wb') as out:
             l = 0
-            try:
-                xf7 = jig.get_config_usb_debug()
-                if xf7 == 0:
-                    xf7 = jig.set_config_usb_debug(1)
-                while size > 0:
-                    if ofs> 0 and ofs % 0x40000 < jig.ftl.max_pkt_size:
-                        print('Ofs: {:06x}'.format(ofs))
-                    r = jig.debug_read_ram(ofs, size)
-                    if len(r) == 0:
-                        break
-                    size -= len(r)
-                    ofs += len(r)
-                    l += out.write(r)
-            finally:
-                jig.set_config_usb_debug(xf7)
+            xf7 = jig.get_config_usb_debug()
+            if xf7 == 0:
+                xf7 = jig.set_config_usb_debug(1)
+            while size > 0:
+                if ofs> 0 and ofs % 0x40000 < jig.ftl.max_pkt_size:
+                    print('Ofs: {:06x}'.format(ofs))
+                r = jig.debug_read_ram(ofs, size)
+                if len(r) == 0:
+                    break
+                size -= len(r)
+                ofs += len(r)
+                l += out.write(r)
+            jig.set_config_usb_debug(xf7)
             print('saved {:d} bytes [0x{:0x}..0x{:0x}] to {:s}'.format(l, argv.address, argv.address + l, fn))
 
 def _ramdata_write(jig, argv):
@@ -321,20 +315,18 @@ def _ramdata_write(jig, argv):
     if size > jig.ftl.max_pkt_size:
         print('Writing of more than ', jig.ftl.max_pkt_size, 'bytes', 'not implemented (yet)')
         return
-    try:
-        xf7 = jig.get_config_usb_debug()
-        if xf7 == 0:
-            xf7 = jig.set_config_usb_debug(1)
-        r = jig.debug_write_ram(ofs, data)
-    finally:
-        jig.set_config_usb_debug(xf7)
-        if len(data) == 1:
-            print('ram [0x{:0x}] <= 0x{:02x}'.format(argv.address, data[0]))
-        else:
-            print('ram [0x{:0x}..0x{:0x}] {:d} bytes  <= {:s}'.format(argv.address,
-                                                                    argv.address + len(data) + 1,
-                                                                    len(data),
-                                                                    data.hex().upper()))
+    xf7 = jig.get_config_usb_debug()
+    if xf7 == 0:
+        xf7 = jig.set_config_usb_debug(1)
+    r = jig.debug_write_ram(ofs, data)
+    jig.set_config_usb_debug(xf7)
+    if len(data) == 1:
+        print('ram [0x{:0x}] <= 0x{:02x}'.format(argv.address, data[0]))
+    else:
+        print('ram [0x{:0x}..0x{:0x}] {:d} bytes  <= {:s}'.format(argv.address,
+                                                                argv.address + len(data) + 1,
+                                                                len(data),
+                                                                data.hex().upper()))
 
 def _ramdata_dump(jig, argv):
     import time
@@ -353,27 +345,25 @@ def _ramdata_dump(jig, argv):
         count = 0
         start_time = time.time()
         xf7 = jig.get_config_usb_debug()
-        try:
-            if xf7 == 0:
-                xf7 = jig.set_config_usb_debug(1)
-            start_time = time.time()
-            while size is None or size > 0:
-                if (count % 0x10000) < 0x100:
-                    elapsed = time.time()-start_time+0.000001
-                    if elapsed > 10.0:
-                        print('read {:d} bytes in {:.02f} seconds {:.02f} kB/s'.format(count, elapsed, count/elapsed/1000))
-                end_time = time.time()
-                r = jig.debug_read_ram(ofs)
-                end_time = time.time()
-                if len(r) == 0:
-                    break
-                out.write(r)
-                ofs += len(r)
-                count += len(r)
-                if size is not None:
-                    size -= len(r)
-        finally:
-            elapsed = time.time()-start_time+0.000001
-            jig.set_config_usb_debug(xf7)
-            print('read {:d} bytes in {:.02f} seconds {:.01f} kB/s'.format(count, elapsed, count/elapsed/1000.0))
-            print('Dump RAM end address:', hex(ofs).upper())
+        if xf7 == 0:
+            xf7 = jig.set_config_usb_debug(1)
+        start_time = time.time()
+        while size is None or size > 0:
+            if (count % 0x10000) < 0x100:
+                elapsed = time.time()-start_time+0.000001
+                if elapsed > 10.0:
+                    print('read {:d} bytes in {:.02f} seconds {:.02f} kB/s'.format(count, elapsed, count/elapsed/1000))
+            end_time = time.time()
+            r = jig.debug_read_ram(ofs)
+            end_time = time.time()
+            if len(r) == 0:
+                break
+            out.write(r)
+            ofs += len(r)
+            count += len(r)
+            if size is not None:
+                size -= len(r)
+        elapsed = time.time()-start_time+0.000001
+        jig.set_config_usb_debug(xf7)
+        print('read {:d} bytes in {:.02f} seconds {:.01f} kB/s'.format(count, elapsed, count/elapsed/1000.0))
+        print('Dump RAM end address:', hex(ofs).upper())
