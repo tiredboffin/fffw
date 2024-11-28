@@ -26,4 +26,6 @@
 #include<ui_retcode.h>
 #include<ui_setp.h>
 #include<ui_timer.h>
+#include<ui_libapi.h>
+#include<ui_beep.h>
 
