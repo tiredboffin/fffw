@@ -14,21 +14,33 @@ Quick usage: python ff80 -h
 - ffun (unpublished yet) - tool to manipulate firmware image DAT files. 
   - split DAT files (camers, lenses etc) into pieces, decompress compressed 'segments' and construct a new valid DAT files out of the modified pieces. 
   - convert the decompressed DAT into ELF container for furher analysis in Ghidra. Supports most models starting from EXR processor (for e.g XF1) and up to "X Processor 5" cameras (X-T5, X100VI).
-  - Note: Only ARM portions of the image are included into ELF, RX/RL78 code is not supported. GFX is work in progress.
+  - generate .h files with enums and structures for use in Ghidra scripts to load the image, and to name and identify specific code sections, functions, and constants (e.g., task IDs).
+  - Note: Only the ARM portions of the image are included in the ELF. IBIS RX/RL78, video codecs, DSP, and AI chip code are not supported.
+  - Note: The Linux subsystem can be extracted and later analyzed using various standard tools.
+  
+- ffbt (unpublished): A CLI tool for researching Bluetooth functions.
+  - emulate BLE functions of XApp and Camera Remote applications. This tool currently supports the following actions:
+    - backup/restore user config data
+    - enable/disable and collect activity logs
+    - activate Wi-Fi access point
+    - trigger shutter, update geolocation, time, etc.
+    - collect camera vital JSON data (only available on "X Processor 5" cameras)
+  - emulate BT1-TG remote control buttons 
+  - emulate (select) BLE functions of camera (work in progress)
+    - currently, the plan is to only support pairing and handing over to Wi-Fi, to simplify the process of capturing TCP/IP dumps for reversing Fujifilm's ptpip dialect.
 
-- ffui (todo)
-  - extract and convert UI localized text resources (menu, help etc) into an editable format (work in porgress)
-  - compile the resources back into camera format (work in porgress)
-   
-- ffre (unpublished) - bricked camera recovery (work in progress)
-  - runs firmware updater from SD card. Partially tested only on XE2. Can be made to work on other cameras with EXR-II SoC (XA2, XM1 etc). Porting to other SoC-s depends on bootrom availabilty.
-    
 - ffem (unpublished) - research emulator (work in porgress)
   - code to emulate (select) functions. At this stage can be used to 
-    - demangle the event driven parts of the code
+    - demangle the event driven parts of the code - state machine
     - research SD and NAND controllers that are used by ffre
 
-
+- ffui (upublished, abandoned)
+  - extract and convert UI localized text resources (menu, help etc) into an editable format (complete for XE2)
+  - compile the resources back into camera format
+   
+- ffre (unpublished, abandoned) - bricked camera recovery (put on hold)
+  - runs firmware updater from SD card. Partially tested only on XE2. Can be made to work on other cameras with EXR-II SoC (XA2, XM1 etc). Porting to other SoC-s depends on bootrom availabilty.
+   
 ## Instructions
 
 To put the camera into service ("ff80") mode 
