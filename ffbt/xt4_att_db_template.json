@@ -1,5 +1,29 @@
 [
   {
+    "index": 1,
+    "uuid": "1800",
+    "chars": [
+      {
+        "index": 17,
+        "uuid": "2a00",
+        "flags": [
+          "read"
+        ],
+        "v": "@model_name",
+        "l": 20
+      },
+      {
+        "index": 33,
+        "uuid": "2a01",
+        "flags": [
+          "read"
+        ],
+        "l": 2
+      }
+    ],
+    "skip": true
+  },
+  {
     "index": 4097,
     "uuid": "1801",
     "chars": [
@@ -15,21 +39,6 @@
     "skip": true
   },
   {
-    "index": 2,
-    "uuid": "1800",
-    "chars": [
-      {
-        "index": 4113,
-        "uuid": "2a00",
-        "flags": [
-          "read"
-        ],
-        "v": "@model_name"
-      }
-    ],
-    "skip": true
-  },
-  {
     "index": 4353,
     "uuid": "180a",
     "chars": [
@@ -39,7 +48,8 @@
         "flags": [
           "read"
         ],
-        "v": "@manufacturer"
+        "v": "@manufacturer",
+        "l": 12
       },
       {
         "index": 4356,
@@ -47,7 +57,8 @@
         "flags": [
           "read"
         ],
-        "v": "@usb_serial_prefix"
+        "v": "@usb_serial_prefix",
+        "l": 30
       },
       {
         "index": 4358,
@@ -56,7 +67,8 @@
           "read"
         ],
         "v": "@usb_serial_uniq",
-        "e": true
+        "e": true,
+        "l": 18
       },
       {
         "index": 4360,
@@ -64,7 +76,8 @@
         "flags": [
           "read"
         ],
-        "v": "@version_hw"
+        "v": "@version_hw",
+        "l": 30
       },
       {
         "index": 4362,
@@ -72,7 +85,8 @@
         "flags": [
           "read"
         ],
-        "v": "@version_fw"
+        "v": "@version_fw",
+        "l": 30
       },
       {
         "index": 4364,
@@ -80,7 +94,8 @@
         "flags": [
           "read"
         ],
-        "v": "@version_sw"
+        "v": "@version_sw",
+        "l": 30
       }
     ]
   },
@@ -110,7 +125,8 @@
         "flags": [
           "read"
         ],
-        "v": "=0200"
+        "v": "=0200",
+        "l": 2
       },
       {
         "index": 8200,
@@ -118,7 +134,8 @@
         "flags": [
           "read"
         ],
-        "v": "=01"
+        "v": "=01",
+        "l": 1
       },
       {
         "index": 8202,
@@ -126,7 +143,8 @@
         "flags": [
           "read"
         ],
-        "v": "@usb_serial"
+        "v": "@usb_serial",
+        "l": 30
       },
       {
         "index": 8204,
@@ -134,7 +152,8 @@
         "flags": [
           "read"
         ],
-        "v": "@bssid"
+        "v": "@bssid",
+        "l": 17
       }
     ]
   },
@@ -148,7 +167,8 @@
         "flags": [
           "read"
         ],
-        "v": "@lens_name"
+        "v": "@lens_name",
+        "l": 64
       },
       {
         "index": 12292,
@@ -156,7 +176,8 @@
         "flags": [
           "read"
         ],
-        "v": "@lens_version"
+        "v": "@lens_version",
+        "l": 5
       }
     ]
   },
@@ -169,21 +190,25 @@
         "uuid": "85b9163e-62d1-49ff-a6f5-054b4630d4a1",
         "flags": [
           "write"
-        ]
+        ],
+        "l": 30
       },
       {
         "index": 16388,
         "uuid": "a80be3f8-8bcb-4add-a725-170b7a53adc9",
         "flags": [
           "write"
-        ]
+        ],
+        "l": 1
       },
       {
         "index": 16390,
         "uuid": "7ede1988-b27e-43fc-80f4-6fec994f0552",
         "flags": [
+          "read",
           "write"
-        ]
+        ],
+        "l": 2
       },
       {
         "index": 16392,
@@ -198,14 +223,16 @@
         "uuid": "763514e8-c627-4b9e-b7e8-89074ad3ccc7",
         "flags": [
           "write"
-        ]
+        ],
+        "l": 2
       },
       {
         "index": 16396,
         "uuid": "eb4166b0-9cca-445e-a4e4-75b3817fd57a",
         "flags": [
           "write"
-        ]
+        ],
+        "l": 2
       }
     ]
   },
@@ -221,7 +248,8 @@
           "write",
           "notify"
         ],
-        "v": "@ssid"
+        "v": "@ssid",
+        "l": 32
       },
       {
         "index": 17669,
@@ -322,8 +350,8 @@
           "read",
           "notify"
         ],
-        "l": 2,
-        "e": true
+        "e": true,
+        "l": 2
       },
       {
         "index": 20491,
@@ -363,7 +391,7 @@
       },
       {
         "index": 20503,
-        "uuid": "11438c83-cfb0-4511-841b-759e0d2321c8",
+        "uuid": "4b3a413c-230f-42bc-b3ed-b1db2eadee82",
         "flags": [
           "read",
           "indicate"
@@ -376,7 +404,8 @@
         "flags": [
           "read"
         ],
-        "v": "=0100"
+        "v": "=0100",
+        "l": 2
       },
       {
         "index": 20508,
@@ -398,8 +427,8 @@
         "flags": [
           "write"
         ],
-        "l": 1,
-        "e": true
+        "e": true,
+        "l": 2
       },
       {
         "index": 24580,
@@ -407,7 +436,7 @@
         "flags": [
           "write"
         ],
-        "l": 2
+        "l": 1
       },
       {
         "index": 24582,
@@ -423,7 +452,7 @@
         "flags": [
           "write"
         ],
-        "l": 2
+        "l": 92
       },
       {
         "index": 24586,
@@ -476,7 +505,8 @@
         "uuid": "b9bfd37f-ccad-4d36-a1ee-018e792b3edf",
         "flags": [
           "write"
-        ]
+        ],
+        "l": 7
       },
       {
         "index": 28676,
@@ -484,8 +514,8 @@
         "flags": [
           "write"
         ],
-        "l": 12,
-        "fmt": "dt"
+        "fmt": "dt",
+        "l": 12
       }
     ]
   },
