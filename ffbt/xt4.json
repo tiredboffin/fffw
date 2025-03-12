@@ -1,0 +1,18 @@
+{
+    "auth_token": "0201020304",
+    "manufacturer": "FUJIFILM",
+    "model_name": "X-T4",
+    "model_number": "FF190005",
+    "usb_serial_uniq": "250308280330110001",
+    "usb_serial_prefix": "Y56004",
+    "version_hw": "31.30",
+    "version_fw": "02.12",
+    "version_sw": "02.16",
+    "bssid": "AA-BB-CC-DD-EE-FF",
+    "lense_name": "XF30mmF2.8 R LM WR Macro",
+    "lense_version": "01.00",
+    "att_db_template": "xt4_att_db_template.json",
+    "activitity_path": "camera/activity",
+    "vital_data_file": "xt4 not supported",
+    "backup_data_file": "camera/backup.dat"
+}

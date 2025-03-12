@@ -19,15 +19,22 @@ Quick usage: python ff80 -h
   - Note: The Linux subsystem can be extracted and later analyzed using various standard tools.
   
 - ffbt (unpublished): A CLI tool for researching Bluetooth functions.
-  - emulate BLE functions of XApp and Camera Remote applications. This tool currently supports the following actions:
-    - backup/restore user config data
+  - ffbt app: emulate BLE functions of XApp and Camera Remote applications. This tool currently supports the following actions:
+    - backup/restore user settings data
+    - sending "Take" and "Get" commands to the camera, which makes the camera to start the Wi-Fi access point.
+    - trigger shutter
+    - update (sync) geolocation and/or time
     - enable/disable and collect activity logs
-    - activate Wi-Fi access point
-    - trigger shutter, update geolocation, time, etc.
     - collect camera vital JSON data (only available on "X Processor 5" cameras)
-  - emulate BT1-TG remote control buttons 
-  - emulate (select) BLE functions of camera (work in progress)
-    - currently, the plan is to only support pairing and handing over to Wi-Fi, to simplify the process of capturing TCP/IP dumps for reversing Fujifilm's ptpip dialect.
+  - ffbt bt1tg: emulate BT1-TG remote control buttons
+    - supports pairing, shutter release, record movie and zoom buttons
+    - lock button is not supported yet
+  - ffbt camera: emulate (select) BLE functions of camera (work in progress). 
+    - supports pairing and handing over to Wi-Fi (i.e. accepts "Take" and "Get" commands from XApp). Can be useful to trick XApp/CameraRemote into connecting to any arbitrary Wi-Fi access point.
+    - work in progress: send and receive backup data
+    - work in progress: send activity logs
+    - work in progress: send camera vital data
+    
 
 - ffem (unpublished) - research emulator (work in porgress)
   - code to emulate (select) functions. At this stage can be used to 
@@ -41,7 +48,7 @@ Quick usage: python ff80 -h
 - ffre (unpublished, abandoned) - bricked camera recovery (put on hold)
   - runs firmware updater from SD card. Partially tested only on XE2. Can be made to work on other cameras with EXR-II SoC (XA2, XM1 etc). Porting to other SoC-s depends on bootrom availabilty.
    
-## Instructions
+## Instructions ff80
 
 To put the camera into service ("ff80") mode 
   - Power off the camera
