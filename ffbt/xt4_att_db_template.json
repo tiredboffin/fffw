@@ -148,7 +148,7 @@
         "flags": [
           "read"
         ],
-        "v": "@lense_name"
+        "v": "@lens_name"
       },
       {
         "index": 12292,
@@ -156,7 +156,7 @@
         "flags": [
           "read"
         ],
-        "v": "@lense_version"
+        "v": "@lens_version"
       }
     ]
   },
