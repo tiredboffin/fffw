@@ -1,0 +1,18 @@
+{
+    "auth_token": "0201020304",
+    "manufacturer": "FUJIFILM",
+    "model_name": "X-T5",
+    "model_number": "FF220001",
+    "usb_serial_uniq": "250308280330110001",
+    "usb_serial_prefix": "Y56881",
+    "version_hw": "31.30",
+    "version_fw": "04.10",
+    "version_sw": "01.96",
+    "bssid": "AA-BB-CC-DD-EE-FF",
+    "lens_name": "XF30mmF2.8 R LM WR Macro",
+    "lens_version": "01.00",
+    "att_db_template": "xt5_att_db_template.json",
+    "activitity_path": "camera/activity",
+    "vital_data_file": "camera/vitals.json",
+    "backup_data_file": "camera/backup.dat"
+}
