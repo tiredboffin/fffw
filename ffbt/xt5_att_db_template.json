@@ -146,11 +146,13 @@
         "v": "@usb_serial",
         "l": 30
       },
+      {
         "index": 8204,
         "uuid": "e8e40d50-a625-4f1d-96ed-8cec034f5690",
         "flags": [
           "read"
         ],
+        "v": "@body_serial",
         "l": 10
       },
       {
@@ -192,6 +194,7 @@
         "flags": [
           "read"
         ],
+        "v": "@lens_serial",
         "l": 10
       }
     ]
@@ -302,6 +305,7 @@
           "write",
           "notify"
         ],
+        "v": "@loc_interval",
         "l": 2
       },
       {
@@ -385,6 +389,7 @@
           "read",
           "notify"
         ],
+        "e": true,
         "l": 2
       },
       {
@@ -494,6 +499,7 @@
         "flags": [
           "write"
         ],
+        "e": true,
         "l": 92
       },
       {
