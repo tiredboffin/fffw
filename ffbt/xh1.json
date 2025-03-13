@@ -1,9 +1,9 @@
 {
-    "auth_token": "0201020304",
+    "auth_token": [2,1,2,3,4],
     "manufacturer": "FUJIFILM",
     "model_name": "X-H1",
     "model_number": "FF170002",
-    "usb_serial_uniq": "250308280330110001",
+    "usb_serial_uniq": "250308280330110003",
     "usb_serial_prefix": "Y54141",
     "version_hw": "31.30",
     "version_fw": "02.14",

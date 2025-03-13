@@ -1,10 +1,10 @@
 {
     "mtu": 255,
-    "auth_token": "0201020304",
+    "auth_token": [2,1,2,3,4],
     "manufacturer": "FUJIFILM",
     "model_name": "X-T5",
     "model_number": "FF220001",
-    "usb_serial_uniq": "250308280330110001",
+    "usb_serial_uniq": "250308280330110002",
     "usb_serial_prefix": "Y56881",
     "version_hw": "31.30",
     "version_fw": "04.10",
