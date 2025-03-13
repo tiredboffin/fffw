@@ -17,11 +17,11 @@ Quick usage: python ff80 -h
   - generate .h files with enums and structures for use in Ghidra scripts to load the image, and to name and identify specific code sections, functions, and constants (e.g., task IDs).
   - Note: Only the ARM portions of the image are included in the ELF. IBIS RX/RL78, video codecs, DSP, and AI chip code are not supported.
   - Note: The Linux subsystem can be extracted and later analyzed using various standard tools.
-  
+
 - ffbt (unpublished): A CLI tool for researching Bluetooth functions.
   - ffbt app: emulate BLE functions of XApp and Camera Remote applications. This tool currently supports the following actions:
     - backup/restore user settings data
-    - sending "Take" and "Get" commands to the camera, which makes the camera to start the Wi-Fi access point.
+    - sending "Take", "Get", "Firmware Update" commands to the camera, which makes the camera to start the Wi-Fi access point.
     - trigger shutter
     - update (sync) geolocation and/or time
     - enable/disable and collect activity logs
@@ -46,7 +46,7 @@ Quick usage: python ff80 -h
   - compile the resources back into camera format
    
 - ffre (unpublished, abandoned) - bricked camera recovery (put on hold)
-  - runs firmware updater from SD card. Partially tested only on XE2. Can be made to work on other cameras with EXR-II SoC (XA2, XM1 etc). Porting to other SoC-s depends on bootrom availabilty.
+  - runs firmware updater from SD card. Partially tested only on XE2. Can be made to work on other cameras with EXR, EXR Pro and EXR-II SoC (XPro1, XE1, XE2, XA1, XA2, XM1 etc).
    
 ## Instructions ff80
 
