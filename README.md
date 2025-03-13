@@ -41,7 +41,7 @@ Quick usage: python ff80 -h
     - demangle the event driven parts of the code - state machine
     - research SD and NAND controllers that are used by ffre
 
-- ffui (upublished, abandoned)
+- ffui (unpublished, abandoned)
   - extract and convert UI localized text resources (menu, help etc) into an editable format (complete for XE2)
   - compile the resources back into camera format
    
