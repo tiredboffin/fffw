@@ -277,6 +277,7 @@
           "write",
           "notify"
         ],
+        "v": "@loc_flag",
         "l": 2
       },
       {
@@ -287,6 +288,7 @@
           "write",
           "notify"
         ],
+        "v": "@loc_interval",
         "l": 2
       },
       {
@@ -529,6 +531,7 @@
         "flags": [
           "write"
         ],
+        "fmt": "loc",
         "l": 23
       }
     ]

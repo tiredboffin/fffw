@@ -1,4 +1,5 @@
 {
+    "mtu": 255,
     "auth_token": "0201020304",
     "manufacturer": "FUJIFILM",
     "model_name": "X-T5",

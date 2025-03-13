@@ -571,6 +571,7 @@
         "flags": [
           "write"
         ],
+        "fmt": "loc",
         "l": 23
       }
     ]

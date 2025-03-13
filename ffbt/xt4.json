@@ -1,5 +1,5 @@
 {
-    "auth_token": "0201020304",
+    "auth_token": [2,1,2,3,4],
     "manufacturer": "FUJIFILM",
     "model_name": "X-T4",
     "model_number": "FF190005",
@@ -11,6 +11,8 @@
     "bssid": "AA-BB-CC-DD-EE-FF",
     "lens_name": "XF30mmF2.8 R LM WR Macro",
     "lens_version": "01.00",
+    "loc_flag": [1,0],
+    "loc_interval": [10,0],
     "att_db_template": "xt4_att_db_template.json",
     "activitity_path": "camera/activity",
     "vital_data_file": "xt4 not supported",
