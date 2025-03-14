@@ -316,6 +316,7 @@
           "write",
           "notify"
         ],
+        "v": "@activity_flags",
         "l": 13
       },
       {
@@ -524,6 +525,7 @@
         "flags": [
           "write"
         ],
+        "e": true,
         "l": 2
       },
       {
@@ -532,6 +534,7 @@
         "flags": [
           "write"
         ],
+        "e": true,
         "l": 2
       },
       {
@@ -600,6 +603,7 @@
         "flags": [
           "write"
         ],
+        "e": true,
         "l": 4
       },
       {
@@ -609,6 +613,7 @@
           "read",
           "write"
         ],
+        "e": true,
         "l": 44
       },
       {
@@ -618,6 +623,7 @@
           "read",
           "write"
         ],
+        "e": true,
         "l": 4
       },
       {
@@ -627,6 +633,7 @@
           "read",
           "write"
         ],
+        "e": true,
         "l": 248
       },
       {
@@ -635,6 +642,7 @@
         "flags": [
           "write"
         ],
+        "e": true,
         "l": 2
       },
       {
