@@ -16,9 +16,8 @@ lens_name: XF30mmF2.8 R LM WR Macro
 lens_version: '01.00'
 loc_flag: [0,0]
 loc_interval: [10,0]
-activity_flags: [0,0,0,0,0,0,0,0,0,0,0]
+activity_flags: [1,1,1,1,1,1,1,1,1,1,1,1,1]
 att_db_template: xt5_att_db_template.yaml
-files:
-    activitity_path: camera/activity
-    vital_data_file: camera/vitals.json
-    backup_data_file: camera/backup.dat
+activity_path: camera/activity
+vital_data_file: camera/vitals.json
+backup_data_file: camera/backup.dat
