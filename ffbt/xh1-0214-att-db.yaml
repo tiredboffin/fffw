@@ -1,4 +1,3 @@
----
 -   index: 0x1
     uuid: '1800'
     chars:
@@ -6,14 +5,12 @@
         uuid: 2a00
         flags:
         - read
-        v: '@model_name'
         l: 0x14
     -   index: 0x21
         uuid: 2a01
         flags:
         - read
         l: 0x2
-    skip: true
 -   index: 0x1001
     uuid: '1801'
     chars:
@@ -22,7 +19,6 @@
         flags:
         - read
         l: 0x4
-    skip: true
 -   index: 0x1101
     uuid: 180a
     chars:
@@ -30,37 +26,31 @@
         uuid: 2a29
         flags:
         - read
-        v: '@manufacturer'
         l: 0xc
     -   index: 0x1121
         uuid: 2a24
         flags:
         - read
-        v: '@usb_serial_prefix'
         l: 0x1e
     -   index: 0x1131
         uuid: 2a25
         flags:
         - read
-        v: '@usb_serial_uniq'
         l: 0x12
     -   index: 0x1141
         uuid: 2a27
         flags:
         - read
-        v: '@version_hw'
         l: 0x1e
     -   index: 0x1151
         uuid: 2a26
         flags:
         - read
-        v: '@version_fw'
         l: 0x1e
     -   index: 0x1161
         uuid: 2a28
         flags:
         - read
-        v: '@version_sw'
         l: 0x1e
 -   index: 0x2001
     uuid: 117c4142-edd4-4c77-8696-dd18eebb770a
@@ -79,13 +69,11 @@
         uuid: 389363e4-712e-4cf2-a72e-bfcf7fb6adc1
         flags:
         - read
-        v: =0200
         l: 0x2
     -   index: 0x2041
         uuid: cae8c738-4bb6-4605-98c1-58331c87f3b6
         flags:
         - read
-        v: =01
         l: 0x1
 -   index: 0x3001
     uuid: 15ca59fe-620c-464d-a987-223fab660cde
@@ -94,13 +82,11 @@
         uuid: 68887a7a-10a7-4a4a-aadd-6f9db1abaa0e
         flags:
         - read
-        v: '@lens_name'
         l: 0x40
     -   index: 0x3021
         uuid: 621a98d8-6314-4c3e-a683-eea1d6166606
         flags:
         - read
-        v: '@lens_version'
         l: 0x5
 -   index: 0x4001
     uuid: 91f1de68-dff6-466e-8b65-ff13b0f16fb8
@@ -143,7 +129,6 @@
         uuid: bf6dc9cf-3606-4ec9-a4c8-d77576e93ea4
         flags:
         - read
-        v: '@ssid'
         l: 0x20
     -   index: 0x4521
         uuid: bd45f887-a6be-4cb7-8565-390df38bf5bf
@@ -192,7 +177,6 @@
         uuid: 34d8c8de-e2a9-43ff-822c-7d945dd8d8e1
         flags:
         - read
-        v: =0100
         l: 0x2
 -   index: 0x6001
     uuid: 6514eb81-4e8f-458d-aa2a-e691336cdfac
@@ -243,6 +227,4 @@
         uuid: 0f36ec14-29e5-411a-a1b6-64ee8383f090
         flags:
         - write
-        fmt: loc
         l: 0x17
-
