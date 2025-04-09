@@ -412,4 +412,19 @@
         flags:
         - notify
         l: 0x4
-
+-   index: 0xa001
+    uuid: 731893F9-744E-4899-B7E3-174106FF2B82
+    chars: 
+    -   index: 0xa002 
+        uuid: F90F7D3A-3B64-45C6-AB21-933900184837
+        flags:
+        - notify 
+        - read
+        l: 0x2
+    -   index: 0xa005 
+        uuid: 7170FD5A-56D9-4C19-B043-7A7047D8E1A0
+        flags:
+        - notify
+        - read
+        - write
+        l: 0x2

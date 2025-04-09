@@ -85,7 +85,7 @@
         uuid: cae8c738-4bb6-4605-98c1-58331c87f3b6
         flags:
         - read
-        v: =01
+        v: =00
         l: 0x1
     -   index: 0x200a
         uuid: 27870478-94a9-4345-849b-efa3bf37887f
