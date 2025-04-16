@@ -16,5 +16,5 @@ lens_version: '01.00'
 loc_flag: 1
 loc_interval: 10
 att_db_template: xt4-0172-att-db.yaml
-activitity_path: camera/activity
+activity_path: camera/activity
 backup_data_file: camera/backup.dat
