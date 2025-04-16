@@ -18,7 +18,6 @@ lens_version: '01.00'
 loc_flag: 0
 loc_interval: 10
 activity_flags: [1,1,1,1,1,1,1,1,1,1,1,1,1]
-#att_db_template: xt5_att_db_template.yaml
 att_db_template: xt5-0400-att-db.yaml
 activity_path: camera/activity
 vital_data_file: camera/vitals.json

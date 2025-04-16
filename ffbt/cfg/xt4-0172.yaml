@@ -1,4 +1,5 @@
 ---
+mtu: 158
 auth_token: [2,1,2,3,4]
 manufacturer: FUJIFILM
 model_name: X-T4
@@ -15,7 +16,5 @@ lens_version: '01.00'
 loc_flag: 1
 loc_interval: 10
 att_db_template: xt4-0172-att-db.yaml
-files:
-    activitity_path: camera/activity
-    vital_data_file: xt4 not supported
-    backup_data_file: camera/backup.dat
+activitity_path: camera/activity
+backup_data_file: camera/backup.dat
