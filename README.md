@@ -31,10 +31,19 @@ Quick usage: python ff80 -h
     - lock button is not supported yet
   - ffbt camera: emulate (select) BLE functions of camera (work in progress). 
     - supports pairing and handing over to Wi-Fi (i.e. accepts "Take" and "Get" commands from XApp). Can be useful to trick XApp/CameraRemote into connecting to any arbitrary Wi-Fi access point.
-    - work in progress: send and receive backup data
-    - work in progress: send activity logs
-    - work in progress: send camera vital data
-    
+    - send and receive backup data
+    - send activity logs
+    - send camera vital data
+    - supports "connect when power off" mode
+
+- ffbak (unpublished): backup file parser
+    - extract and manipulate C1-C7 profiles: the structure is more or less stable across camera models
+    - extract "global" camera settings: work in progress, only X-T4 is supported at the moment
+
+- ffraf (unpublished): RAF 
+   - decompress RAF file to produce an uncompressed version for analyzing the impact of lossy compression on image quality
+   - compress RAF file (work in progress)
+   - parse and extract data from proprietary sections of RAF file (work in porgress)
 
 - ffem (unpublished) - research emulator (work in porgress)
   - code to emulate (select) functions. At this stage can be used to 
