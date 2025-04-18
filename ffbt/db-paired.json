@@ -1,0 +1,30 @@
+[
+    {
+        "appname": "xapp",
+        "name": "08C6X-T5-08C6",
+        "address": "04:7B:CB",
+        "token": "02f77e0300",
+        "hostname": "ffbt-xapp"
+    },
+    {
+        "appname": "cameraremote",
+        "name": "33F1X-T4-33F1",
+        "address": "08:3A:88",
+        "token": "02ec4b2e80",
+        "hostname": "ffbt-cameraremote"
+    },
+    {
+        "appname": "xapp",
+        "name": "0002X-T5-0002",
+        "address": "2C:CF:67",
+        "token": "0201020304",
+        "hostname": "ffbt-xapp"
+    },
+    {
+        "appname": "xapp",
+        "name": "08C6X-T5-08C6",
+        "address": "04:7B:CB",
+        "token": "02a59e2380",
+        "hostname": "ffbt-xapp"
+    }
+]
