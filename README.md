@@ -46,7 +46,7 @@ Quick usage: python ff80 -h
    - parse and extract data from proprietary sections of RAF file (work in porgress)
 
 - ffem (unpublished) - research emulator (work in porgress)
-  - code to emulate (select) functions. At this stage can be used to 
+  - tool to analyse (select) functions of firmware by executing them in unicorn ARM/ARM64 emulator. At this stage can be used to 
     - demangle the event driven parts of the code - finate state machines
     - research SD and NAND controllers that are used by ffre
 
