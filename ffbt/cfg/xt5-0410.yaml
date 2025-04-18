@@ -19,6 +19,6 @@ loc_flag: 0
 loc_interval: 10
 activity_flags: [1,1,1,1,1,1,1,1,1,1,1,1,1]
 att_db_template: xt5-0400-att-db.yaml
-activity_path: camera/activity
+activity_path: camera/activity-xt5
 vital_data_file: camera/vitals.json
 backup_data_file: camera/backup.dat
