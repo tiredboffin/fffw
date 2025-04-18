@@ -9,8 +9,8 @@ Quick usage: python ff80 -h
 - ff80 - jig mode.
   - tool to research native interface provided by the firmware for adjustments and debugging.
   - can be used to copy (dump) RAM content, for code injections and to selectively enable native debug logging susbsytem(s). 
-  - can read, modify and save adjustment and calibration data. 
-    
+  - can read, modify and save adjustment and calibration data.
+
 - ffun (unpublished yet) - tool to manipulate firmware image DAT files. 
   - split DAT files (camers, lenses etc) into pieces, decompress compressed 'segments' and construct a new valid DAT files out of the modified pieces. 
   - convert the decompressed DAT into ELF container for furher analysis in Ghidra. Supports most models starting from EXR processor (for e.g XF1) and up to "X Processor 5" cameras (X-T5, X100VI).
@@ -20,21 +20,21 @@ Quick usage: python ff80 -h
 
 - ffbt (unpublished): A CLI tool for researching Bluetooth functions.
   - ffbt app: emulate BLE functions of XApp and Camera Remote applications. This tool currently supports the following actions:
-    - backup/restore user settings data
     - sending "Take", "Get", "Firmware Update" commands to the camera, which makes the camera to start the Wi-Fi access point.
     - trigger shutter
     - update (sync) geolocation and/or time
-    - enable/disable and collect activity logs
-    - collect camera vital JSON data (only available on "X Processor 5" cameras)
+    - backup/restore user settings data (xapp)
+    - enable/disable and collect activity logs (xapp)
+    - collect camera vital JSON data (xapp, newer cameras)
   - ffbt bt1tg: emulate BT1-TG remote control buttons
     - supports pairing, shutter release, record movie and zoom buttons
     - lock button is not supported yet
-  - ffbt camera: emulate (select) BLE functions of camera (work in progress). 
+  - ffbt camera: emulate BLE functions of camera. 
     - supports pairing and handing over to Wi-Fi (i.e. accepts "Take" and "Get" commands from XApp). Can be useful to trick XApp/CameraRemote into connecting to any arbitrary Wi-Fi access point.
-    - send and receive backup data
-    - send activity logs
-    - send camera vital data
-    - supports "connect when power off" mode
+    - send and receive backup data (xapp)
+    - send activity logs (xapp)
+    - send camera vital data (xapp on newer cameras)
+    - supports "connect when power off" mode (xapp)
 
 - ffbak (unpublished): backup file parser
     - extract and manipulate C1-C7 profiles: the structure is more or less stable across camera models
@@ -47,16 +47,16 @@ Quick usage: python ff80 -h
 
 - ffem (unpublished) - research emulator (work in porgress)
   - code to emulate (select) functions. At this stage can be used to 
-    - demangle the event driven parts of the code - state machine
+    - demangle the event driven parts of the code - finate state machines
     - research SD and NAND controllers that are used by ffre
 
 - ffui (unpublished, abandoned)
   - extract and convert UI localized text resources (menu, help etc) into an editable format (complete for XE2)
   - compile the resources back into camera format
-   
+
 - ffre (unpublished, abandoned) - bricked camera recovery (put on hold)
   - runs firmware updater from SD card. Partially tested only on XE2. Can be made to work on other cameras with EXR, EXR Pro and EXR-II SoC (XPro1, XE1, XE2, XA1, XA2, XM1 etc).
-   
+
 ## Instructions ff80
 
 To put the camera into service ("ff80") mode 
