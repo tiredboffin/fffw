@@ -1,0 +1,27 @@
+#!/usr/bin/expect
+set timeout 10
+spawn ffbt-app
+expect "ready\r"
+send -- "connect\r"
+expect "OK\r"
+send -- "sync time\r"
+expect "OK\r"
+send -- "sync geolocation\r"
+expect "OK\r"
+send -- "set location sync interval 10\r"
+expect "OK"
+send -- "set smartphone location sync on\r"
+expect "OK"
+set timeout 30
+expect "camera requested geolocsync\r"
+expect "camera requested geolocsync\r"
+expect "camera requested geolocsync\r"
+set timeout 10
+send -- "exit\r"
+expect "OK"
+expect eof
+
+
+
+
+

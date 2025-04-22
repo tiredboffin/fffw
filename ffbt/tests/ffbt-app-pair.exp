@@ -1,0 +1,19 @@
+#!/usr/bin/expect
+set APP=xapp
+set timeout 10
+spawn ffbt-app --app $APP 
+expect "ready\r"
+send -- "discover\r"
+expect "pair request\r"
+send -- "pair\r"
+expect "OK\r"
+send -- "backup save\r"
+expect "OK\r"
+send -- "exit\r"
+expect "OK\r"
+expect eof
+
+
+
+
+

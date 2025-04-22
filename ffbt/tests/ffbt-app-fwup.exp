@@ -1,0 +1,20 @@
+#!/usr/bin/expect
+set timeout 10
+spawn ffbt-app
+expect "ready\r"
+send -- "connect\r"
+expect "OK\r"
+send -- "fwupdate XT4-0212-FWUP0024.DAT\r"
+set timeout 30
+expect "wifi connected"
+expect "wifi transfer started"
+set timeout 1800
+expect "wifi transfer completed"
+send -- "exit\r"
+expect "OK\r"
+expect eof
+
+
+
+
+
