@@ -1,4 +1,4 @@
-#identical to xt4-0212.yaml but indexes
+#identical to xt5-0410
 -   index: 0x1
     uuid: '1800'
     chars:
@@ -23,32 +23,32 @@
 -   index: 0x1101
     uuid: 180a
     chars:
-    -   index: 0x1111
+    -   index: 0x1102
         uuid: 2a29
         flags:
         - read
         l: 0xc
-    -   index: 0x1121
+    -   index: 0x1104
         uuid: 2a24
         flags:
         - read
         l: 0x1e
-    -   index: 0x1131
+    -   index: 0x1106
         uuid: 2a25
         flags:
         - read
         l: 0x12
-    -   index: 0x1141
+    -   index: 0x1108
         uuid: 2a27
         flags:
         - read
         l: 0x1e
-    -   index: 0x1151
+    -   index: 0x110a
         uuid: 2a26
         flags:
         - read
         l: 0x1e
-    -   index: 0x1161
+    -   index: 0x110c
         uuid: 2a28
         flags:
         - read
@@ -56,32 +56,37 @@
 -   index: 0x2001
     uuid: 117c4142-edd4-4c77-8696-dd18eebb770a
     chars:
-    -   index: 0x2011
+    -   index: 0x2002
         uuid: 9c72c205-5740-4f17-9949-0d3fadf2f67a
         flags:
         - read
         l: 0x2
-    -   index: 0x2021
+    -   index: 0x2004
         uuid: 4bf16f6d-7264-4e76-b0d2-52cde16d2c7d
         flags:
         - read
         l: 0x4
-    -   index: 0x2031
+    -   index: 0x2006
         uuid: 389363e4-712e-4cf2-a72e-bfcf7fb6adc1
         flags:
         - read
         l: 0x2
-    -   index: 0x2041
+    -   index: 0x2008
         uuid: cae8c738-4bb6-4605-98c1-58331c87f3b6
         flags:
         - read
         l: 0x1
-    -   index: 0x2051
+    -   index: 0x200a
         uuid: 27870478-94a9-4345-849b-efa3bf37887f
         flags:
         - read
         l: 0x1e
-    -   index: 0x2061
+    -   index: 0x200c
+        uuid: e8e40d50-a625-4f1d-96ed-8cec034f5690
+        flags:
+        - read
+        l: 0xa
+    -   index: 0x200e
         uuid: 49a12959-dfaa-4eb2-89ce-62548ad948f3
         flags:
         - read
@@ -89,46 +94,51 @@
 -   index: 0x3001
     uuid: 15ca59fe-620c-464d-a987-223fab660cde
     chars:
-    -   index: 0x3011
+    -   index: 0x3002
         uuid: 68887a7a-10a7-4a4a-aadd-6f9db1abaa0e
         flags:
         - read
         l: 0x40
-    -   index: 0x3021
+    -   index: 0x3004
         uuid: 621a98d8-6314-4c3e-a683-eea1d6166606
         flags:
         - read
         l: 0x5
+    -   index: 0x3006
+        uuid: df287e0c-c23f-4f80-afdd-c2b570288cdb
+        flags:
+        - read
+        l: 0xa
 -   index: 0x4001
     uuid: 91f1de68-dff6-466e-8b65-ff13b0f16fb8
     chars:
-    -   index: 0x4011
+    -   index: 0x4002
         uuid: 85b9163e-62d1-49ff-a6f5-054b4630d4a1
         flags:
         - write
         l: 0x1e
-    -   index: 0x4021
+    -   index: 0x4004
         uuid: a80be3f8-8bcb-4add-a725-170b7a53adc9
         flags:
         - write
         l: 0x1
-    -   index: 0x4031
+    -   index: 0x4006
         uuid: 7ede1988-b27e-43fc-80f4-6fec994f0552
         flags:
         - read
         - write
         l: 0x2
-    -   index: 0x4041
+    -   index: 0x4008
         uuid: aba356eb-9633-4e60-b73f-f52516dbd671
         flags:
         - write
         l: 0x4
-    -   index: 0x4051
+    -   index: 0x400a
         uuid: 763514e8-c627-4b9e-b7e8-89074ad3ccc7
         flags:
         - write
         l: 0x2
-    -   index: 0x4061
+    -   index: 0x400c
         uuid: eb4166b0-9cca-445e-a4e4-75b3817fd57a
         flags:
         - write
@@ -136,54 +146,61 @@
 -   index: 0x4501
     uuid: 4e941240-d01d-46b9-a5ea-67636806830b
     chars:
-    -   index: 0x4511
+    -   index: 0x4502
         uuid: bf6dc9cf-3606-4ec9-a4c8-d77576e93ea4
         flags:
         - read
         - write
         - notify
         l: 0x20
-    -   index: 0x4521
+    -   index: 0x4505
         uuid: bd45f887-a6be-4cb7-8565-390df38bf5bf
         flags:
         - read
         - write
         - notify
         l: 0x2
-    -   index: 0x4531
+    -   index: 0x4508
         uuid: 8814441b-1d7b-4046-891d-d8f80864cc8e
         flags:
         - read
         l: 0x2
-    -   index: 0x4541
+    -   index: 0x450a
         uuid: aab609c4-94dd-4d89-bc60-665d5090b828
         flags:
         - read
         - write
         - notify
         l: 0x2
-    -   index: 0x4551
+    -   index: 0x450d
         uuid: c95d91ae-b247-4d6d-8661-7dd5d6a0f85b
         flags:
         - read
         - write
         - notify
         l: 0x2
-    -   index: 0x4561
+    -   index: 0x4510
         uuid: 75823784-fbb7-4b71-abae-cd9a34072e3c
         flags:
         - read
         - write
         - notify
         l: 0xd
-    -   index: 0x4571
+    -   index: 0x4513
         uuid: caedb497-83bf-482c-91ef-91cf6f1216ff
         flags:
         - read
         - write
         - notify
         l: 0x1
-    -   index: 0x4581
+    -   index: 0x4516
+        uuid: 98934b2c-756c-4632-aa2f-dcba1bfec824
+        flags:
+        - read
+        - write
+        - notify
+        l: 0x4
+    -   index: 0x4519
         uuid: 82a9f452-c5ce-4ef5-8203-3fc9a47f8171
         flags:
         - read
@@ -193,60 +210,71 @@
 -   index: 0x5001
     uuid: 4c0020fe-f3b6-40de-acc9-77d129067b14
     chars:
-    -   index: 0x5011
+    -   index: 0x5002
         uuid: a68e3f66-0fcc-4395-8d4c-aa980b5877fa
         flags:
         - read
         - indicate
         l: 0x2
-    -   index: 0x5021
+    -   index: 0x5005
         uuid: bd17ba04-b76b-4892-a545-b73ba1f74dae
         flags:
         - read
         - indicate
         l: 0x2
-    -   index: 0x5031
+    -   index: 0x5008
         uuid: f9150137-5d40-4801-a8dc-f7fc5b01da50
         flags:
         - read
         - notify
         l: 0x2
-    -   index: 0x5041
+    -   index: 0x500b
         uuid: ad06c7b7-f41a-46f4-a29a-712055319122
         flags:
         - read
         - notify
         l: 0x2
-    -   index: 0x5051
+    -   index: 0x500e
         uuid: 049ec406-ef75-4205-a390-08fe209c51f0
         flags:
         - read
         - indicate
         l: 0x2
-    -   index: 0x5061
+    -   index: 0x5011
         uuid: 2f6cb772-1d69-448e-8819-fe6b5c20b094
         flags:
         - read
         - indicate
         l: 0x2
-    -   index: 0x5071
+    -   index: 0x5014
+        uuid: e6692c5c-b7cd-44f4-95fc-eda07ce32560
+        flags:
+        - read
+        - notify
+        l: 0x2
+    -   index: 0x5017
         uuid: 11438c83-cfb0-4511-841b-759e0d2321c8
         flags:
         - read
         - indicate
         l: 0x2
-    -   index: 0x5081
+    -   index: 0x501a
         uuid: 4b3a413c-230f-42bc-b3ed-b1db2eadee82
         flags:
         - read
         - indicate
         l: 0x2
-    -   index: 0x5091
+    -   index: 0x501d
         uuid: 34d8c8de-e2a9-43ff-822c-7d945dd8d8e1
         flags:
         - read
         l: 0x2
-    -   index: 0x5101
+    -   index: 0x501f
+        uuid: 20ea1fac-19d8-48a8-a80c-535d34300958
+        flags:
+        - read
+        l: 0x1d
+    -   index: 0x5021
         uuid: 1587b102-0b6d-4b63-9226-66fcc6d17387
         flags:
         - read
@@ -254,47 +282,47 @@
 -   index: 0x6001
     uuid: 6514eb81-4e8f-458d-aa2a-e691336cdfac
     chars:
-    -   index: 0x6011
+    -   index: 0x6002
         uuid: 600655e6-3637-42f1-8fb2-44efc5c63b13
         flags:
         - write
         l: 0x2
-    -   index: 0x6021
+    -   index: 0x6004
         uuid: fb15c357-364f-49d3-b5c5-1e32c0ded038
         flags:
         - write
         l: 0x1
-    -   index: 0x6031
+    -   index: 0x6006
         uuid: 7fcf49c6-4ff0-4777-a03d-1a79166af7a8
         flags:
         - write
         l: 0x2
-    -   index: 0x6041
+    -   index: 0x6008
         uuid: b1307521-7ac5-4199-aaee-9d094781ce69
         flags:
         - write
         l: 0x5c
-    -   index: 0x6051
+    -   index: 0x600a
         uuid: 861442ab-b94e-4935-90d9-41e291d91374
         flags:
         - write
         l: 0x2
-    -   index: 0x6061
+    -   index: 0x600c
         uuid: 43070f6c-51e0-4887-86a7-5f762bda5791
         flags:
         - write
         l: 0x2
-    -   index: 0x6071
+    -   index: 0x600e
         uuid: 2674f0b0-f909-4e73-8656-338e9c74457f
         flags:
         - write
         l: 0x2
-    -   index: 0x6081
+    -   index: 0x6010
         uuid: f14e7a88-6f57-4872-a69b-b47ef3295c9b
         flags:
         - write
         l: 0x2
-    -   index: 0x6091
+    -   index: 0x6012
         uuid: f1897eb9-a9aa-40f0-8ce6-2fa7915bc459
         flags:
         - write
@@ -302,12 +330,12 @@
 -   index: 0x7001
     uuid: e872b11f-d526-4ae1-9bb4-89a99d48fa59
     chars:
-    -   index: 0x7011
+    -   index: 0x7002
         uuid: b9bfd37f-ccad-4d36-a1ee-018e792b3edf
         flags:
         - write
         l: 0x7
-    -   index: 0x7021
+    -   index: 0x7004
         uuid: c52edbce-1fe2-4ecc-9483-907e6592be9e
         flags:
         - write
@@ -315,7 +343,7 @@
 -   index: 0x8001
     uuid: 3b46ec2b-48ba-41fd-b1b8-ed860b60d22b
     chars:
-    -   index: 0x8011
+    -   index: 0x8002
         uuid: 0f36ec14-29e5-411a-a1b6-64ee8383f090
         flags:
         - write
@@ -323,41 +351,57 @@
 -   index: 0x9001
     uuid: af854c2e-b214-458e-97e2-912c4ecf2cb8
     chars:
-    -   index: 0x9011
+    -   index: 0x9002
         uuid: e3fbbfcf-f326-4b0f-82cf-b00ae1b107a2
         flags:
         - read
         l: 0x4
-    -   index: 0x9021
+    -   index: 0x9004
         uuid: 051dd980-df9d-4472-a2e1-35811dd24ee1
         flags:
         - write
         l: 0x4
-    -   index: 0x9031
+    -   index: 0x9006
         uuid: c922ac69-9480-4348-8f4b-9ee29bc30d1d
         flags:
         - read
         - write
         l: 0x2c
-    -   index: 0x9041
+    -   index: 0x9008
         uuid: 7f3400fe-17e7-4b80-8a0e-81b0343c1b49
         flags:
         - read
         - write
         l: 0x4
-    -   index: 0x9051
+    -   index: 0x900a
         uuid: ac0c799a-fa6c-4df5-bbc5-bb95cce7e6ea
         flags:
         - read
         - write
         l: 0xf8
-    -   index: 0x9061
+    -   index: 0x900c
         uuid: 68052e8a-fb91-404f-8847-0eb4be24308c
         flags:
         - write
         l: 0x2
-    -   index: 0x9071
+    -   index: 0x900e
         uuid: 2e27ed9f-5506-41cd-ba48-dac06669ad95
         flags:
         - notify
         l: 0x4
+-   index: 0xa001
+    uuid: 731893f9-744e-4899-b7e3-174106ff2b82
+    chars:
+    -   index: 0xa002
+        uuid: f90f7d3a-3b64-45c6-ab21-933900184837
+        flags:
+        - read
+        - notify
+        l: 0x2
+    -   index: 0xa005
+        uuid: 7170fd5a-56d9-4c19-b043-7a7047d8e1a0
+        flags:
+        - read
+        - write
+        - notify
+        l: 0x2
