@@ -11,4 +11,8 @@ version_sw: '01.89'
 bssid: AA-BB-CC-DD-EE-FF
 lens_name: XF30mmF2.8 R LM WR Macro
 lens_version: '01.00'
-att_db_template: xh1-0214-att-db.yaml
+att_db_template: gatt-5dcb7a.yaml
+activity_path: camera/$model_name/activity
+backup_data_file: camera/$model_name/backup.dat
+vital_data_path: camera/$model_name/vital.json
+
