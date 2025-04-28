@@ -1,4 +1,4 @@
----
+#mtu: ?
 auth_token: [2,1,2,3,4]
 manufacturer: FUJIFILM
 model_name: X-H1
@@ -14,5 +14,5 @@ lens_version: '01.00'
 att_db_template: gatt-5dcb7a.yaml
 activity_path: camera/$model_name/activity
 backup_data_file: camera/$model_name/backup.dat
-vital_data_path: camera/$model_name/vital.json
+vital_data_file: camera/$model_name/vital.json
 

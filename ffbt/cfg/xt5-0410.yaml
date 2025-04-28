@@ -22,5 +22,5 @@ activity_flags: [1,1,1,1,1,1,1,1,1,1,1,1,1]
 att_db_template: gatt-76ab62.yaml
 activity_path: camera/$model_name/activity
 backup_data_file: camera/$model_name/backup.dat
-vital_data_path: camera/$model_name/vital.json
+vital_data_file: camera/$model_name/vital.json
 image_path: camera/img/
