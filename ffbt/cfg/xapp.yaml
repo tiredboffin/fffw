@@ -1,0 +1,26 @@
+mtu: 0xff
+
+hostname:           ffbt-app
+resize_images:      1
+transfer_in_standy: 1  #transfer when power off
+loc_sync:           1  #loc sync ebabled in app
+loc_interval:      30  #seconds
+
+#use system time settings
+#date:
+#time:
+#timezone:
+#timedst: 
+
+#Burj Khalifa At the Top
+loc_latidute:  25.1972
+loc_longitude: 55.2744
+loc_elevation: 452 #meters
+loc_accuracy:  100 #cm
+
+activity_flags: [1,1,1,1,1,1,1,1,1,1,1,1,1] #enable everything
+
+activity_path:    app/activity_{model_name}_{usb_serial_uniq}/
+backup_data_file: app/backup_{model_name}_{usb_serial_uniq}.dat
+vital_data_path:  app/vital_{model_name}_{usb_serial_uniq}.json
+image_path: app/{model_name}_{usb_serial_uniq}
