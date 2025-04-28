@@ -14,6 +14,6 @@ lens_version: '01.00'
 loc_flag: [1,0]
 loc_interval: [10,0]
 att_db_template: gatt-efaafa.yaml
-activity_path: camera/$model_name/activity
-backup_data_file: camera/$model_name/backup.dat
-vital_data_file: camera/$model_name/vital.json
+activity_path: camera/{model_name}/activity
+backup_data_file: camera/{model_name}/backup.dat
+vital_data_file: camera/{model_name}/vital.json
