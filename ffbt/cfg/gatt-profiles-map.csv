@@ -1,6 +1,7 @@
 #model,  fw,   GATT profile
 x100vi, 0111, 76ab62
 xt5,    0400, 76ab62
+xt5,    0410, 76ab62
 x100v,  0301, efaafa
 xt30,   0201, efaafa
 xt4,    0212, efaafa
