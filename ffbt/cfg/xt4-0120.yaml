@@ -1,0 +1,20 @@
+mtu: 158
+auth_token: [2,1,2,3,4]
+manufacturer: FUJIFILM
+model_name: X-T4
+model_number: FF190005
+usb_serial_uniq: '25030928033011001A'
+usb_serial_prefix: Y56004
+version_hw: '31.30'
+version_fw: '01.72'
+version_sw: '01.80'
+bssid: AA-BB-CC-DD-EE-FF
+lens_name: XF30mmF2.8 R LM WR Macro
+lens_version: '01.00'
+loc_flag: 1
+loc_interval: 10
+att_db_template: gatt-5dcb7a.yaml
+activity_path: camera/{model_name}/activity
+backup_data_file: camera/{model_name}/backup.dat
+vital_data_file: camera/{model_name}/vital.json
+
