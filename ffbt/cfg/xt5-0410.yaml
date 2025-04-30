@@ -14,7 +14,7 @@ ssid: FUJIFILM-EMU2
 bssid: AA-BB-CC-DD-EE-FF
 lens_name: XF30mmF2.8 R LM WR Macro
 lens_version: '01.00'
-loc_flag: 0 #loc sync enabled
+loc_flag: 0 #loc sync disabled
 loc_interval:  10 #seconds
 standby_transfer: 1 #transfer when power is off
 

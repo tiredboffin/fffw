@@ -1,0 +1,7 @@
+#!/bin/sh
+#parse all hci logs
+for file in btsnoops/{*.log,*.log.last}
+do
+  echo $file
+  ./ffbtsnoop parse --filter fuji --save --session -i $file
+done
