@@ -1,4 +1,4 @@
-mtu: 0xff
+mtu: 0xff #default mtu value can be changed by ff80 tool
 auth_token: [2,1,2,3,4]
 manufacturer: FUJIFILM
 model_name: X-T5
