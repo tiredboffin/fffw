@@ -1,14 +1,34 @@
-#model,  fw,   GATT profile
-x100vi, 0111, 76ab62
-xt5,    0400, 76ab62
-xt5,    0410, 76ab62
-x100v,  0301, efaafa
-xt30,   0201, efaafa
-xt4,    0212, efaafa
-xt4,    0172, 241c73
-xt4,    0120, 5dcb7a
-xh1,    0214, 5dcb7a
-xh1,    0101, 91b151 #the very first implementation?
-
+model,    fw, sha1,   Notes
+x100vi, 0111, 76ab62, v3.1
+xt50,   0101, 76ab62, v3.1
+xs20,   0201, 76ab62, v3.1
+xs20,   0111, efaafa, v2.1
+xt5,    0301, 76ab62, v3.1  #v3.0 + standby 
+xt5,    0200, efaafa, v2.1
+xt5,    0101, 44cb75, v2.0  #almost identical to 2.1 but the handles are different and caedb497-83bf-482c-91ef-91cf6f1216ff has no 'notify' (bug?)
+xh2,    0400, b768e0, v3.0
+xh2,    0200, efaafa, v2.1
+xh2,    0110, 44cb75, v2.0
+xh2s,   0600, b768e0, v3.0
+xh2s,   0400, efaafa, v2.1
+xh2s,   0110, 44cb75, v2.0
+x100v,  0300, efaafa, v2.1
+x100v,  0110, 5dcb7a, v1.1
+xt30II, 0200, efaafa, v2.1
+xt30II, 0110, 5dcb7a, v1.1
+xt30,   0200, efaafa, v2.1
+xt30,   0101, 5dcb7a, v1.1
+xt4,    0200, efaafa, v2.1
+xt4,    0101, 5dcb7a, v1.1
+gfx100, 0500, efaafa, v2.1
+gfx100, 0101, 5dcb7a, v1.1
+xt3,    0500, efaafa, v2.1
+xt3,    0101, 5dcb7a, v1.1
+xs10,   0300, efaafa, v2.1
+xs10,   0101, 5dcb7a, v1.1
+xh1,    0110, 5dcb7a, v1.1
+xh1,    0101, c32798, v1.0
+xe3,    0120, 5dcb7a, v1.1
+xe3,    0110, c32798, v1.0 #the very very first implementation of BLE?
 
 

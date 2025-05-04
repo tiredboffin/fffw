@@ -1,4 +1,4 @@
-#X-T4 0200 efaafa auto generated file, to update run ffun extract-gatt
+#X-H2 0400 b768e0 auto generated file, to update run ffun extract-gatt
 -   index: 0x1
     uuid: '1800'
     chars:
@@ -82,6 +82,11 @@
         - read
         l: 0x1e
     -   index: 0x200c
+        uuid: e8e40d50-a625-4f1d-96ed-8cec034f5690
+        flags:
+        - read
+        l: 0xa
+    -   index: 0x200e
         uuid: 49a12959-dfaa-4eb2-89ce-62548ad948f3
         flags:
         - read
@@ -99,6 +104,11 @@
         flags:
         - read
         l: 0x5
+    -   index: 0x3006
+        uuid: df287e0c-c23f-4f80-afdd-c2b570288cdb
+        flags:
+        - read
+        l: 0xa
 -   index: 0x4001
     uuid: 91f1de68-dff6-466e-8b65-ff13b0f16fb8
     chars:
@@ -184,6 +194,13 @@
         - notify
         l: 0x1
     -   index: 0x4516
+        uuid: 98934b2c-756c-4632-aa2f-dcba1bfec824
+        flags:
+        - read
+        - write
+        - notify
+        l: 0x4
+    -   index: 0x4519
         uuid: 82a9f452-c5ce-4ef5-8203-3fc9a47f8171
         flags:
         - read
@@ -230,23 +247,34 @@
         - indicate
         l: 0x2
     -   index: 0x5014
+        uuid: e6692c5c-b7cd-44f4-95fc-eda07ce32560
+        flags:
+        - read
+        - notify
+        l: 0x2
+    -   index: 0x5017
         uuid: 11438c83-cfb0-4511-841b-759e0d2321c8
         flags:
         - read
         - indicate
         l: 0x2
-    -   index: 0x5017
+    -   index: 0x501a
         uuid: 4b3a413c-230f-42bc-b3ed-b1db2eadee82
         flags:
         - read
         - indicate
         l: 0x2
-    -   index: 0x501a
+    -   index: 0x501d
         uuid: 34d8c8de-e2a9-43ff-822c-7d945dd8d8e1
         flags:
         - read
         l: 0x2
-    -   index: 0x501c
+    -   index: 0x501f
+        uuid: 20ea1fac-19d8-48a8-a80c-535d34300958
+        flags:
+        - read
+        l: 0x1d
+    -   index: 0x5021
         uuid: 1587b102-0b6d-4b63-9226-66fcc6d17387
         flags:
         - read

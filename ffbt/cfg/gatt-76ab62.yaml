@@ -1,3 +1,4 @@
+#X-T5 0301 76ab62 auto generated file, to update run ffun extract-gatt
 -   index: 0x1
     uuid: '1800'
     chars:
@@ -404,3 +405,4 @@
         - write
         - notify
         l: 0x2
+

@@ -1,6 +1,5 @@
 #!/bin/sh
 for f in gatt-*.yaml; do
-    sha=`grep -v  -e "#" -e "index" $f | sha1sum`
+    sha=`grep -v  -e "#" -e "index" $f  -e "^$"| sha1sum`
     echo $f $sha
-    cp --update=none $f gatt-${sha:0:6}.yaml
 done
