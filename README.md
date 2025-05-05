@@ -35,6 +35,10 @@ Quick usage: python ff80 -h
     - send activity logs (xapp)
     - send camera vital data (xapp on newer cameras)
     - supports "connect when power off" mode (xapp)
+  - ffbtsnoop: yet another parser for BTSnoop HCI logs
+    - recognizes and filters packets related to sessions with Fujifilm cameras
+    - understands and extracts exchanged data (for e.g. backup files etc)
+    - adds descriptive names to UUIDs and to handles — making the logs significantly easier to analyze and compare.
 
 - ffbak (unpublished): backup file parser
     - extract and manipulate C1-C7 profiles: the structure is more or less stable across camera models
