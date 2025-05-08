@@ -1,0 +1,173 @@
+-
+    Model Name: F30
+    IOP Code 0: FF148801
+-
+    Model Name: F40FD
+    IOP Code 0: FF389701
+-
+    Model Name: F80EXR
+    IOP Code 0: FF392602
+-
+    Model Name: S3PRO
+    IOP Code 0: FF392002
+-
+    Model Name: F660EXR
+    IOP Code 0: FF8EW409
+-
+    Model Name: XS1
+    IOP Code 0: FF8LY906
+-
+    Model Name: XF1
+    IOP Code 0: FF8LY909
+-
+    Model Name: X30
+    IOP Code 0: FF4K2103
+-
+    Model Name: XA1
+    IOP Code 0: FF109501
+-
+    Model Name: XA2
+    IOP Code 0: FF109502
+-
+    Model Name: XA10
+    IOP Code 0: FF109503
+-
+    Model Name: XPRO1
+    IOP Code 0: FF116501
+-
+    Model Name: XE1
+    IOP Code 0: FF116502
+-
+    Model Name: XM1
+    IOP Code 0: FF116503
+-
+    Model Name: X100S
+    IOP Code 0: FF119501
+-
+    Model Name: XE2
+    IOP Code 0: FF119502
+-
+    Model Name: XT1
+    IOP Code 0: FF119503
+-
+    Model Name: X100T
+    IOP Code 0: FF119504
+-
+    Model Name: XT10
+    IOP Code 0: FF119505
+-
+    Model Name: X70
+    IOP Code 0: FF119506
+-
+    Model Name: XE2-0400
+    IOP Code 0: FF119507
+-
+    Model Name: XE2S
+    IOP Code 0: FF119507
+-
+    Model Name: XPRO2
+    IOP Code 0: FF129501
+-
+    Model Name: XT2
+    IOP Code 0: FF129502
+-
+    Model Name: XT20
+    IOP Code 0: FF129503
+-
+    Model Name: X100F
+    IOP Code 0: FF129504
+-
+    Model Name: XE3
+    IOP Code 0: FF129505
+    BLE Model Id: FF170001
+-
+    Model Name: XH1
+    IOP Code 0: FF129506
+    BLE Model Id: FF170002
+-
+    Model Name: GFX50S
+    IOP Code 0: FF136101
+-
+    Model Name: GFX50R
+    IOP Code 0: FF136102
+    BLE Model Id: FF180000
+-
+    Model Name: GFX50SII
+    IOP Code 0: FF136103
+    BLE Model Id: FF210001
+-
+    Model Name: GFX100
+    IOP Code 0: FF149501
+    BLE Model Id: FF180005
+-
+    Model Name: GFX100S
+    IOP Code 0: FF149502
+    BLE Model Id: FF200003
+-
+    Model Name: XT3
+    IOP Code 0: FF159501
+    BLE Model Id: FF180003
+-
+    Model Name: XT30
+    IOP Code 0: FF159502
+    BLE Model Id: FF180006
+-
+    Model Name: XPRO3
+    IOP Code 0: FF159503
+    BLE Model Id: FF190002
+-
+    Model Name: X100V
+    IOP Code 0: FF159504
+    BLE Model Id: FF190003
+-
+    Model Name: XT4
+    IOP Code 0: FF159505
+    BLE Model Id: FF190005
+-
+    Model Name: XE4
+    IOP Code 0: FF159505
+    BLE Model Id: FF200002
+-
+    Model Name: XS10
+    IOP Code 0: FF159506
+    BLE Model Id: FF200001
+-
+    Model Name: XT30II
+    IOP Code 0: FF159508
+    BLE Model Id: FF210005
+-
+    Model Name: XS20
+    IOP Code 0: FF159509
+    BLE Model Id: FF220002
+-
+    Model Name: XM5
+    IOP Code 0: FF159510
+    BLE Model Id: FF240002
+-
+    Model Name: XH2S
+    IOP Code 0: FF169501
+    BLE Model Id: FF210002
+-
+    Model Name: XH1
+    IOP Code 0: FF179501
+    BLE Model Id: FF210003
+-
+    Model Name: XT5
+    IOP Code 0: FF179502
+    BLE Model Id: FF220001
+-
+    Model Name: GFX100SII
+    IOP Code 0: FF189502
+    BLE Model Id: FF230002
+-
+    Model Name: X100VI
+    IOP Code 0: FF179503
+    BLE Model Id: FF230003
+-
+    Model Name: GFX100II
+    IOP Code 0: FF189501
+    BLE Model Id: FF230001
+-
+    Model Name: XT50
+    IOP Code 0: FF189504
+    BLE Model Id: FF240001
