@@ -26,7 +26,8 @@ Quick usage: python ff80 -h
     - backup/restore user settings data (xapp)
     - enable/disable and collect activity logs (xapp)
     - collect camera vital JSON data (xapp, newer cameras)
-  - ffbt bt1tg: emulate BT1-TG remote control buttons
+    - supports "connect when power off" mode (xapp)
+-   - ffbt bt1tg: emulate BT1-TG remote control buttons
     - supports pairing, shutter release, record movie and zoom buttons
     - lock button is not supported yet
   - ffbt camera: emulate BLE functions of camera. 
@@ -34,7 +35,11 @@ Quick usage: python ff80 -h
     - send and receive backup data (xapp)
     - send activity logs (xapp)
     - send camera vital data (xapp on newer cameras)
-    - supports "connect when power off" mode (xapp)
+    - standby mode (work in progress)
+  - ffbtsnoop: yet another parser for BTSnoop HCI logs
+    - recognizes and filters packets related to sessions with Fujifilm cameras
+    - understands and extracts exchanged data (for e.g. backup files etc)
+    - adds descriptive names to UUIDs and to handles — making the logs significantly easier to analyze and compare.
 
 - ffbak (unpublished): backup file parser
     - extract and manipulate C1-C7 profiles: the structure is more or less stable across camera models
