@@ -1,25 +1,8 @@
 package main
 
 /*
-  ffcompress – Basic implementation of the Fujifilm LZ compression algorithm, part of the ffun toolkit.
+   ffcompress – Example usage of the fflz package and also serves as a test tool.
 
-  Notes:
-
-  - This reversed algorithm is based solely on analysis of DAT file samples and may not be a fully accurate
-    reconstruction of the original hardware implementation. However, it has been tested by decompressing original
-    data, then recompressing it across many images, and the output matches the originals bit-for-bit.
-
-  - The packer is probably more complex than necessary. It’s engineered to reproduce the original compressed data
-    exactly, even though the hardware decompressor is likely more forgiving.
-
-    For example, the original (unknown) compressor seems to avoid crossing 16K page boundaries.
-    Whether this is actually required by hardware is still unverified. For now, the focus is on generating
-    byte-for-byte identical output, rather than maximizing compression efficiency or simplifying the code.
-    The software decompressor code doesn’t care about these page-boundary quirks.
-
-  - This code was translated from a quick and simple Python script I wrote as a proof of concept,
-    then reworked in Go as a way to learn the language. It still carries a lot of C-style structure and
-    assumptions. There's definitely room for cleanup and improvement.
 */
 
 import (
