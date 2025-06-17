@@ -27,7 +27,7 @@ Quick usage: python ff80 -h
     - enable/disable and collect activity logs (xapp)
     - collect camera vital JSON data (xapp, newer cameras)
     - supports "connect when power off" mode (xapp)
--   - ffbt bt1tg: emulate BT1-TG remote control buttons
+  - ffbt bt1tg: emulate BT1-TG remote control buttons
     - supports pairing, shutter release, record movie and zoom buttons
     - lock button is not supported yet
   - ffbt camera: emulate BLE functions of camera. 
