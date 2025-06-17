@@ -16,7 +16,7 @@ If you're interested in analyzing firmware from various Fujifilm models and vers
 
 - Memory region mappings
 - Basic functions (e.g. `create_thread()`)
-- Data structures (depending on firmware version)
+- Some global data structures (depending on firmware version)
 
 It’s meant to give you a starting point for reverse engineering in Ghidra or IDA.
 
@@ -32,9 +32,9 @@ For a list of supported cameras, see the manifest/ directory.
 ffdat2elf -s FWUP0001.DAT -m xe1-0101 -o xe1-0101.elf
 ```
 
-    -s — path to the input .DAT firmware file. Must be an original, unmodified DAT file.
-    -m — name of the manifest file to use, by convention uses camere model name and firmware version (e.g., xe1-0101 for X-E1 v1.01 firmware).
-    -o — output file. The format of teh ourput file is determined by the extension:
+ -  -s — path to the input .DAT firmware file. Must be an original, unmodified DAT file.
+ -  -m — name of the manifest file to use, by convention uses camera model name and firmware version (e.g., xe1-0101 for X-E1 v1.01 firmware).
+ -  -o — output file. The format of the output file is determined by the extension:
         .elf — ELF binary
         .py — Ghidra loader script (work in progress)
  
