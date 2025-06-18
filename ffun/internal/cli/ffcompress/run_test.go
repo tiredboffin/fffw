@@ -1,4 +1,4 @@
-package main
+package ffcompress
 
 import (
 	"os"
@@ -9,6 +9,9 @@ import (
 func TestAllFiles(t *testing.T) {
 	testDir := "test-data"
 	entries, _ := os.ReadDir(testDir)
+        if len(entries) == 0 {
+		t.Error("No test data")
+        }
 	for _, entry := range entries {
 		if entry.IsDir() {
 			continue

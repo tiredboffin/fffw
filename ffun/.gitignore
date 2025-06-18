@@ -1,0 +1,5 @@
+**/test-data/*
+!**/test-data/.gitkeep
+internal/*
+!internal/cli
+

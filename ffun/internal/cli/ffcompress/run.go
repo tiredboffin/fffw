@@ -1,4 +1,4 @@
-package main
+package ffcompress
 
 /*
    ffcompress – Example usage of the fflz package and also serves as a test tool.
@@ -10,10 +10,10 @@ import (
 	"bytes"
 	"crypto/md5"
 	"encoding/binary"
-	"ffcompress/fflz"
 	"fmt"
 	"io"
 	"os"
+	"ffun/internal/fflz"
 )
 
 // Repack original compressed firmware segment and compare it with the original
@@ -120,28 +120,32 @@ func Test(fnIn string, fnOut string) (err error) {
 	return
 }
 
+func Help () (string) {
+	return `<c|u|r> <input-file> <output-file>
+       c - compress
+       u - uncompress
+       t - test (repack orginal compressed segment with md5 sum validation)`
+}
+
 func usage() {
-	fmt.Println("Usage: ffcompress <c|u|r> <input-file> <output-file>")
-	fmt.Println("  c - compress")
-	fmt.Println("  u - uncompress")
-	fmt.Println("  t - test (repack orginal compressed segment with md5 sum validation)")
+	fmt.Println("Usage: ffcompress", Help())
 	os.Exit(1)
 }
 
-func main() {
-	if len(os.Args) < 3 {
+func Run(args []string) {
+	if len(args) < 3 {
 		usage()
 	}
 
-	cmd := os.Args[1]
-	inFile := os.Args[2]
+	cmd := args[1]
+	inFile := args[2]
 
 	switch cmd {
 	case "c":
-		if len(os.Args) != 4 {
+		if len(args) != 4 {
 			usage()
 		}
-		outFile := os.Args[3]
+		outFile := args[3]
 		if inFile == outFile {
 			usage()
 		}
@@ -153,10 +157,10 @@ func main() {
 		}
 		fmt.Printf("Compressed %d bytes to %d\n", hdr.UnpackedSize, hdr.PackedSize)
 	case "u":
-		if len(os.Args) != 4 {
+		if len(args) != 4 {
 			usage()
 		}
-		outFile := os.Args[3]
+		outFile := args[3]
 		fmt.Printf("Uncompress: %s -> %s\n", inFile, outFile)
 		hdr, err := fflz.Unpack(inFile, outFile)
 		if err != nil {
@@ -168,9 +172,9 @@ func main() {
 
 		var outFile string
 
-		if len(os.Args) == 4 {
-			outFile = os.Args[3]
-		} else if len(os.Args) != 3 {
+		if len(args) == 4 {
+			outFile = args[3]
+		} else if len(args) != 3 {
 			usage()
 		}
 		err := Test(inFile, outFile)
@@ -184,3 +188,6 @@ func main() {
 		usage()
 	}
 }
+
+func Name() string { return "ffcompress" }
+

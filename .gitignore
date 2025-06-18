@@ -8,13 +8,18 @@ __pycache__/
 
 .vscode/
 
-build/
-downloads/
-samples/
-dumps/
+**/bin/
+**/build/
+**/downloads/
+**/samples/
+**/dumps/
 
 #Binary files
 *.bin
 *.zip
 *.dump
 *.exe
+
+#Garbage
+*.bak
+*.BAK
