@@ -4,6 +4,7 @@ package ffindex
 
 import (
 	"crypto/sha1"
+	"embed"
 	"encoding/hex"
 	"flag"
 	"fmt"
@@ -252,12 +253,12 @@ func searchByNamePrefix(prefix string, full bool) error {
 	return nil
 }
 
-func Help () (string) {
+func Help() string {
 	return "[build|add|by-hash <prefix>|by-name <prefix>] [--fullhash]"
 }
 
-func Run(args []string) {
-        fs := flag.NewFlagSet("ffindex", flag.ExitOnError)
+func Run(args []string, _ embed.FS) {
+	fs := flag.NewFlagSet("ffindex", flag.ExitOnError)
 
 	fullHash := fs.Bool("fullhash", false, "print full hash")
 

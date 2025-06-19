@@ -14,6 +14,7 @@ import (
 	"io"
 	"os"
 	"ffun/internal/fflz"
+	"embed"
 )
 
 // Repack original compressed firmware segment and compare it with the original
@@ -132,7 +133,7 @@ func usage() {
 	os.Exit(1)
 }
 
-func Run(args []string) {
+func Run(args []string, _ embed.FS) {
 	if len(args) < 3 {
 		usage()
 	}
@@ -190,4 +191,3 @@ func Run(args []string) {
 }
 
 func Name() string { return "ffcompress" }
-
