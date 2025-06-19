@@ -3,6 +3,7 @@ package ffcompress
 import (
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 )
 
@@ -12,12 +13,12 @@ func TestAllFiles(t *testing.T) {
         if len(entries) == 0 {
 		t.Error("No test data")
         }
-	for _, entry := range entries {
-		if entry.IsDir() {
+	for _, e := range entries {
+		if e.IsDir() || strings.HasPrefix(e.Name(), ".") {
 			continue
 		}
-		t.Run(entry.Name(), func(t *testing.T) {
-			err := TestInMem(filepath.Join(testDir, entry.Name()), "")
+		t.Run(e.Name(), func(t *testing.T) {
+			err := TestInMem(filepath.Join(testDir, e.Name()), "")
 			if err != nil {
 				t.Error(err)
 			}

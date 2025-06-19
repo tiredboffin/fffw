@@ -32,6 +32,9 @@ $(PYZ_OUTPUT_DIR)/%.pyz: $(PY_SRC_ROOT)/%
 	$(PYTHON) -m zipapp $< -o $@ --compress
 	@echo "[✓] Done: $@"
 
+tests:
+	go test -v ffun/internal/cli/ffcompress
+
 deps:
 	go mod tidy
 
