@@ -13,7 +13,7 @@ func Help() string {
 }
 
 func Run(args []string, fs embed.FS) {
-	prog1Zip, err := fs.ReadFile("assets/ffundat.pyz")
+	prog1Zip, err := fs.ReadFile("_assets/ffundat.pyz")
 	if err != nil {
 		panic(err)
 	}
