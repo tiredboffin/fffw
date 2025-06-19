@@ -308,3 +308,7 @@ func Run(args []string, _ embed.FS) {
 }
 
 func Name() string { return "ffindex" }
+
+func Available() bool {
+	return true
+}

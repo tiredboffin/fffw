@@ -1,28 +1,34 @@
 package main
 
 import (
+	"ffun/internal/cli"
+	"ffun/internal/pycheck"
 	"fmt"
 	"os"
-
-	"ffun/internal/cli"
 )
 
 func main() {
+	pythonAvailable := pycheck.IsAvailable()
 	args := os.Args
 	if len(args) < 2 || args[1] == "--help" || args[1] == "help" {
-		fmt.Println("Usage: ffun <command> [args...]\n")
-		fmt.Println("Available commands:")
-		for help := range cli.HelpText {
-			fmt.Println("  ", help)
+		fmt.Println("Usage: ffun <command> [args...]")
+		fmt.Println("Commands:")
+		for cmd_name := range cli.Registry {
+			fmt.Println("  ", cmd_name)
+		}
+		if !pythonAvailable {
+			fmt.Println("Warning: some commands still rely on python3.")
 		}
 		os.Exit(0)
 	}
-
-	cmd := args[1]
-	run, ok := cli.Registry[cmd]
+	cmd_name := args[1]
+	cmd, ok := cli.Registry[cmd_name]
 	if !ok {
-		fmt.Fprintf(os.Stderr, "Unknown command: %s\n", cmd)
+		fmt.Fprintf(os.Stderr, "Unknown command: %s\n", cmd_name)
 		os.Exit(1)
 	}
-	run(args[2:], cli.AssetsFS)
+	if !cmd.IsAvailable() {
+		fmt.Fprintf(os.Stderr, "Command needs python3: %s\n", cmd_name)
+	}
+	cmd.Run(args[2:], cli.AssetsFS)
 }

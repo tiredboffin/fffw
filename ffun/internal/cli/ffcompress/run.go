@@ -9,12 +9,12 @@ import (
 	"bufio"
 	"bytes"
 	"crypto/md5"
+	"embed"
 	"encoding/binary"
+	"ffun/internal/fflz"
 	"fmt"
 	"io"
 	"os"
-	"ffun/internal/fflz"
-	"embed"
 )
 
 // Repack original compressed firmware segment and compare it with the original
@@ -121,7 +121,7 @@ func Test(fnIn string, fnOut string) (err error) {
 	return
 }
 
-func Help () (string) {
+func Help() string {
 	return `<c|u|r> <input-file> <output-file>
        c - compress
        u - uncompress
@@ -191,3 +191,7 @@ func Run(args []string, _ embed.FS) {
 }
 
 func Name() string { return "ffcompress" }
+
+func Available() bool {
+	return true
+}

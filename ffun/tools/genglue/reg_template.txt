@@ -7,11 +7,13 @@ import (
   %s
 )
 
-var Registry = map[string]func([]string, embed.FS){
-  %s
+type Cmd struct {
+    Run        func([]string, embed.FS)
+    Help       func() string
+    IsAvailable func() bool
 }
 
-var HelpText = map[string]func()(string){
+var Registry = map[string]Cmd{
   %s
 }
 

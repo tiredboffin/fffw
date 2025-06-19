@@ -24,7 +24,6 @@ func main() {
 
 	var registryImports []string
 	var registryEntries []string
-	var helpEntries []string
 
 	var generated []string
 
@@ -52,15 +51,13 @@ func main() {
 		registryImports = append(registryImports,
 			fmt.Sprintf("\t%[1]sPkg \"%s/internal/cli/%[1]s\"", name, modulePath))
 		registryEntries = append(registryEntries,
-			fmt.Sprintf("\t\"%s\": %sPkg.Run,", name, name))
-		helpEntries = append(helpEntries,
-			fmt.Sprintf("\t\"%s\": %sPkg.Help,", name, name))
+			fmt.Sprintf("\t\"%[1]s\": { Run: %[1]sPkg.Run, Help: %[1]sPkg.Help, IsAvailable: %[1]sPkg.Available }, \n", name))
 	}
 
 	// --- Generate internal/cli/registry_gen.go ---
 	regFile := filepath.Join(cliDir, "registry_gen.go")
 
-	regSrc := fmt.Sprintf(reg_template, strings.Join(registryImports, "\n"), strings.Join(registryEntries, "\n"), strings.Join(helpEntries, "\n"))
+	regSrc := fmt.Sprintf(reg_template, strings.Join(registryImports, "\n"), strings.Join(registryEntries, "\n"))
 
 	err := os.WriteFile(regFile, []byte(regSrc), 0644)
 	generated = append(generated, regFile)
