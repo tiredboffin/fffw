@@ -1,3 +1,5 @@
+/* Wrap ffun commands in a single executable. */
+
 package main
 
 import (

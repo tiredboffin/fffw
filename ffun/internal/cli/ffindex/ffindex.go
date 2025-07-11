@@ -55,8 +55,8 @@ func hashFile(path string) (string, error) {
 	return hex.EncodeToString(h.Sum(nil)), nil
 }
 
-func loadIndex() (Index, error) {
-	data, err := os.ReadFile(indexFile)
+func loadIndex(dir string) (Index, error) {
+	data, err := os.ReadFile(filepath.Join(dir, indexFile))
 	if err != nil {
 		if os.IsNotExist(err) {
 			return Index{}, nil
@@ -68,7 +68,7 @@ func loadIndex() (Index, error) {
 	return idx, err
 }
 
-func saveIndex(idx Index) error {
+func saveIndex(idx Index, dir string) error {
 	var sb strings.Builder
 	keys := make([]string, 0, len(idx))
 	for k := range idx {
@@ -78,12 +78,15 @@ func saveIndex(idx Index) error {
 	for _, k := range keys {
 		fmt.Fprintf(&sb, "%s: %s\n", k, idx[k])
 	}
-	return os.WriteFile(indexFile, []byte(sb.String()), 0644)
+	return os.WriteFile(filepath.Join(dir, indexFile), []byte(sb.String()), 0644)
 }
 
-func findDATFiles() ([]string, error) {
+func findDATFiles(fwdir string) ([]string, error) {
 	var files []string
-	err := filepath.Walk(".", func(path string, info os.FileInfo, err error) error {
+	if fwdir == "" {
+		fwdir = "."
+	}
+	err := filepath.Walk(fwdir, func(path string, info os.FileInfo, err error) error {
 		if err == nil && !info.IsDir() && filepath.Ext(path) == ".DAT" {
 			files = append(files, path)
 		}
@@ -92,8 +95,8 @@ func findDATFiles() ([]string, error) {
 	return files, err
 }
 
-func buildIndex() error {
-	files, err := findDATFiles()
+func buildIndex(fwDir string) error {
+	files, err := findDATFiles(fwDir)
 	if err != nil {
 		return err
 	}
@@ -106,19 +109,24 @@ func buildIndex() error {
 			fmt.Fprintf(os.Stderr, "\nwarning: cannot hash %s: %v\n", file, err)
 			continue
 		}
-		idx[file] = hash
+		relPath, err := filepath.Rel(fwDir, file)
+		if err != nil {
+			return err
+		}
+
+		idx[relPath] = hash
 	}
 	println()
 	reportDuplicates(idx, nil)
-	return saveIndex(idx)
+	return saveIndex(idx, fwDir)
 }
 
-func addToIndex() error {
-	idx, err := loadIndex()
+func addToIndex(fwDir string) error {
+	idx, err := loadIndex(fwDir)
 	if err != nil {
 		return err
 	}
-	files, err := findDATFiles()
+	files, err := findDATFiles(fwDir)
 	if err != nil {
 		return err
 	}
@@ -143,7 +151,7 @@ func addToIndex() error {
 	println()
 	reportDuplicates(idx, added)
 	if updated {
-		return saveIndex(idx)
+		return saveIndex(idx, fwDir)
 	}
 	return nil
 }
@@ -217,8 +225,8 @@ func reportDuplicates(idx Index, added []string) {
 	}
 }
 
-func searchByHashPrefix(prefix string, full bool) error {
-	idx, err := loadIndex()
+func searchByHashPrefix(prefix string, full bool, fwDir string) error {
+	idx, err := loadIndex(fwDir)
 	if err != nil {
 		return err
 	}
@@ -235,8 +243,8 @@ func searchByHashPrefix(prefix string, full bool) error {
 	return nil
 }
 
-func searchByNamePrefix(prefix string, full bool) error {
-	idx, err := loadIndex()
+func searchByNamePrefix(prefix string, full bool, fwDir string) error {
+	idx, err := loadIndex(fwDir)
 	if err != nil {
 		return err
 	}
@@ -254,34 +262,89 @@ func searchByNamePrefix(prefix string, full bool) error {
 }
 
 func Help() string {
-	return "[build|add|by-hash <prefix>|by-name <prefix>] [--fullhash]"
+	return "[build|add|by-hash <prefix>|by-name <prefix>] -fwdir directory [-v verbose_level]"
 }
 
-func Run(args []string, _ embed.FS) {
-	fs := flag.NewFlagSet("ffindex", flag.ExitOnError)
+func parseArgs(name string, args []string) (fs *flag.FlagSet, fwDirPtr *string) {
 
-	fullHash := fs.Bool("fullhash", false, "print full hash")
+	fs = flag.NewFlagSet(name, flag.ExitOnError)
 
 	fs.IntVar(&verboseLevel, "v", 2, "verbosity level: 0 = silent, 1 = no progress, 2 = full output (default)")
+
+	fwDirPtr = fs.String("fwdir", "", "path to firmware directory")
 
 	fs.Usage = func() {
 		fmt.Println("Usage: ffindex", Help())
 	}
 
-	fs.Parse(args)
-
-	if len(args) < 1 {
-		fs.Usage()
+	if err := fs.Parse(args[1:]); err != nil {
+		fmt.Println("Error parsing flags:", err)
 		os.Exit(1)
 	}
 
+	if *fwDirPtr == "" {
+		if globalCfg.FirmwareDir == "" {
+			fmt.Println("Error: --fwdir is required")
+			fs.Usage()
+			os.Exit(1)
+		}
+		fwDirPtr = &globalCfg.FirmwareDir
+	}
+	return
+}
+
+type Config struct {
+	FirmwareDir string `yaml:"fwdir"`
+}
+
+var globalCfg Config
+
+func getConfigPath() (cfgPath string) {
+	dir, err := os.UserConfigDir()
+	if err != nil {
+		fmt.Printf("cannot get config dir: %v", err)
+		os.Exit(2)
+	}
+	return filepath.Join(dir, "ffun", "config.yaml")
+
+}
+func Run(args []string, _ embed.FS) {
+
+	if len(args) < 1 {
+		fmt.Println("Usage: ffindex", Help())
+		os.Exit(1)
+	}
+
+	cfgPath := getConfigPath()
+	data, _ := os.ReadFile(cfgPath)
+	yaml.Unmarshal(data, &globalCfg)
+
 	switch args[0] {
+	case "saveconfig":
+		_, fwDirPtr := parseArgs(args[0], args)
+		cfg := Config{FirmwareDir: *fwDirPtr}
+		fmt.Printf("%q\n", cfg)
+		data, err := yaml.Marshal(&cfg)
+		fmt.Printf("%q\n", data)
+		if err != nil {
+			fmt.Printf("config marshal failed: %v", err)
+			os.Exit(2)
+		}
+		cfgPath := getConfigPath()
+		os.MkdirAll(filepath.Dir(cfgPath), 0755)
+		err = os.WriteFile(cfgPath, data, 0644)
+		if err != nil {
+			fmt.Printf("config write failed: %v", err)
+			os.Exit(2)
+		}
 	case "build":
-		if err := buildIndex(); err != nil {
+		_, fwDirPtr := parseArgs(args[0], args)
+		if err := buildIndex(*fwDirPtr); err != nil {
 			fmt.Fprintln(os.Stderr, "Error:", err)
 		}
 	case "add":
-		if err := addToIndex(); err != nil {
+		_, fwDirPtr := parseArgs(args[0], args)
+		if err := addToIndex(*fwDirPtr); err != nil {
 			fmt.Fprintln(os.Stderr, "Error:", err)
 		}
 	case "by-hash":
@@ -289,7 +352,8 @@ func Run(args []string, _ embed.FS) {
 			fmt.Fprintln(os.Stderr, "Missing hash prefix")
 			os.Exit(1)
 		}
-		if err := searchByHashPrefix(args[1], *fullHash); err != nil {
+		_, fwDirPtr := parseArgs(args[0], args[1:])
+		if err := searchByHashPrefix(args[1], false, *fwDirPtr); err != nil {
 			fmt.Fprintln(os.Stderr, "Error:", err)
 		}
 	case "by-name":
@@ -297,12 +361,13 @@ func Run(args []string, _ embed.FS) {
 			fmt.Fprintln(os.Stderr, "Missing name prefix")
 			os.Exit(1)
 		}
-		if err := searchByNamePrefix(args[1], *fullHash); err != nil {
+		_, fwDirPtr := parseArgs(args[0], args[1:])
+		if err := searchByNamePrefix(args[1], false, *fwDirPtr); err != nil {
 			fmt.Fprintln(os.Stderr, "Error:", err)
 		}
 	default:
 		fmt.Fprintln(os.Stderr, "Unknown command:", args[0])
-		fs.Usage()
+		fmt.Println("Usage: ffindex", Help())
 		os.Exit(1)
 	}
 }
