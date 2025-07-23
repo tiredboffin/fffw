@@ -3,6 +3,7 @@ x100vi, 0111, 76ab62, v3.1
 xt50,   0101, 76ab62, v3.1
 xs20,   0201, 76ab62, v3.1
 xs20,   0111, efaafa, v2.1
+xt5,    0430, ad14d4, v4.0  #cr removed, ble pairing
 xt5,    0301, 76ab62, v3.1  #v3.0 + standby 
 xt5,    0200, efaafa, v2.1
 xt5,    0101, 44cb75, v2.0  #almost identical to 2.1 but the handles are different and caedb497-83bf-482c-91ef-91cf6f1216ff has no 'notify' (bug?)
