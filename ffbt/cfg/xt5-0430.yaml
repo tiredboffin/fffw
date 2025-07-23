@@ -3,13 +3,13 @@ auth_token: [2,1,2,3,4]
 manufacturer: FUJIFILM
 model_name: X-T5
 model_number: FF220001
-body_serial: '51000002'
+body_serial: '51000003'
 lens_serial: '10000008'
 usb_serial_uniq: '250308280330110003' #see encoding in numerics.md
 usb_serial_prefix: Y56881 #last digit 1 - Japan, 9 - China, 2 - US, 4 - World
 version_hw: '31.30'
 version_fw: '04.30' #public version
-version_sw: '01.96' #internal fw version
+version_sw: '02.12' #internal fw version
 ssid: FUJIFILM-EMU2
 bssid: AA-BB-CC-DD-EE-FF
 lens_name: XF30mmF2.8 R LM WR Macro
