@@ -1,5 +1,5 @@
 mtu: 0xff #default mtu value can be changed by ff80 tool
-auth_token: [2,1,2,3,4]
+auth_token: [1,0x31,0x30,0x30,0x30, 0x33] #todo: should match $usb_serial_uniq
 manufacturer: FUJIFILM
 model_name: X-T5
 model_number: FF220001
