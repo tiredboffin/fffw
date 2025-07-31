@@ -83,7 +83,7 @@ def cmd_parser():
 
     #command xe2 -- experimenatl
     cmd = commands.add_parser('xe2', help='xe2 specifics, do not use!')
-    actions = cmd.add_subparsers(dest='action')
+    actions = cmd.add_subparsers(dest='action', required=True)
 
     #action xe2.readtime
     action = actions.add_parser('readtime', help='Check real time location')
