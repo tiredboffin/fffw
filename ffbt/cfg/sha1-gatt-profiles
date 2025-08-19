@@ -1,5 +1,5 @@
 #!/bin/sh
 for f in gatt-*.yaml; do
-    sha=`grep -v  -e "#" -e "index" $f  -e "^$"| sha1sum`
+    sha=`grep -v  -e "#" -e "index" "${f}"  -e "^$"| sha1sum`
     echo $f $sha
 done
