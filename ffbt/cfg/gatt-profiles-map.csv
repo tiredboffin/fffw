@@ -1,11 +1,15 @@
 model,    fw, sha1,   Notes
-gfx100rf, 0110, a1f282, v4.0gfx #ble secure pairing
+xe5,    0110, b3fbfe, v4.1  #secure + 
+gfx100rf, 0110, a1f282, v4.1gfx #secure +
 GFX100II, 0230, 724082, v3.1gfx
+x100vi, 0131, ad14d4, v4.0  #secure
 x100vi, 0111, 76ab62, v3.1
+xt50,   0131, ad14d4, v4.0  #ble 4.2 secure
 xt50,   0101, 76ab62, v3.1
+xs20,   0330, ad14d4, v4.0  #secure
 xs20,   0201, 76ab62, v3.1
 xs20,   0111, efaafa, v2.1
-xt5,    0430, ad14d4, v4.0  #ble 4.2 secure
+xt5,    0430, ad14d4, v4.0  #secure
 xt5,    0301, 76ab62, v3.1  #v3.0 + standby 
 xt5,    0200, efaafa, v2.1
 xt5,    0101, 44cb75, v2.0  #almost identical to 2.1 but the handles are different and caedb497-83bf-482c-91ef-91cf6f1216ff has no 'notify' (bug?)
