@@ -4,11 +4,13 @@ TG-BT1:
   ModelId: FF220003
 F40FD:
   IopCode: FF389701
-  SensorDesc: HA-CCD(HR) FUI-MS3897A 1/1.7 inch 6.3M. 2.7µm Super CCD HR VI
+  SensorDesc: ?? HA-CCD(HR) FUI-MS3897A 1/1.7 inch 6.3M. 2.7µm Super CCD HR VI
 S3PRO:
   IopCode: FF392002
 F80EXR:
   IopCode: FF392602
+HS10:
+  IopCode: FF535901
 X20:
   IopCode: FF4K2101
 X30:
