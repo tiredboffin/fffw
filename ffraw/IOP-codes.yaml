@@ -181,6 +181,10 @@ XM5:
   IopCode: FF159510
   ModelId: FF240002
   CBANN: 5-9-5-10
+XT30III:
+  IopCode: FF159511
+  ModelId: FF250003
+  CBANN: 5-9-5-11
 XH2S:
   IopCode: FF169501
   ModelId: FF210002
