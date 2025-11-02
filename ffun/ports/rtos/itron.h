@@ -1,4 +1,16 @@
 // Subset of μITRON 4.0 Specification.
+
+// Task execution state values
+enum UTRON_TTS {
+    TTS_RUN = 0x01, //RUNNING
+    TTS_RDY = 0x02, //READY
+    TTS_WAI = 0x04, //WAITING
+    TTS_SUS = 0x08, //SUSPENDED
+    TTS_WAS = 0x0c, //WAITING-SUSPENDED
+    TTS_DMT = 0x10, //DORMANT
+};
+
+// API return values
 enum UTRON_ERR {
     E_SYS   = -5,   // System error
     E_NOSPT = -9,   // Unsupported function
@@ -23,11 +35,3 @@ enum UTRON_ERR {
     E_BOVR  = -58   // Buffer overflow
 };
 
-enum UTRON_TTS {
-    TTS_RUN = 0x01, //RUNNING
-    TTS_RDY = 0x02, //READY
-    TTS_WAI = 0x04, //WAITING
-    TTS_SUS = 0x08, //SUSPENDED
-    TTS_WAS = 0x0c, //WAITING-SUSPENDED
-    TTS_DMT = 0x10, //DORMANT
-};

@@ -1,0 +1,56 @@
+// Subset of ThreadX API Specification.
+
+// Thread execution state values
+enum TX_TASK_STATE {
+    TX_READY            = 0,
+    TX_COMPLETED        = 1,
+    TX_TERMINATED       = 2,
+    TX_SUSPENDED        = 3,
+    TX_SLEEP            = 4,
+    TX_QUEUE_SUSP       = 5,
+    TX_SEMAPHORE_SUSP   = 6,
+    TX_EVENT_FLAG       = 7,
+    TX_BLOCK_MEMORY     = 8,
+    TX_BYTE_MEMORY      = 9,
+};
+
+// API return values
+enum TX_STATUS {
+    TX_SUCCESS              = 0x00,
+    TX_DELETED              = 0x01,
+    TX_POOL_ERROR           = 0x02,
+    TX_PTR_ERROR            = 0x03,
+    TX_WAIT_ERROR           = 0x04,
+    TX_SIZE_ERROR           = 0x05,
+    TX_GROUP_ERROR          = 0x06,
+    TX_NO_EVENTS            = 0x07,
+    TX_OPTION_ERROR         = 0x08,
+    TX_QUEUE_ERROR          = 0x09,
+    TX_QUEUE_EMPTY          = 0x0A,
+    TX_QUEUE_FULL           = 0x0B,
+    TX_SEMAPHORE_ERROR      = 0x0C,
+    TX_NO_INSTANCE          = 0x0D,
+    TX_THREAD_ERROR         = 0x0E,
+    TX_PRIORITY_ERROR       = 0x0F,
+    TX_NO_MEMORY            = 0x10,
+    TX_START_ERROR          = 0x10,   // same as TX_NO_MEMORY
+    TX_DELETE_ERROR         = 0x11,
+    TX_RESUME_ERROR         = 0x12,
+    TX_CALLER_ERROR         = 0x13,
+    TX_SUSPEND_ERROR        = 0x14,
+    TX_TIMER_ERROR          = 0x15,
+    TX_TICK_ERROR           = 0x16,
+    TX_ACTIVATE_ERROR       = 0x17,
+    TX_THRESH_ERROR         = 0x18,
+    TX_SUSPEND_LIFTED       = 0x19,
+    TX_WAIT_ABORTED         = 0x1A,
+    TX_WAIT_ABORT_ERROR     = 0x1B,
+    TX_MUTEX_ERROR          = 0x1C,
+    TX_NOT_AVAILABLE        = 0x1D,
+    TX_NOT_OWNED            = 0x1E,
+    TX_INHERIT_ERROR        = 0x1F,
+    TX_NOT_DONE             = 0x20,
+    TX_CEILING_EXCEEDED     = 0x21,
+    TX_INVALID_CEILING      = 0x22,
+    TX_FEATURE_NOT_ENABLED  = 0xFF,
+};
