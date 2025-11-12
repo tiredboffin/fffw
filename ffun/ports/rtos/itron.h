@@ -1,5 +1,20 @@
 // Subset of μITRON 4.0 Specification.
 
+// Task attributes
+enum UTRON_TA {
+    HLNG = 0x00,
+    ASM = 0x01,
+    ACT = 0x02,
+};
+
+
+// flag attributes
+enum UTRON_FA {
+    TFIFO = 0x00,
+    TPRI = 0x01,
+    CLR = 0x04,
+};
+
 // Task execution state values
 enum UTRON_TTS {
     TTS_RUN = 0x01, //RUNNING
