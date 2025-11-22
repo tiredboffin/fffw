@@ -1,0 +1,396 @@
+#Auto-generated file. Use ffun to regenerate.
+- LEN: 0x666000
+  CODE: C5931
+  VER: C5931-v87
+  DVR: '2.00'
+  SUM: 0x3122f71a
+  SECTIONS: ND1 IPL PTBL A9262
+  MAP:
+  - name: .dtcm
+    base: 0x28000000
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .picbase
+    base: 0x0
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .vector
+    base: 0x0
+    size: 0x44
+    at: null
+    attr_list:
+    - EXEC
+  - name: .itcm
+    base: 0x80
+    size: 0xec
+    at: null
+    attr_list:
+    - EXEC
+  - name: .secinfo
+    base: 0x1000
+    size: 0x700
+    at: null
+    attr_list:
+    - DATA
+  - name: .hardware_imple
+    base: 0x1700
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .syscall
+    base: 0x1800
+    size: 0xc
+    at: null
+    attr_list:
+    - EXEC
+  - name: .text
+    base: 0x2000
+    size: 0x512ff4
+    at: null
+    attr_list:
+    - EXEC
+  - name: .rodata
+    base: 0x515000
+    size: 0x875f4c
+    at: null
+    attr_list:
+    - DATA
+  - name: .rodata_end
+    base: 0xd8af60
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .ovltext_LIB
+    base: 0x1200000
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .ROM.vector
+    base: 0x10000000
+    size: 0x44
+    at: .vector
+    attr_list:
+    - EXEC
+  - name: .ROM.itcm
+    base: 0x10000080
+    size: 0xec
+    at: .itcm
+    attr_list:
+    - EXEC
+  - name: .ROM.secinfo
+    base: 0x10001000
+    size: 0x700
+    at: .secinfo
+    attr_list:
+    - DATA
+  - name: .ROM.hardware_imple
+    base: 0x10001700
+    size: 0x0
+    at: .hardware_imple
+    attr_list:
+    - NOLOAD
+  - name: .ROM.syscall
+    base: 0x10001800
+    size: 0xc
+    at: .syscall
+    attr_list:
+    - EXEC
+  - name: .ROM.text
+    base: 0x10002000
+    size: 0x3747ea
+    at: .text
+    attr_list:
+    - EXEC
+    - COMPRESSED
+  - name: .ROM.rodata
+    base: 0x10376800
+    size: 0x2d1493
+    at: .rodata
+    attr_list:
+    - DATA
+    - COMPRESSED
+  - name: .ROM.data
+    base: 0x10648000
+    size: 0x1dbe8
+    at: .data
+    attr_list:
+    - DATA
+    - COMPRESSED
+  - name: .ROM.prog
+    base: 0x10666000
+    size: 0x0
+    at: .prog
+    attr_list:
+    - NOLOAD
+  - name: .ROM.dataend
+    base: 0x10dd2800
+    size: 0x0
+    at: .dataend
+    attr_list:
+    - NOLOAD
+  - name: .codelimit
+    base: 0x10dd2800
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .ovlbegin
+    base: 0x10dd2800
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .romovltext_LIB
+    base: 0x10dd2800
+    size: 0x0
+    at: .ovltext_LIB
+    attr_list:
+    - NOLOAD
+  - name: .ovlend
+    base: 0x10dd2800
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .mirrorbegin
+    base: 0xc0d8af60
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .data
+    base: 0xc0d8b000
+    size: 0x472cc
+    at: null
+    attr_list:
+    - DATA
+    - WRITABLE
+  - name: .prog
+    base: 0xc0dd2800
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .dataend
+    base: 0xc0dd2800
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .ver_table
+    base: 0xc0dd2800
+    size: 0x1000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .log_save
+    base: 0xc1700000
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .bss
+    base: 0xc1200000
+    size: 0x213178
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .noinit
+    base: 0xc1413180
+    size: 0x1b594
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .heap
+    base: 0xc142e720
+    size: 0x100000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .rtosmem
+    base: 0xc152e720
+    size: 0xddf00
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .stack
+    base: 0xc160c620
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .stack_usr
+    base: 0xc160c620
+    size: 0x1000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .stack_fiq
+    base: 0xc160d620
+    size: 0x1000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .stack_irq
+    base: 0xc160e620
+    size: 0x1000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .stack_svc
+    base: 0xc160f620
+    size: 0x1000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .stack_abt
+    base: 0xc1610620
+    size: 0x1000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .stack_und
+    base: 0xc1611620
+    size: 0x1000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .stack_sys
+    base: 0xc1612620
+    size: 0x1000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .stack_rsv
+    base: 0xc1613620
+    size: 0x1000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .media_init_data
+    base: 0xdff90000
+    size: 0x10000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .camadj
+    base: 0xdffa0000
+    size: 0x40000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .camdef
+    base: 0xdffe0000
+    size: 0x20000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .subcpu_OEM
+    base: 0xdfd90000
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .lens_cpu
+    base: 0xdfd90000
+    size: 0x100000
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+- NAME: IPL
+  LEN: 0x20000
+  CODE: C5931
+  VER: C5931-v87
+  DVR: '2.00'
+  SUM: 0x38bdd2
+  OFFSET: 0x0
+  MAP:
+  - name: .vector
+    base: 0x0
+    size: 0x40
+    at: null
+    attr_list:
+    - DATA
+  - name: .boot_text
+    base: 0x40
+    size: 0x4cc
+    at: null
+    attr_list:
+    - EXEC
+  - name: .boot_rodata
+    base: 0x50c
+    size: 0x0
+    at: null
+    attr_list:
+    - NOLOAD
+  - name: .boot_data
+    base: 0x50c
+    size: 0x0
+    at: null
+    attr_list:
+    - DATA
+    - WRITABLE
+  - name: .ipl_version
+    base: 0x23000000
+    size: 0x43
+    at: null
+    attr_list:
+    - DATA
+  - name: .text
+    base: 0x23000060
+    size: 0x8094
+    at: null
+    attr_list:
+    - EXEC
+  - name: .rodata
+    base: 0x23008100
+    size: 0x308
+    at: null
+    attr_list:
+    - DATA
+  - name: .data
+    base: 0x23008420
+    size: 0xe4
+    at: null
+    attr_list:
+    - DATA
+    - WRITABLE
+  - name: .bss
+    base: 0x23008520
+    size: 0x22c4
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
+  - name: .noinit
+    base: 0x2300a800
+    size: 0x400
+    at: null
+    attr_list:
+    - NOLOAD
+    - WRITABLE
