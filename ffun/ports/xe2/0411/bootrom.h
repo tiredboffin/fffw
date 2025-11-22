@@ -1,0 +1,10 @@
+enum BOOT_DEV {
+  BOOT_RAM = 0,
+  BOOT_MMC0_FAT = 1,
+  BOOT_MMC1_RAW = 2,
+  BOOT_EEP0 = 3,
+  BOOT_EEP1 = 4,
+  BOOT_EEP2 = 5,
+  BOOT_EEP3 = 6,
+  BOOT_DEV56 = 7,
+};
