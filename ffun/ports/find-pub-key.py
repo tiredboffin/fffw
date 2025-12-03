@@ -38,14 +38,15 @@ def main():
     if args.print_offset:
         print("offset\tkey65_hex")
         for off, key65 in hits:
-            print(f"{off}\t{key65.hex()}")
+            print(f"0x{off:0x}\t{key65.hex()}")
     else:
-        for _, key65 in hits:
+        for i, (_, key65) in enumerate(hits):
             print(key65.hex())
             vk = VerifyingKey.from_string(key65[1:], curve=NIST256p, validate_point=True)
-            with open("pubkey.pem", "wb") as f:
+            fn = "pubkey" if i == 0 else f"pubkey{i}"
+            with open(f"{fn}.pem", "wb") as f:
                 f.write(vk.to_pem())
-            with open("pubkey.der", "wb") as f:
+            with open(f"{fn}.der", "wb") as f:
                 f.write(vk.to_der())
 
 if __name__ == "__main__":
