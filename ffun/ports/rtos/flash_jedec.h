@@ -94,3 +94,13 @@ enum SPI_NOR_CMD {
     //SPI_QPI_EXIT_MX        = 0xFF,   // Macronix: Exit QPI mode
 
 };
+
+
+enum FLASH_ID {
+    MicronMT25_512 = 0x20bb20, //1.8V 512Mb
+    MicronMT35_512 = 0x2c5b1a, //("mt35xu512a", 0x2c5b1a, 0x104100,  128 * 1024	,  512, USE_FSR | SPI_NOR_4B_OPCODES) 
+    MicronMT35_1G  = 0x2c5b1b, //1G
+    Maxronix2      = 0xC2803A,
+    Macronix1      = 0xC2352A,
+};
+
