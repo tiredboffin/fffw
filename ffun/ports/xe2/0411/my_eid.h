@@ -1,0 +1,14 @@
+enum EID {
+    LENS_OIS_OP       = 0x7428,
+    LENS_SET_BITS     = 0x7435,
+    LENS_SET_MASK     = 0x7436,
+    LENS_SET_PORT     = 0x7437,
+    LENS_PORT_READ    = 0x7438,
+    LENS_AD_READ      = 0x7439,
+    LENS_SHAKE_READ   = 0x743C,
+    LENS_FOCUS_AND_IRIS_ADJ   = 0x743B,
+    LENS_OIS_RESET    = 0x7447,
+    LENS_SHAKE_OPEN   = 0x7448,
+    LENS_OIS_OPEN     = 0x744B, 
+    LENS_OIS_WRITE16  = 0x744C,
+};
