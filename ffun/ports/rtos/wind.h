@@ -116,6 +116,24 @@ typedef struct semaphore
  } state;
     EVENTS_RSRC events;
     } SEMAPHORE;
+typedef enum
+    {
+    SEM_EMPTY,
+    SEM_FULL
+    } SEM_B_STATE;
+typedef enum {
+    BINARY= 0x0,
+    MUTEX= 0x1,
+    COUNTING= 0x2,
+    OLD= 0x3,
+} SEM_TYPE;
+typedef enum {
+    Q_FIFO= 0x00,
+    Q_PRIORITY= 0x01,
+    DELETE_SAFE= 0x04,
+    INVERSION_SAFE= 0x08,
+    EVENTSEND_ERR_NOTIFY= 0x10,
+} SEM_OPT;
 typedef struct semaphore *SEM_ID;
 typedef struct mem_part
     {
@@ -380,3 +398,91 @@ typedef struct
     int arg2;
     int arg3;
     } JOB;
+typedef struct
+    {
+    void * pClass;
+    char * pBufs;
+    int numBufs;
+    int bufSize;
+    char * pFreeBufs;
+    } BUF_POOL;
+typedef struct
+    {
+    char * next;
+    int type;
+    } BUFFER;
+enum FF_ERR {
+    TIMEOUT=0x1,
+    INVALID_ID=0x2,
+    OBJ_DELETED=0x3,
+    ISR_IVALID_CALL=0x5,
+    NOT_ENOUGH_MEMORY=0x6,
+    ERR_07=0x7,
+    ARRAY_OVR=0x8,
+    ILLEGAL_PRIORITY=0x9,
+    ZERO_EVENTS=0xa,
+    NOT_ALL_EVENTS=0xb,
+    INVALID_OBJ_ID=0xc,
+    INVALID_PRM=0xd,
+    ERR_0E=0xe,
+    ERR_0C=0xf,
+    INVALID_MSG_LENGTH=0x11,
+    ERR_12=0x12,
+    NOT_INITIALIZED=0x13,
+    ERR_24=0x24,
+};
+enum VX_ERR {
+    NAME_NOT_FOUND = ((3 << 16) | 101),
+    HOOK_TABLE_FULL = ((3 << 16) | 102),
+    TASK_HOOK_NOT_FOUND = ((3 << 16) | 103),
+    TASK_SWAP_HOOK_REFERENCED = ((3 << 16) | 104),
+    TASK_SWAP_HOOK_SET = ((3 << 16) | 105),
+    TASK_SWAP_HOOK_CLEAR= ((3 << 16) | 106),
+    TASK_VAR_NOT_FOUND= ((3 << 16) | 107),
+    TASK_UNDELAYED= ((3 << 16) | 108),
+    ILLEGAL_PRIORITY= ((3 << 16) | 109),
+    NOT_ENOUGH_MEMORY= ((17 << 16) | 1),
+    INVALID_NBYTES= ((17 << 16) | 2),
+    BLOCK_ERROR= ((17 << 16) | 3),
+    NO_PARTITION_DESTROY= ((17 << 16) | 4),
+    PAGE_SIZE_UNAVAILABLE= ((17 << 16) | 5),
+    TIMEOUT= ((134 << 16) | 0x0001),
+    NOT_ALL_EVENTS= ((134 << 16) | 0x0002),
+    ALREADY_REGISTERED= ((134 << 16) | 0x0003),
+    EVENTSEND_FAILED= ((134 << 16) | 0x0004),
+    ZERO_EVENTS= ((134 << 16) | 0x0005),
+    TASK_NOT_REGISTERED= ((134 << 16) | 0x0006),
+    NULL_TASKID_AT_INT_LEVEL= ((134 << 16) | 0x0007),
+    NOT_INITIALIZED= ((88 << 16) | 1),
+    NOT_A_GLOBAL_ADRS= ((88 << 16) | 2),
+    NOT_A_LOCAL_ADRS= ((88 << 16) | 3),
+    SHARED_MEM_TOO_SMALL= ((88 << 16) | 4),
+    TOO_MANY_CPU= ((88 << 16) | 5),
+    LOCK_TIMEOUT= ((88 << 16) | 6),
+    NO_OBJECT_DESTROY= ((88 << 16) | 7),
+    INVALID_MSG_LENGTH= ((65 << 16) | 1),
+    NON_ZERO_TIMEOUT_AT_INT_LEVEL= ((65 << 16) | 2),
+    INVALID_QUEUE_TYPE= ((65 << 16) | 3),
+    OBJ_ID_ERROR= ((61 << 16) | 1),
+    OBJ_UNAVAILABLE= ((61 << 16) | 2),
+    OBJ_DELETED= ((61 << 16) | 3),
+    OBJ_TIMEOUT= ((61 << 16) | 4),
+    OBJ_NO_METHOD= ((61 << 16) | 5),
+    NOT_ISR_CALLABLE= ((67 << 16) | 1),
+    VEC_TABLE_WP_UNAVAILABLE= ((67 << 16) | 2),
+    SEM_INVALID_STATE= ((22 << 16) | 101),
+    SEM_INVALID_OPTION= ((22 << 16) | 102),
+    SEM_INVALID_QUEUE_TYPE= ((22 << 16) | 103),
+    SEM_INVALID_OPERATION= ((22 << 16) | 104),
+};
+enum MIPS_MEM_HELPERS {
+    DCACHE_INV_RANGE = 0,
+    CACHE_INV = 1,
+    DCACHE_INV_SYNC = 2,
+    CODE_CACHE_INV = 3,
+    SYNC = 4,
+    ALLOC_NCACHED = 5,
+    FREE_NCACHED = 6,
+    KSEG1_TO_PHYS = 7,
+    PHYS_TO_KSEG1 = 8,
+};
