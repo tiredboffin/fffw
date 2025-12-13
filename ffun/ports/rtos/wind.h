@@ -429,6 +429,8 @@ enum FF_ERR {
     INVALID_MSG_LENGTH=0x11,
     ERR_12=0x12,
     NOT_INITIALIZED=0x13,
+    NO_SLOTS=0x14,
+    EER_15=0x15,
     ERR_24=0x24,
 };
 enum VX_ERR {
