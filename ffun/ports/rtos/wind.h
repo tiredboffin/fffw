@@ -435,48 +435,57 @@ enum FF_ERR {
     TOO_MANY_TASK_ARGS=0x24,
 };
 enum VX_ERR {
-    NAME_NOT_FOUND = ((3 << 16) | 101),
-    HOOK_TABLE_FULL = ((3 << 16) | 102),
+    TASK_NAME_NOT_FOUND = ((3 << 16) | 101),
+    TASK_HOOK_TABLE_FULL = ((3 << 16) | 102),
     TASK_HOOK_NOT_FOUND = ((3 << 16) | 103),
     TASK_SWAP_HOOK_REFERENCED = ((3 << 16) | 104),
     TASK_SWAP_HOOK_SET = ((3 << 16) | 105),
     TASK_SWAP_HOOK_CLEAR= ((3 << 16) | 106),
     TASK_VAR_NOT_FOUND= ((3 << 16) | 107),
     TASK_UNDELAYED= ((3 << 16) | 108),
-    ILLEGAL_PRIORITY= ((3 << 16) | 109),
-    NOT_ENOUGH_MEMORY= ((17 << 16) | 1),
-    INVALID_NBYTES= ((17 << 16) | 2),
-    BLOCK_ERROR= ((17 << 16) | 3),
-    NO_PARTITION_DESTROY= ((17 << 16) | 4),
-    PAGE_SIZE_UNAVAILABLE= ((17 << 16) | 5),
-    TIMEOUT= ((134 << 16) | 0x0001),
-    NOT_ALL_EVENTS= ((134 << 16) | 0x0002),
-    ALREADY_REGISTERED= ((134 << 16) | 0x0003),
-    EVENTSEND_FAILED= ((134 << 16) | 0x0004),
-    ZERO_EVENTS= ((134 << 16) | 0x0005),
-    TASK_NOT_REGISTERED= ((134 << 16) | 0x0006),
-    NULL_TASKID_AT_INT_LEVEL= ((134 << 16) | 0x0007),
-    NOT_INITIALIZED= ((88 << 16) | 1),
-    NOT_A_GLOBAL_ADRS= ((88 << 16) | 2),
-    NOT_A_LOCAL_ADRS= ((88 << 16) | 3),
-    SHARED_MEM_TOO_SMALL= ((88 << 16) | 4),
-    TOO_MANY_CPU= ((88 << 16) | 5),
-    LOCK_TIMEOUT= ((88 << 16) | 6),
-    NO_OBJECT_DESTROY= ((88 << 16) | 7),
-    INVALID_MSG_LENGTH= ((65 << 16) | 1),
-    NON_ZERO_TIMEOUT_AT_INT_LEVEL= ((65 << 16) | 2),
-    INVALID_QUEUE_TYPE= ((65 << 16) | 3),
+    TASK_ILLEGAL_PRIORITY= ((3 << 16) | 109),
+    MEM_NOT_ENOUGH_MEMORY= ((17 << 16) | 1),
+    MEM_INVALID_NBYTES= ((17 << 16) | 2),
+    MEM_BLOCK_ERROR= ((17 << 16) | 3),
+    MEM_NO_PARTITION_DESTROY= ((17 << 16) | 4),
+    MEM_PAGE_SIZE_UNAVAILABLE= ((17 << 16) | 5),
+    EVENT_TIMEOUT= ((134 << 16) | 0x0001),
+    EVENT_NOT_ALL_EVENTS= ((134 << 16) | 0x0002),
+    EVENT_ALREADY_REGISTERED= ((134 << 16) | 0x0003),
+    EVENT_EVENTSEND_FAILED= ((134 << 16) | 0x0004),
+    EVENT_ZERO_EVENTS= ((134 << 16) | 0x0005),
+    EVENT_TASK_NOT_REGISTERED= ((134 << 16) | 0x0006),
+    EVENT_NULL_TASKID_AT_INT_LEVEL= ((134 << 16) | 0x0007),
+    SMOBJ_NOT_INITIALIZED= ((88 << 16) | 1),
+    SMOBJ_NOT_A_GLOBAL_ADRS= ((88 << 16) | 2),
+    SMOBJ_NOT_A_LOCAL_ADRS= ((88 << 16) | 3),
+    SMOBJ_SHARED_MEM_TOO_SMALL= ((88 << 16) | 4),
+    SMOBJ_TOO_MANY_CPU= ((88 << 16) | 5),
+    SMOBJ_LOCK_TIMEOUT= ((88 << 16) | 6),
+    SMOBJ_NO_OBJECT_DESTROY= ((88 << 16) | 7),
+    MSG_INVALID_MSG_LENGTH= ((65 << 16) | 1),
+    MSG_NON_ZERO_TIMEOUT_AT_INT_LEVEL= ((65 << 16) | 2),
+    MSG_INVALID_QUEUE_TYPE= ((65 << 16) | 3),
     OBJ_ID_ERROR= ((61 << 16) | 1),
     OBJ_UNAVAILABLE= ((61 << 16) | 2),
     OBJ_DELETED= ((61 << 16) | 3),
     OBJ_TIMEOUT= ((61 << 16) | 4),
     OBJ_NO_METHOD= ((61 << 16) | 5),
-    NOT_ISR_CALLABLE= ((67 << 16) | 1),
-    VEC_TABLE_WP_UNAVAILABLE= ((67 << 16) | 2),
+    INT_NOT_ISR_CALLABLE= ((67 << 16) | 1),
+    INT_VEC_TABLE_WP_UNAVAILABLE= ((67 << 16) | 2),
     SEM_INVALID_STATE= ((22 << 16) | 101),
     SEM_INVALID_OPTION= ((22 << 16) | 102),
     SEM_INVALID_QUEUE_TYPE= ((22 << 16) | 103),
     SEM_INVALID_OPERATION= ((22 << 16) | 104),
+    ios_DEVICE_NOT_FOUND= ((13 << 16) | 1),
+    ios_DRIVER_GLUT= ((13 << 16) | 2),
+    ios_INVALID_FILE_DESCRIPTOR =((13 << 16) | 3),
+    ios_TOO_MANY_OPEN_FILES= ((13 << 16) | 4),
+    ios_CONTROLLER_NOT_PRESENT= ((13 << 16) | 5),
+    ios_DUPLICATE_DEVICE_NAME= ((13 << 16) | 6),
+    ios_INVALID_ETHERNET_ADDRESS= ((13 << 16) | 7),
+    CLASS_ID_ERROR= ((66 << 16) | 1),
+    NO_CLASS_DESTROY= ((66 << 16) | 2),
 };
 enum MIPS_MEM_HELPERS {
     DCACHE_INV_RANGE = 0,
@@ -601,3 +610,33 @@ enum WV_EVENT {
      EVENT_VALUE= (50 + 22),
      MAX_PSEUDO_EVENT= (50 + 24),
 };
+typedef struct
+    {
+    int id;
+    char * fmt;
+    int arg [6];
+    } LOG_MSG;
+typedef struct mem_part
+    {
+    OBJ_CORE objCore;
+    DL_LIST freeList;
+    SEMAPHORE sem;
+    unsigned totalWords;
+    unsigned minBlockWords;
+    unsigned options;
+    unsigned curBlocksAllocated;
+    unsigned curWordsAllocated;
+    unsigned cumBlocksAllocated;
+    unsigned cumWordsAllocated;
+    } PARTITION;
+typedef struct mem_part *PART_ID;
+typedef struct wdog
+    {
+    OBJ_CORE objCore;
+    Q_NODE tickNode;
+    unsigned short status;
+    unsigned short deferStartCnt;
+    FUNCPTR wdRoutine;
+    int wdParameter;
+    } WDOG;
+typedef struct wdog *WDOG_ID;
