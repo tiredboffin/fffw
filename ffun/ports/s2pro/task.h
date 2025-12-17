@@ -30,4 +30,5 @@ enum TSK {
     ADJR = 0x1c,
     ADJP = 0x1d,
     MUJI = 0x1e,
+    NONE = 0xff,
 };
