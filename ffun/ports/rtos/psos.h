@@ -68,8 +68,14 @@ enum PSOS_ERR
     ERR_NOAGNT=0x54,
     ERR_STALEID=0x65,
     ERR_NDKLD=0x66,
+    ERR_NODR=x102,
+    FAT_OVSDA=0xf01, //Region 0 overflow while making system data area
+    FAT_OVOBJT=0xf02, //Region 0 overflow while making object table
+    FAT_ROOT=0xf0c,
+    FAT_IDLE=0xf0d,
+    FAT_DEVINIT=0xf1b,
 };
-
+    
 enum OBJ_TYPE
 {
     TASK = 0x01,
@@ -81,17 +87,27 @@ enum OBJ_TYPE
 enum SYSCALL
 {
     T_CREATE = 0x01,
+    T_IDENT = 0x02,
     T_START = 0x03,
     T_RESTART = 0x04,
     T_DELETE = 0x05,
     T_SUSPEND = 0x06,
     T_RESUME = 0x07,
+    T_SETPRI = 0x08,
     T_GETREG = 0x0a,
     T_SETREG = 0x0b,
+    RN_CREATE = 0x0e,
     RN_RETSEG = 0x12,
     Q_CREATE=0x24,
     Q_IDENT=0x25,
+    Q_DELETE=0x26,
+    Q_SEND=0x27,
+    Q_VSEND=0x28,
+    Q_RECEIVE=0x2a,
+    SYSC_2C=0x2c,
     EV_RECEIVE=0x2d,
+    SM_CREATE=0x33,
+    SM_DELETE=0x35,
 };
 
 unsigned long t_create(char name[4], unsigned long prio, unsigned long sstack, unsigned long ustack, unsigned long flags, unsigned long *tid);
