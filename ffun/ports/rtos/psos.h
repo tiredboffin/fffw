@@ -68,9 +68,15 @@ enum PSOS_ERR
     ERR_NOAGNT=0x54,
     ERR_STALEID=0x65,
     ERR_NDKLD=0x66,
-    ERR_NODR=x102,
+    ERR_NODR=0x102,
     FAT_OVSDA=0xf01, //Region 0 overflow while making system data area
     FAT_OVOBJT=0xf02, //Region 0 overflow while making object table
+    FAT_OVDDAT=0xf03, //Region 0 overflow while making device area table
+    FAT_OVTCB=0xf04, //Region 0 overflow while making task structures
+    FAT_OVQCB=0xf05,
+    FAT_OVSMCB=0xf06,
+    FAT_OVTM=0xf07,
+    FAT_OVPT=0xf08,
     FAT_ROOT=0xf0c,
     FAT_IDLE=0xf0d,
     FAT_DEVINIT=0xf1b,
