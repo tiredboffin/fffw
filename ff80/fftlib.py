@@ -5,15 +5,15 @@
 #
 #identified  'requests':
 #   03 -- ?? returns a constant
-#   1d -- ?? returns err
+#   1d -- reset
 #   c0 -- open a 'session'
 #   c2 -- ping? or check session is alive - returns 2 bytes 'session id'
 #   c4 -- close session
 #   d0 -- write_cmd  - send a command request
 #   d1 -- read_cmd   - get command result
-#   e0 -- write_data - bulk write
+#   e0 -- write_data - bulk write (for e.g. for firmware update)
 #   e1 -- read_data  - bulk read
-#   e8 -- nop ?      - returns 4 bytes, zero-es confirm confirmation of long op (?)
+#   e8 -- nop ?      - returns 4 bytes, zero-es confirm camera readiness  (?)
 
 import usb1
 import struct
