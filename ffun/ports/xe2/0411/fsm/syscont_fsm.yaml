@@ -1,0 +1,1257 @@
+fsm:
+  name: syscont
+  mapping:
+    base_addr: 0xf6a9c0
+    file_offset: 0x0
+  tbl_addr: 0x13f7774
+  machines: 12
+  transitions:
+    - machine: 0
+      nstates: 6
+      nmsgs: 17
+      table:
+        - msg: 0
+          when: msg_id == 0x0001 # Sys Init
+          states:
+            - { istate: 0,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}}
+            - { istate: 1,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 2,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 1
+          when: msg_id == 0x0002 # Sys Deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}}
+            - { istate: 2,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}, next_istate: 1}
+            - { istate: 3,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}, next_istate: 1}
+            - { istate: 4,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}, next_istate: 1}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 2
+          when: msg_id == 0x0003 # Sys Power
+          states:
+            - { istate: 0,func: {addr: 0x011fcb50, name: fsm_syscont0_call6}}
+            - { istate: 1,func: {addr: 0x011fcb50, name: fsm_syscont0_call6}}
+            - { istate: 2,func: {addr: 0x011fcb50, name: fsm_syscont0_call6}}
+            - { istate: 3,func: {addr: 0x011fcb50, name: fsm_syscont0_call6}}
+            - { istate: 4,func: {addr: 0x011fcb50, name: fsm_syscont0_call6}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 3
+          when: msg_id == 0x000a # Sys AvOut
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 2,func: {addr: 0x011fcb60, name: fsm_syscont0_call10}}
+            - { istate: 3,func: {addr: 0x011fcb70, name: fsm_syscont0_call7}}
+            - { istate: 4,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 4
+          when: msg_id == 0x000d # Select screen
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 2,func: {addr: 0x011fcb60, name: fsm_syscont0_call10}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 5
+          when: msg_id == 0x000e # Discharge Battery
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 2,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 6
+          when: msg_id == 0x000f # Sleep Mode
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb80, name: fsm_syscont0_call12}, next_istate: 5}
+            - { istate: 2,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 7
+          when: msg_id & 0x7f00 == 0
+          states:
+            - { istate: 0,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}}
+            - { istate: 1,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}}
+            - { istate: 2,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}}
+            - { istate: 3,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}}
+            - { istate: 4,func: {addr: 0x011fcb2c, name: fsm_syscont0_call2}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 8
+          when: msg_id == 0x0300 # Setup init
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb60, name: fsm_syscont0_call10}, next_istate: 2}
+            - { istate: 2,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 9
+          when: msg_id == 0x0301 #Setup deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 2,func: {addr: 0x011fcb60, name: fsm_syscont0_call10}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 10
+          when: msg_id == 0x0302 #Setup display
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 2,func: {addr: 0x011fcb60, name: fsm_syscont0_call10}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 11
+          when: msg_id & 0x7f00 == 0x0500
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb70, name: fsm_syscont0_call7}, next_istate: 3}
+            - { istate: 2,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 3,func: {addr: 0x011fcb70, name: fsm_syscont0_call7}}
+            - { istate: 4,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 12
+          when: msg_id == 0x0600 # Update init
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb90, name: fsm_syscont0_call9}, next_istate: 4}
+            - { istate: 2,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 13
+          when: msg_id == 0x0601 #Update deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 2,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb90, name: fsm_syscont0_call9}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 14
+          when: msg_id == 0x0602 # Update start
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 2,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb90, name: fsm_syscont0_call9}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 15
+          when: msg_id == 0x0603 # Update write
+          states:
+            - { istate: 0,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 1,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 2,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 3,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+            - { istate: 4,func: {addr: 0x011fcb90, name: fsm_syscont0_call9}}
+            - { istate: 5,func: {addr: 0x011fcb3c, name: fsm_syscont0_halt}}
+        - msg: 16
+          when: msg_id & 0x7f00 != 0x0600
+          states:
+            - { istate: 0,func: {addr: 0x011fcba0, name: fsm_syscont0_call2_s1}}
+            - { istate: 1,func: {addr: 0x011fcbc4, name: fsm_syscont0_call2_s0}}
+            - { istate: 2,func: {addr: 0x011fcbe8, name: fsm_syscont0_call2_call10}}
+            - { istate: 3,func: {addr: 0x011fcc10, name: fsm_syscont0_call2_call7}}
+            - { istate: 4,func: {addr: 0x011fcc38, name: fsm_syscont0_call2_call9}}
+            - { istate: 5,func: {addr: 0x011fcc60, name: fsm_syscont0_call12}}
+    - machine: 1 #rel vendor
+      nstates: 7
+      nmsgs: 8
+      table:
+        - msg: 0
+          when: msg_id == 0x0503 and input[0] == 0x81 # Vendor init
+          states:
+            - { istate: 0,func: {addr: 0x011fcc84, name: fsm_syscont1_e0503_x81}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 2,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 3,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 4,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 5,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 6,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+        - msg: 1
+          when: msg_id == 0x0503 and input[0] == 0x82 # Vendor init
+          states:
+            - { istate: 0,func: {addr: 0x011fccd8, name: fsm_syscont1_e0503_x82_vendor_init}, next_istate: 2}
+            - { istate: 1,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 2,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 3,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 4,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 5,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 6,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+        - msg: 2
+          when: msg_id == 0x0504 # Vendor deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fccfc, name: fsm_syscont1_e0504_vendor_deinit}, next_istate: 4}
+            - { istate: 1,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 2,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 3,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 4,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 5,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 6,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+        - msg: 3
+          when: msg_id == 0xac00
+          states:
+            - { istate: 0,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 1,func: {addr: 0x011fcd34, name: fsm_syscont1_send_usbcont_1705_value_2}}
+            - { istate: 2,func: {addr: 0x011fcd34, name: fsm_syscont1_send_usbcont_1705_value_2}}
+            - { istate: 3,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 4,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 5,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 6,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+        - msg: 4
+          when: msg_id == 0x1200
+          states:
+            - { istate: 0,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 1, next_istate: 2}
+            - { istate: 2,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 3,func: {addr: 0x011fcd60, name: fsm_syscont1_unk_rel_jig_shooting}}
+            - { istate: 4, next_istate: 5}
+            - { istate: 5,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 6,func: {addr: 0x011fcd98, name: fsm_syscont1_jig_reset}}
+        - msg: 5
+          when: msg_id == 0x9705
+          states:
+            - { istate: 0,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 1, next_istate: 3}
+            - { istate: 2,func: {addr: 0x011fcd60, name: fsm_syscont1_unk_rel_jig_shooting}}
+            - { istate: 3,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 4,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 5,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 6,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+        - msg: 6
+          when: msg_id == 0x9706
+          states:
+            - { istate: 0,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 1,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 2,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 3,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+            - { istate: 4, next_istate: 6}
+            - { istate: 5,func: {addr: 0x011fcd98, name: fsm_syscont1_jig_reset}}
+            - { istate: 6,func: {addr: 0x011fccc4, name: fsm_syscont1_halt}}
+        - msg: 7
+          when: msg_id & 0x7f00 != 0x500
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+    - machine: 2
+      nstates: 9
+      nmsgs: 15
+      table:
+        - msg: 0
+          when: msg_id == 0x0001 # Sys Init
+          states:
+            - { istate: 0,func: {addr: 0x011fcdcc, name: fsm_syscont2_msg0}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 1
+          when: msg_id == 0x0002 # Sys Deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fcdf0, name: fsm_syscont2_msg1}}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 2
+          when: msg_id == 0x0008 and input[0] == 0x22 # "bodytube" mode
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fce00, name: fsm_syscont2_e0008_x22}, next_istate: 3}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 3
+          when: msg_id == 0x0008 and input[0] == 0x100 # "bodytube"
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fce28, name: fsm_syscont2_e0008_x100}, next_istate: 3}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 4
+          when: msg_id == 0x0009 and input[0] == 0xe8 # Dust reduction
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fce50, name: fsm_syscont2_e0009_xe8}, next_istate: 4}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 5
+          when: msg_id == 0x0009 and input[0] == 0xec # Dust reduction
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fce70, name: fsm_syscont2_e0009_xec}, next_istate: 4}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 6
+          when: msg_id == 0x0010 and input[0] == 0x88 # Sound level
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fce90, name: fsm_syscont2_e0010_x88}}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 7
+          when: msg_id == 0x0010 and input[0] == 0x89 # Sound Level
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fceb4, name: fsm_syscont2_call13_state_2}}
+        - msg: 8
+          when: msg_id == 0x000b # Format
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fced8, name: fsm_syscont2_e000b_format}}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 9
+          when: msg_id == 0x000c # Set params
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fcefc, name: fsm_syscont2_e000c_call8_state_5}}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcf20, name: fsm_syscont2_e000c_call8}}
+        - msg: 10
+          when: msg_id == 0x000e and input[0] == 0x88 # Discharge battery
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fcf30, name: fsm_syscont2_e000e_x88_discharge_battery}, next_istate: 7}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 11
+          when: msg_id == 0x000e and input[0] == 0x89 # Discharge battery
+          states:
+            - { istate: 0,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 1,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 2,func: {addr: 0x011fcf58, name: fsm_syscont2m_000e_x89_discharge_battery}}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 12
+          when: msg_id == 0x93f9
+          states:
+            - { istate: 0,func: {addr: 0x011fcf84, name: fsm_syscont2_call4}}
+            - { istate: 1,func: {addr: 0x011fcf9c, name: fsm_syscont2_call3}}
+            - { istate: 2,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 3,func: {addr: 0x011fcfc0, name: fsm_syscont2_e93f9_s3}, next_istate: 2}
+            - { istate: 4,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcfec, name: fsm_syscont2_e93f9_s7}, next_istate: 2}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 13
+          when: msg_id == 0x93fb
+          states:
+            - { istate: 0,func: {addr: 0x011fcf84, name: fsm_syscont2_call4}}
+            - { istate: 1,func: {addr: 0x011fcf9c, name: fsm_syscont2_call3}}
+            - { istate: 2,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fd018, name: fsm_syscont2_e93f9}, next_istate: 2}
+            - { istate: 5,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 6,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+        - msg: 14
+          when: msg_id & 0x7f00 != 0
+          states:
+            - { istate: 0,func: {addr: 0x011fcf84, name: fsm_syscont2_call4}}
+            - { istate: 1,func: {addr: 0x011fcf9c, name: fsm_syscont2_call3}}
+            - { istate: 2,func: {addr: 0x011fd044, name: fsm_syscont2_msg14_s2_ret0}}
+            - { istate: 3,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 4,func: {addr: 0x011fd05c, name: fsm_syscont2_msg14_s4_ret0}}
+            - { istate: 5,func: {addr: 0x011fd074, name: fsm_syscont2_call8}}
+            - { istate: 6,func: {addr: 0x011fd098, name: fsm_syscont2_call5}}
+            - { istate: 7,func: {addr: 0x011fcddc, name: fsm_syscont2_halt}}
+            - { istate: 8,func: {addr: 0x011fceb4, name: fsm_syscont2_call13_state_2}}
+    - machine: 3
+      nstates: 2
+      nmsgs: 2
+      table:
+        - msg: 0
+          when: msg_id == 0x0001 # Sys Init
+          states:
+            - { istate: 0,func: {addr: 0x011fd0bc, name: fsm_syscont3_e0001}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x011fd0f0, name: fsm_syscont3_halt}}
+        - msg: 1
+          when: msg_id == 0x9700
+          states:
+            - { istate: 0,func: {addr: 0x011fd0f0, name: fsm_syscont3_halt}}
+            - { istate: 1,func: {addr: 0x011fd104, name: fsm_syscont3_e9700}}
+    - machine: 4
+      nstates: 2
+      nmsgs: 13
+      table:
+        - msg: 0
+          when: msg_id == 0x0002 # Sys Deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fd144, name: fsm_syscont4_e0002_sys_deinit}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+        - msg: 1
+          when: msg_id == 0x93f9
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd1a4, name: fsm_syscont4_e93f9}}
+        - msg: 2
+          when: msg_id == 0xac01
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd22c, name: fsm_syscont4_eac01}}
+        - msg: 3
+          when: msg_id == 0x1200
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd274, name: fsm_syscont4_e1200}}
+        - msg: 4
+          when: msg_id == 0x9701
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd2bc, name: fsm_syscont4_e9701}}
+        - msg: 5
+          when: msg_id == 0x9a0c
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd304, name: fsm_syscont4_e9a0c}}
+        - msg: 6
+          when: msg_id == 0x9801
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd34c, name: fsm_syscont4_e9801}}
+        - msg: 7
+          when: msg_id == 0xc901
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd394, name: fsm_syscont4_ec901}}
+        - msg: 8
+          when: msg_id == 0xe301
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd3dc, name: fsm_syscont4_ee301}}
+        - msg: 9
+          when: msg_id == 0xf307
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd44c, name: fsm_syscont4_ef309}}
+        - msg: 10
+          when: msg_id == 0xf601
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd4a4, name: fsm_syscont4_ef601}}
+        - msg: 11
+          when: msg_id == 0xf800
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd4ec, name: fsm_syscont4_ef800}}
+        - msg: 12
+          when: msg_id & 0x7f00 != 0
+          states:
+            - { istate: 0,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+            - { istate: 1,func: {addr: 0x011fd190, name: fsm_syscont4_halt}}
+    - machine: 5
+      nstates: 2
+      nmsgs: 2
+      table:
+        - msg: 0
+          when: msg_id == 0x000b #start format ?
+          states:
+            - { istate: 0,func: {addr: 0x011fd534, name: fsm_syscont6_e000b_format}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x011fd568, name: fsm_syscont5_halt}}
+        - msg: 1
+          when: msg_id == 0xac11 #format completed
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x011fd57c, name: fsm_syscont6_eac11_format_complete}}
+    - machine: 6 #power
+      nstates: 1
+      nmsgs: 4
+      table:
+        - msg: 0
+          when: msg_id == 0x0003 and input[0] == 0x82  # Sys Power
+          states:
+            - { istate: 0,func: {addr: 0x011fd5bc, name: fsm_syscont6_e0003_x82_xb1_power_off}}
+        - msg: 1
+          when: msg_id == 0x0003 and input[0] == 0xb0  # Sys Power
+          states:
+            - { istate: 0,func: {addr: 0x011fd5cc, name: fsm_syscont6_e0003_xb0_sys_power}}
+        - msg: 2
+          when: msg_id == 0x0003 and input[0] == 0xb1  # Sys Power
+          states:
+            - { istate: 0,func: {addr: 0x011fd5bc, name: fsm_syscont6_e0003_x82_xb1_power_off}}
+        - msg: 3
+          when: msg_id == 0x0003 and input[0] == 0xff  # Sys Power
+          states:
+            - { istate: 0,func: {addr: 0x011fd5e4, name: fsm_syscont6_ret_0xff_sys_power}}
+    - machine: 7 # routes ro machine 1 or machine 11
+      nstates: 3
+      nmsgs: 13
+      table:
+        - msg: 0
+          when: msg_id == 0x0503 # Vendor init
+          states:
+            - { istate: 0,func: {addr: 0x011fd5fc, name: fsm_syscont7_call1}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 2,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+        - msg: 1
+          when: msg_id == 0x0504 # Vendor deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd5fc, name: fsm_syscont7_call1}}
+            - { istate: 2,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+        - msg: 2
+          when: msg_id == 0x0508 # DPS start job
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 2,func: {addr: 0x011fd620, name: fsm_syscont7_call11}}
+        - msg: 3
+          when: msg_id == 0x0509 # DPS cancel job
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 2,func: {addr: 0x011fd620, name: fsm_syscont7_call11}}
+        - msg: 4
+          when: msg_id == 0x050a # DPS continue job
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 2,func: {addr: 0x011fd620, name: fsm_syscont7_call11}}
+        - msg: 5
+          when: msg_id == 0x050e # PTP init
+          states:
+            - { istate: 0,func: {addr: 0x011fd630, name: fsm_syscont7_call11_dup}, next_istate: 2}
+            - { istate: 1,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 2,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+        - msg: 6
+          when: msg_id == 0x0510 #PTP connect
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 2,func: {addr: 0x011fd620, name: fsm_syscont7_call11}}
+        - msg: 7
+          when: msg_id == 0x050f # PTP deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 2,func: {addr: 0x011fd620, name: fsm_syscont7_call11}}
+        - msg: 8
+          when: msg_id & 0x7f00 == 0x0200
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd5fc, name: fsm_syscont7_call1}}
+            - { istate: 2,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+        - msg: 9
+          when: msg_id == 0x000a # Sys AvOut ?
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 2,func: {addr: 0x011fd620, name: fsm_syscont7_call11}}
+        - msg: 10
+          when: msg_id == 0x13a4
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd5fc, name: fsm_syscont7_call1}}
+            - { istate: 2}
+        - msg: 11
+          when: msg_id == 0x13aa
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd5fc, name: fsm_syscont7_call1}}
+            - { istate: 2}
+        - msg: 12
+          when: msg_id & 0x7f00 != 0x0500
+          states:
+            - { istate: 0,func: {addr: 0x011fd60c, name: fsm_syscont7_halt}}
+            - { istate: 1,func: {addr: 0x011fd640, name: fsm_syscont7_call1_set_s0}}
+            - { istate: 2,func: {addr: 0x011fd664, name: fsm_syscont7_call11_set_s0}}
+    - machine: 8 # Update
+      nstates: 2
+      nmsgs: 4
+      table:
+        - msg: 0
+          when: msg_id == 0x000c # Set params?
+          states:
+            - { istate: 0,func: {addr: 0x011fd688, name: fsm_syscont8_e000c}}
+            - { istate: 1}
+
+        - msg: 1
+          when: msg_id == 0x1200
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x011fd6bc, name: fsm_syscont8_e1200}}
+        - msg: 2
+          when: msg_id == 0xac00
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x011fd724, name: fsm_syscont8_eac00}}
+        - msg: 3
+          when: msg_id == 0x1202
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x011fd78c, name: fsm_syscont8_e1202}}
+    - machine: 9
+      nstates: 5
+      nmsgs: 6
+      table:
+        - msg: 0
+          when: msg_id == 0x0600
+          states:
+            - { istate: 0,func: {addr: 0x011fd7f4, name: fsm_syscont9_e0600}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 2,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 3,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 4,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+        - msg: 1
+          when: msg_id == 0x0601
+          states:
+            - { istate: 0,func: {addr: 0x011fd828, name: fsm_syscont9_e0601}, next_istate: 4}
+            - { istate: 1,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 2,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 3,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 4,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+        - msg: 2
+          when: msg_id == 0x0602
+          states:
+            - { istate: 0,func: {addr: 0x011fd850, name: fsm_syscont9_e0602}, next_istate: 3}
+            - { istate: 1,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 2,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 3,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 4,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+        - msg: 3
+          when: msg_id == 0x0603
+          states:
+            - { istate: 0,func: {addr: 0x011fd86c, name: fsm_syscont9_e0603_fwupd_writeg}}
+            - { istate: 1,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 2,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 3,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 4,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+        - msg: 4
+          when: msg_id == 0xac00
+          states:
+            - { istate: 0,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 1,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 2,func: {addr: 0x011fd8cc, name: fsm_syscont9_eac00_fwupd}}
+            - { istate: 3,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 4,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+        - msg: 5
+          when: msg_id == 0x1200
+          states:
+            - { istate: 0,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 1,func: {addr: 0x011fd910, name: fsm_syscont9_e1200_s1}, next_istate: 2}
+            - { istate: 2,func: {addr: 0x011fd814, name: fsm_syscont9_halt}}
+            - { istate: 3,func: {addr: 0x011fd928, name: fsm_syscont9_e1200_s3}}
+            - { istate: 4,func: {addr: 0x011fd954, name: fsm_syscont9_e1200_s4}}
+    - machine: 10
+      nstates: 12
+      nmsgs: 14
+      table:
+        - msg: 0
+          when: msg_id == 0x0300 and input[0] == 0xe8 # Setup Init
+          states:
+            - { istate: 0,func: {addr: 0x011fd980, name: fsm_syscont10_e0x0300_0xe8}, next_istate: 2}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 1
+          when: msg_id == 0x0300 and input[0] != 0xe8 # Setup Init
+          states:
+            - { istate: 0,func: {addr: 0x011fd9e0, name: fsm_syscont10_e0300}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 2
+          when: msg_id == 0x0301 and input[0] == 0x81 and input[1] == 0xea # Setup Deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fda2c, name: fsm_syscont10_e0301_0x81_xea_e1200}, next_istate: 11}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 3
+          when: msg_id == 0x0301 and input[0] == 0x81 and input[1] != 0xea # Setup Deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fda58, name: fsm_syscont10_e0301_0x81}, next_istate: 11}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 4
+          when: msg_id == 0x0301 and input[0] == 0x82 and input[1] == 0xea # Setup Deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fda88, name: fsm_syscont10_e0301_x82_xea}, next_istate: 10}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 5
+          when: msg_id == 0x0301 and input[0] == 0x82 and input[1] != 0xea # Setup Deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fdab0, name: fsm_syscont10_e0301_x82}, next_istate: 10}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 6
+          when: msg_id == 0x0302 # Setup Display
+          states:
+            - { istate: 0,func: {addr: 0x011fdadc, name: fsm_syscont10_e0302_eaf03}, next_istate: 5}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 7
+          when: msg_id == 0xaf03
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fdb0c, name: fsm_syscont10_eaf03}, next_istate: 3}
+            - { istate: 3,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fdadc, name: fsm_syscont10_e0302_eaf03}, next_istate: 9}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 8
+          when: msg_id == 0xac00
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fdb44, name: fsm_syscont10_eac00}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 9
+          when: msg_id == 0xac17
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fdbc4, name: fsm_syscont10_eac17}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 10
+          when: msg_id == 0x1200
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x011fdc30, name: fsm_syscont10_e1200_send_graphic_e3800_v0_1}, next_istate: 2}
+            - { istate: 2,func: {addr: 0x011fdc64, name: fsm_syscont10_e1200_s2}}
+            - { istate: 3,func: {addr: 0x011fdd08, name: fsm_syscont10_e1200_s3}}
+            - { istate: 4,func: {addr: 0x011fdd70, name: fsm_syscont10_e1200_s4}}
+            - { istate: 5,func: {addr: 0x011fdd9c, name: fsm_syscont10_e1200_s5}}
+            - { istate: 6,func: {addr: 0x011fddc8, name: fsm_syscont10_e1200_s6}, next_istate: 7}
+            - { istate: 7,func: {addr: 0x011fdc30, name: fsm_syscont10_e1200_send_graphic_e3800_v0_1}, next_istate: 8}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fddfc, name: fsm_syscont10_e1200_s9}}
+            - { istate: 10,func: {addr: 0x011fda2c, name: fsm_syscont10_e0301_0x81_xea_e1200}, next_istate: 11}
+            - { istate: 11,func: {addr: 0x011fde28, name: fsm_syscont10_e1200_s11}}
+        - msg: 11
+          when: msg_id == 0x1204
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fde54, name: fsm_syscont10_e1204}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 12
+          when: msg_id == 0x000d # Select screen
+          states:
+            - { istate: 0,func: {addr: 0x011fdebc, name: fsm_syscont10_e000d}, next_istate: 4}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+        - msg: 13
+          when: msg_id == 0x000a # Sys AvOut
+          states:
+            - { istate: 0,func: {addr: 0x011fded8, name: fsm_syscont10_e000a}, next_istate: 6}
+            - { istate: 1,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 2,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 3,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 4,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 5,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 6,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 7,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 8,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 9,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 10,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+            - { istate: 11,func: {addr: 0x011fd9cc, name: fsm_syscont10_halt}}
+    - machine: 11
+      nstates: 10
+      nmsgs: 16
+      table:
+        - msg: 0
+          when: msg_id == 0x050e # PTP init
+          states:
+            - { istate: 0,func: {addr: 0x011fdef4, name: fsm_syscont11_e050e}, next_istate: 2}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 1
+          when: msg_id == 0x050f # PTP deinit
+          states:
+            - { istate: 0,func: {addr: 0x011fdf28, name: fsm_syscont11_e050f}, next_istate: 9}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf54, name: fsm_syscont11_msg1}}
+            - { istate: 3,func: {addr: 0x011fdf54, name: fsm_syscont11_msg1}}
+            - { istate: 4,func: {addr: 0x011fdf54, name: fsm_syscont11_msg1}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 2
+          when: msg_id == 0x0510 and input[0] == 0x88 #PTP connect
+          states:
+            - { istate: 0,func: {addr: 0x011fdf7c, name: fsm_syscont11_e0510_x88}, next_istate: 5}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 3
+          when: msg_id == 0x0510 and input[0] == 0x89 #PTP connect
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fdfa8, name: fsm_syscont11_e0510_x89}, next_istate: 6}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fdfa8, name: fsm_syscont11_e0510_x89}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 4
+          when: msg_id == 0x0508 # DPS start job
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fdfd0, name: fsm_syscont11m_0508}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 5
+          when: msg_id == 0x0509  # DPS cancel job
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fdffc, name: fsm_syscont11m_0509}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 6
+          when: msg_id == 0x050a # DPS continue job
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fe024, name: fsm_syscont11_e050a}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 7
+          when: msg_id == 0xac00
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fe04c, name: fsm_syscont11_eac00_s3}}
+            - { istate: 4,func: {addr: 0x011fe12c, name: fsm_syscont11_eac00_s4}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 8
+          when: msg_id == 0x1200
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fe1d4, name: fsm_syscont11_e1200_s1}}
+            - { istate: 2,func: {addr: 0x011fe200, name: fsm_syscont11_e1200_s2}, next_istate: 3}
+            - { istate: 3,func: {addr: 0x011fe224, name: fsm_syscont11_e1200_s3_4}}
+            - { istate: 4,func: {addr: 0x011fe224, name: fsm_syscont11_e1200_s3_4}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 8,func: {addr: 0x011fe2cc, name: fsm_syscont11_e1200_s8}}
+            - { istate: 9,func: {addr: 0x011fe31c, name: fsm_syscont11_e1200_s9}}
+        - msg: 9
+          when: msg_id == 0x9718
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fe358, name: fsm_syscont11_e9718_s5_8}, next_istate: 7}
+            - { istate: 6,func: {addr: 0x011fe394, name: fsm_syscont11_e9718_s6}}
+            - { istate: 7,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 8,func: {addr: 0x011fe358, name: fsm_syscont11_e9718_s5_8}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 10
+          when: msg_id == 0x9719
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6}
+            - { istate: 7,func: {addr: 0x011fe3cc, name: fsm_syscont11_e9719}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 11
+          when: msg_id == 0x970e
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fe3f8, name: fsm_syscont11_e970e}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9}
+
+        - msg: 12
+          when: msg_id == 0x970f
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fe454, name: fsm_syscont11_e970f}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9}
+
+        - msg: 13
+          when: msg_id == 0x9710
+          states:
+            - { istate: 0,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fe4b0, name: fsm_syscont11_e9710}}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9}
+        - msg: 14
+          when: msg_id == 0x0010 # Sound Level
+          states:
+            - { istate: 0,func: {addr: 0x011fe50c, name: fsm_syscont11_e0010}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 2,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 3,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 4,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 5,func: {addr: 0x011fe50c, name: fsm_syscont11_e0010}, next_istate: 8}
+            - { istate: 6,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 7,func: {addr: 0x011fe50c, name: fsm_syscont11_e0010}, next_istate: 8}
+            - { istate: 8,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+            - { istate: 9,func: {addr: 0x011fdf14, name: fsm_syscont11_halt}}
+        - msg: 15
+          when: msg_id & 0x7f00 != 0
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8}
+            - { istate: 9}
+
+    - machine: 12 #standby
+      nstates: 2
+      nmsgs: 15
+      table:
+        - msg: 0
+          when: msg_id == 0x000f # Sleep mode
+          states:
+          - { istate: 0,func: {addr: 0x011fe528, name: fsm_syscont12_e000f_sleep_mode}}
+          - { istate: 1}
+        - msg: 1
+          when: msg_id == 0xf307
+          states:
+          - { istate: 0,func: {addr: 0x011fe564, name: fsm_syscont12_ef307_standby_bit7}}
+          - { istate: 1}
+        - msg: 2
+          when: msg_id == 0xac01
+          states:
+          - { istate: 0,func: {addr: 0x011fe5bc, name: fsm_syscont12_eac01_standby_bit1}}
+          - { istate: 1}
+        - msg: 3
+          when: msg_id == 0x1200
+          states:
+          - { istate: 0,func: {addr: 0x011fe604, name: fsm_syscont12_e1200_standby_bit1}}
+          - { istate: 1,func: {addr: 0x011fe64c, name: fsm_syscont12_e1200_standby_bit0}}
+        - msg: 4
+          when: msg_id == 0xb912
+          states:
+          - { istate: 0}
+          - { istate: 1,func: {addr: 0x011fe6c8, name: fsm_syscont12_eb912_LCD_bit3}}
+        - msg: 5
+          when: msg_id == 0xc900
+          states:
+          - { istate: 0}
+          - { istate: 1,func: {addr: 0x011fe744, name: fsm_syscont12_ec900_LCD_bit2}}
+        - msg: 6
+          when: msg_id == 0x9700
+          states:
+          - { istate: 0}
+          - { istate: 1,func: {addr: 0x011fe7c0, name: fsm_syscont12_e9700_LCD_bit1}}
+        - msg: 7
+          when: msg_id == 0x9701
+          states:
+          - { istate: 0,func: {addr: 0x011fe83c, name: fsm_syscont12_e9701_standby_bit2}}
+          - { istate: 1}
+        - msg: 8
+          when: msg_id == 0x9a0c
+          states:
+          - { istate: 0,func: {addr: 0x011fe884, name: fsm_syscont12_e9a0c_standby_bit3}}
+          - { istate: 1}
+        - msg: 9
+          when: msg_id == 0x9801
+          states:
+          - { istate: 0,func: {addr: 0x011fe8cc, name: fsm_syscont12_e9801_standby_bit4}}
+          - { istate: 1}
+        - msg: 10
+          when: msg_id == 0xc901
+          states:
+          - { istate: 0,func: {addr: 0x011fe914, name: fsm_syscont12_ec901_standby_bit5}}
+          - { istate: 1}
+        - msg: 11
+          when: msg_id == 0xe301
+          states:
+          - { istate: 0,func: {addr: 0x011fe95c, name: fsm_syscont12_ee301_standby_bit6}}
+          - { istate: 1}
+        - msg: 12
+          when: msg_id == 0xf601
+          states:
+          - { istate: 0,func: {addr: 0x011fe9a4, name: fsm_syscont12_ef601_standby_bit8}}
+          - { istate: 1}
+        - msg: 13
+          when: msg_id == 0xf801
+          states:
+          - { istate: 0,func: {addr: 0x011fe9ec, name: fsm_syscont12_ef801_standby_bit9}}
+          - { istate: 1}
+        - msg: 14
+          when: default
+          states:
+          - { istate: 0,func: {addr: 0x011fea34, name: fsm_syscont12_msg14_loads_seg2_seg6}}
+          - { istate: 1}
+    - machine: 13 #mic level?
+      nstates: 3
+      nmsgs: 6
+      table:
+        - msg: 0
+          when: msg_id == 0x0010 and input[0] == 0x88 # Sound Level
+          states:
+          - { istate: 0,func: {addr: 0x011feae0, name: fsm_syscont13_e0010_x88}}
+          - { istate: 1}
+          - { istate: 2}
+        - msg: 1
+          when: msg_id == 0x0010 and input[0] == 0x89 # Sound Level
+          states:
+          - { istate: 0}
+          - { istate: 1,func: {addr: 0x011feb24, name: fsm_syscont13_e0010_x89}}
+          - { istate: 2}
+        - msg: 2
+          when: msg_id == 0x1205
+          states:
+          - { istate: 0}
+          - { istate: 1,func: {addr: 0x011feb48, name: fsm_syscont13_e1205}}
+          - { istate: 2}
+        - msg: 3
+          when: msg_id == 0x1207
+          states:
+          - { istate: 0}
+          - { istate: 1}
+          - { istate: 2,func: {addr: 0x011feb58, name: fsm_syscont13_e1207}}
+        - msg: 4
+          when: msg_id == 0x1209
+          states:
+          - { istate: 0}
+          - { istate: 1,func: {addr: 0x011feb84, name: fsm_syscont13_e1209}}
+          - { istate: 2}
+        - msg: 5
+          when: msg_id == 0x1208
+          states:
+          - { istate: 0}
+          - { istate: 1,func: {addr: 0x011feb94, name: fsm_syscont13_e1208}}
+          - { istate: 2}

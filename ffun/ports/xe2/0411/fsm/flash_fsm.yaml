@@ -1,0 +1,307 @@
+#Guessed states:
+# 0 not charging
+# 1 check charge
+# 2 quick charge
+# 3 recd charge
+# 4 recd pause
+# 5 calcu charge
+# 6 calcu pause
+# 7 light charge
+# 8 normal charge
+# 9 slow charge
+# 10 slow pause
+# 11 jig charge
+# 12 jig ?
+
+
+fsm:
+  name: flash
+  mapping:
+    base_addr: 0x8a0400
+    file_offset: 0x0
+  tbl_addr: 0xb14c64
+  machines: 1
+  transitions:
+    - machine: 0
+      nstates: 13
+      nmsgs: 24
+      table:
+        - msg: 0
+          when: msg_id == 0x1a0c #stop charger ?
+          states:
+            - { istate: 0,func: {addr: 0x95407c, name: fsm_flash_msg0_pass}}
+            - { istate: 1,func: {addr: 0x9540c8, name: fsm_flash_stop_check_charge}}
+            - { istate: 2,func: {addr: 0x95412c, name: fsm_flash_stop_quick_charge}}
+            - { istate: 3,func: {addr: 0x954180, name: fsm_flash_stop_recd_charge}}
+            - { istate: 4,func: {addr: 0x954224, name: fsm_flash_stop_recd_charge_timer}}
+            - { istate: 5,func: {addr: 0x9542b4, name: fsm_flash_stop_calcu_charge}}
+            - { istate: 6,func: {addr: 0x954358, name: fsm_flash_stop_calcu_charge_timer}}
+            - { istate: 7,func: {addr: 0x9543e8, name: fsm_flash_stop_light_charge}}
+            - { istate: 8,func: {addr: 0x95443c, name: fsm_flash_stop_x1a13_timer}}
+            - { istate: 9,func: {addr: 0x95448c, name: fsm_flash_stop_slow_charge}}
+            - { istate: 10,func: {addr: 0x9544f0, name: fsm_flash_stop_slow_charge_timer}}
+            - { istate: 11,func: {addr: 0x954550, name: fsm_flash_stop_jig_charge}}
+            - { istate: 12,func: {addr: 0x954550, name: fsm_flash_stop_jig_charge}}
+        - msg: 1
+          when: msg_id == 0x1a03 #start check charge
+          states:
+            - { istate: 0,func: {addr: 0x9545a4, name: fsm_flash_start_check_charge}}
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 3,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 4,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 5,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 6,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 7,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 8,func: {addr: 0x95464c, name: fsm_flash_stop_x1a13_start_check_charge}}
+            - { istate: 9,func: {addr: 0x9546f4, name: fsm_flash_stop_slow_check_charge}, next_istate: 1}
+            - { istate: 10,func: {addr: 0x954738, name: fsm_flash_stop_slow_timer_start_check_charge}, next_istate: 1}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 12,func: {addr: 0x954778, name: fsm_flash_msg1_pass}}
+        - msg: 2
+          when: msg_id == 0x1a00 #start quick quick
+          states:
+            - { istate: 0,func: {addr: 0x9547cc, name: fsm_flash_msg2_start_quick_charge}}
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 3,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 4,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 5,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 6,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 7,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 8,func: {addr: 0x954860, name: fsm_flash_msg2_stop_x1a13_start_quick}}
+            - { istate: 9,func: {addr: 0x954908, name: fsm_flash_msg2_stop_slow_start_quick}, next_istate: 2}
+            - { istate: 10,func: {addr: 0x95494c, name: fsm_flash_msg2_slop_slow_timer_start_quick}, next_istate: 2}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 12,func: {addr: 0x95498c, name: fsm_flash_msg2_st12}}
+        - msg: 3
+          when: msg_id == 0x1a01 #start x1a13
+          states:
+            - { istate: 0,func: {addr: 0x9549e0, name: fsm_flash_msg3_start_x1a3_timer}, next_istate: 8}
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954a2c, name: fsm_flash_msg3_stop_quick_start_x1a13}, next_istate: 8}
+            - { istate: 3,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 4,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 5,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 6,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 7,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 8,func: {addr: 0x954a84, name: fsm_flash_msg3_skip}}
+            - { istate: 9,func: {addr: 0x954a84, name: fsm_flash_msg3_skip}}
+            - { istate: 10,func: {addr: 0x954a84, name: fsm_flash_msg3_skip}}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 12,func: {addr: 0x954ac8, name: fsm_flash_msg3_skip2}}
+        - msg: 4
+          when: msg_id == 0x1a02 #start slow charge
+          states:
+            - { istate: 0,func: {addr: 0x954b0c, name: fsm_flash_msg4_start_slow_charge}}
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 3,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 4,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 5,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 6,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 7,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 8,func: {addr: 0x954bbc, name: fsm_flash_stop_x1a13_start_slow_charge}}
+            - { istate: 9,func: {addr: 0x954c84, name: fsm_flash_update_charge_amount}}
+            - { istate: 10,func: {addr: 0x954ca4, name: fsm_flash_msg4_st10}}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+        - msg: 5
+          when: msg_id == 0x1a04 #start recd charge
+          states:
+            - { istate: 0,func: {addr: 0x954ccc, name: fsm_flash_start_recd_charge}}
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 3,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 4,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 5,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 6,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 7,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 8,func: {addr: 0x954dd4, name: fsm_flash_stop_x1a13_start_recd_charge}}
+            - { istate: 9,func: {addr: 0x954ef0, name: fsm_flash_stop_slow_start_recd_charge}}
+            - { istate: 10,func: {addr: 0x954fac, name: fsm_flash_stop_slow_timer_start_recd_charge}}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 12,func: {addr: 0x955060, name: fsm_flash_msg5_pass2}}
+        - msg: 6
+          when: msg_id == 0x1a05
+          states:
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 3,func: {addr: 0x9550e4, name: fsm_flash_stop_recd_start_x1a13}, next_istate: 8}
+            - { istate: 4,func: {addr: 0x9550e4, name: fsm_flash_stop_recd_start_x1a13}, next_istate: 8}
+            - { istate: 5,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 6,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 7,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 12,func: {addr: 0x95514c, name: fsm_flash_msg6_pass2}}
+        - msg: 7
+          when: msg_id == 0x1a06 #start calcu charge
+          states:
+            - { istate: 0,func: {addr: 0x9551a0, name: fsm_flash_start_calcu_charge}}
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 3,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 4,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 5,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 6,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 7,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 8,func: {addr: 0x9552a8, name: fsm_flash_stop_x1a13_start_calcu_charge}}
+            - { istate: 9,func: {addr: 0x9553c4, name: fsm_flash_stop_slow_start_calcu_charge}}
+            - { istate: 10,func: {addr: 0x955480, name: fsm_flash_stop_slow_timer_start_calcu_charge}}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 12,func: {addr: 0x955534, name: fsm_flash_msg7_pass2}}
+        - msg: 8
+          when: msg_id == 0x1a07
+          states:
+            - { istate: 0,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 3,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 4,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 5,func: {addr: 0x9555b8, name: fsm_flash_stop_calcu_start_x1a13}, next_istate: 8}
+            - { istate: 6,func: {addr: 0x9555b8, name: fsm_flash_stop_calcu_start_x1a13}, next_istate: 8}
+            - { istate: 7,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 12,func: {addr: 0x955620, name: fsm_flash_msg8_pass2}}
+        - msg: 9
+          when: msg_id == 0x1a08 #start light charge
+          states:
+            - { istate: 0,func: {addr: 0x955674, name: fsm_flash_start_light_charge}}
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 3,func: {addr: 0x9556c4, name: fsm_flash_stop_recd_start_light_charge}, next_istate: 7}
+            - { istate: 4,func: {addr: 0x955748, name: fsm_flash_stop_recd_timer_start_light_charge}, next_istate: 7}
+            - { istate: 5,func: {addr: 0x9557b8, name: fsm_flash_stop_calcu_start_light_charge}, next_istate: 7}
+            - { istate: 6,func: {addr: 0x95583c, name: fsm_flash_stop_calcu_timer_start_light_charge}, next_istate: 7}
+            - { istate: 7,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 8,func: {addr: 0x9558ac, name: fsm_flash_stop_x1a13_start_light_charge}}
+            - { istate: 9,func: {addr: 0x955914, name: fsm_flash_stop_slow_start_light_charge}, next_istate: 7}
+            - { istate: 10,func: {addr: 0x955958, name: fsm_flash_stop_slow_timer_start_light_charge}, next_istate: 7}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+        - msg: 10
+          when: msg_id == 0x1a09
+          states:
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 3,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 4,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 5,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 6,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 7,func: {addr: 0x955998, name: fsm_flash_stop_light_charge}}
+            - { istate: 8,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 9,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 10,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+        - msg: 11
+          when: msg_id == 0x1a0d
+          states:
+            - { istate: 0,func: {addr: 0x9559c0, name: fsm_flash_embargo_set}}
+            - { istate: 1,func: {addr: 0x9559c0, name: fsm_flash_embargo_set}}
+            - { istate: 2,func: {addr: 0x9559c0, name: fsm_flash_embargo_set}}
+            - { istate: 3,func: {addr: 0x955a0c, name: fsm_flash_stop_recd_charge_embargo_set}, next_istate: 4}
+            - { istate: 4,func: {addr: 0x9559c0, name: fsm_flash_embargo_set}}
+            - { istate: 5,func: {addr: 0x955a5c, name: fsm_flash_stop_calcu_charge_embargo_set}, next_istate: 6}
+            - { istate: 6,func: {addr: 0x9559c0, name: fsm_flash_embargo_set}}
+            - { istate: 7,func: {addr: 0x9559c0, name: fsm_flash_embargo_set}}
+            - { istate: 8,func: {addr: 0x9559c0, name: fsm_flash_embargo_set}}
+            - { istate: 9,func: {addr: 0x955aac, name: fsm_flash_stop_slow_charge_embargo_set}, next_istate: 10}
+            - { istate: 10,func: {addr: 0x9559c0, name: fsm_flash_embargo_set}}
+            - { istate: 11,func: {addr: 0x9559c0, name: fsm_flash_embargo_set}}
+            - { istate: 12,func: {addr: 0x9559c0, name: fsm_flash_embargo_set}}
+        - msg: 12
+          when: msg_id == 0x1a0e #embargo clr
+          states:
+            - { istate: 0,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 1,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 2,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 3,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 4,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 5,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 6,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 7,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 8,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 9,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 10,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 11,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+            - { istate: 12,func: {addr: 0x955afc, name: fsm_flash_embargo_clr}}
+        - msg: 13
+          when: msg_id == 0x1a0f
+          states:
+            - { istate: 0,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+            - { istate: 1,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+            - { istate: 2,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+            - { istate: 3,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+            - { istate: 4,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+            - { istate: 5,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+            - { istate: 6,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+            - { istate: 7,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+            - { istate: 8,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+            - { istate: 9,func: {addr: 0x955b1c, name: fsm_flash_msg13_st9}}
+            - { istate: 10,func: {addr: 0x955b64, name: fsm_flash_msg13_st10}}
+            - { istate: 11,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+            - { istate: 12,func: {addr: 0x955b0c, name: fsm_flash_msg13_set}}
+        - msg: 14
+          when: msg_id == 0x1a0a #start jig
+          states:
+            - { istate: 0,func: {addr: 0x955b9c, name: fsm_flash_start_jig_charge}}
+            - { istate: 1,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 2,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 3,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 4,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 5,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 6,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 7,func: {addr: 0x954638, name: fsm_flash_err}}
+            - { istate: 8,func: {addr: 0x955c24, name: fsm_flash_stop_x1a3_start_jig}}
+            - { istate: 9,func: {addr: 0x955cc0, name: fsm_flash_stop_slow_start_jig_charge}, next_istate: 11}
+            - { istate: 10,func: {addr: 0x955d04, name: fsm_flash_stop_slow_timer_start_jig_charge}, next_istate: 11}
+            - { istate: 11,func: {addr: 0x954638, name: fsm_flash_err}}
+        - msg: 15
+          when: msg_id == 0x1a10 #stop check charge
+          states:
+            - { istate: 1,func: {addr: 0x955d44, name: fsm_flash_stop_check_charge_start_x1a13}, next_istate: 8}
+        - msg: 16
+          when: msg_id == 0x1a11 #stop quick charge?
+          states:
+            - { istate: 2,func: {addr: 0x955db0, name: fsm_flash_stop_quick_charge_start_x1a13}}
+        - msg: 17
+          when: msg_id == 0x1a14 #stop recd charge
+          states:
+            - { istate: 3,func: {addr: 0x955e5c, name: fsm_flash_stop_recd_start_x1a13_charge}}
+            - { istate: 4,func: {addr: 0x955f04, name: fsm_flash_start_recd_charge_timer}}
+        - msg: 18
+          when: msg_id == 0x1a15 #calcu charge
+          states:
+            - { istate: 5,func: {addr: 0x955f8c, name: fsm_flash_stop_calcu_charge_start_x1a13}}
+            - { istate: 6,func: {addr: 0x956034, name: fsm_flash_start_calcu_charge}}
+        - msg: 19
+          when: msg_id == 0x1a17
+          states:
+            - { istate: 11,func: {addr: 0x9560bc, name: fsm_flash_stop_jig_charge}}
+        - msg: 20
+          when: msg_id == 0x1a16
+          states:
+            - { istate: 7,func: {addr: 0x95612c, name: fsm_flash_stop_light_charge}}
+        - msg: 21
+          when: msg_id == 0x1a12 #Stop Trickle Charge?
+          states:
+            - { istate: 9,func: {addr: 0x95616c, name: fsm_flash_stop_slow_charge}}
+            - { istate: 10,func: {addr: 0x95620c, name: fsm_flash_stop_slow_charge_timer}}
+        - msg: 22
+          when: msg_id == 0x1a13 #Stop Normal Charge?
+          states:
+            - { istate: 8,func: {addr: 0x95625c, name: fsm_flash_stop_x1a3_start_slow_charge}}
+        - msg: 23
+          when: msg_id == 0x1a18 #check batter
+          states:
+            - { istate: 0,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 1,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 2,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 3,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 4,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 5,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 6,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 7,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 8,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 9,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 10,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 11,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
+            - { istate: 12,func: {addr: 0x9563e4, name: fsm_flash_chk_battery}}
