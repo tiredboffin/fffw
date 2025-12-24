@@ -62,6 +62,7 @@ enum IRQID {
     UNK2C = 0x2C,
     UNK2F = 0x2F,
     UNK30 = 0x30,
+    PFP = 0x35,
     DEV65 = 0x3a,
     GPU = 0x3b,
     DEV42 = 0x3c,
