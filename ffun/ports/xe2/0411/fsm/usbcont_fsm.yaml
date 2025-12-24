@@ -1,0 +1,683 @@
+fsm:
+  name: fsm_usbcont
+  mapping:
+    base_addr: 0xf6a9c0
+    file_offset: 0x0
+  tbl_addr: 0x13f8800
+  machines: 5
+  transitions:
+    - machine: 0
+      nstates: 4
+      nmsgs: 5
+      table:
+        - msg: 0
+          when: msg_id == 0x1705
+          states:
+            - { istate: 0,func: {addr: 0x01204880, name: fsm_usbcont0_m1705}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+            - { istate: 2,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+            - { istate: 3,func: {addr: 0x01204880, name: fsm_usbcont0_m1705}, next_istate: 1}
+        - msg: 1
+          when: msg_id == 0x1706
+          states:
+            - { istate: 0,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+            - { istate: 1,func: {addr: 0x012048f4, name: fsm_usbcont0_m1706}, next_istate: 2}
+            - { istate: 2,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+            - { istate: 3,func: {addr: 0x012048f4, name: fsm_usbcont0_m1706}, next_istate: 2}
+        - msg: 2
+          when: msg_id == 0xb403
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x01204914, name: fsm_usbcont0_mb403}, next_istate: 3}
+            - { istate: 2}
+            - { istate: 3,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+        - msg: 3
+          when: msg_id == 0xb404
+          states:
+            - { istate: 0,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+            - { istate: 1,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+            - { istate: 2,func: {addr: 0x01204928, name: fsm_usbcont0_mb404}}
+            - { istate: 3,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+        - msg: 4
+          when: default
+          states:
+            - { istate: 0,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+            - { istate: 1,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+            - { istate: 2,func: {addr: 0x012048e0, name: fsm_usbcont0_halt}}
+            - { istate: 3,func: {addr: 0x01204964, name: fsm_usbcont0_call2}}
+    - machine: 1
+      nstates: 7
+      nmsgs: 14
+      table:
+        - msg: 0
+          when: msg_id = 0x1700
+          states:
+            - { istate: 0,func: {addr: 0x01204974, name: fsm_usbcont1_m1700}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 4,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 5,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 6,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+        - msg: 1
+          when: msg_id = 0xb400
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x012049a4, name: fsm_usbcont1_mb400}, next_istate: 3}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 4,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 5,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 6,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+        - msg: 2
+          when: msg_id = 0x1701
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x012049f0, name: fsm_usbcont1_m1701}, next_istate: 2}
+            - { istate: 4,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 5,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 6,func: {addr: 0x012049f0, name: fsm_usbcont1_m1701}, next_istate: 2}
+        - msg: 3
+          when: msg_id = 0xb401
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204a0c, name: fsm_usbcont1_mb401}}
+            - { istate: 3,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 4,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 5,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 6,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+        - msg: 4
+          when: msg_id = 0x1705
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x01204a44, name: fsm_usbcont1_call0_hw}, next_istate: 6}
+            - { istate: 4,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 5,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 6,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+        - msg: 5
+          when: msg_id = 0x1706
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 4,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 5,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 6,func: {addr: 0x01204a44, name: fsm_usbcont1_call0_hw}}
+        - msg: 6
+          when: msg_id = 0x1718
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x01204a58, name: fsm_usbcont1_m1718}, next_istate: 4}
+            - { istate: 4,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 5,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 6,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+        - msg: 7
+          when: msg_id = 0x1719
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 4,func: {addr: 0x01204a6c, name: fsm_usbcont1_m1719}}
+            - { istate: 5,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 6,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+        - msg: 8
+          when: msg_id = 0x171b
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x01204a94, name: fsm_usbcont1_m171b}, next_istate: 5}
+            - { istate: 4,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 5,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 6,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+        - msg: 9
+          when: msg_id = 0x171c
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 4,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 5,func: {addr: 0x01204aa4, name: fsm_usbcont1_call4}}
+            - { istate: 6,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+        - msg: 10
+          when: msg_id = 0xb403
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 4,func: {addr: 0x01204ad8, name: fsm_usbcont1_call3_st3}}
+            - { istate: 5,func: {addr: 0x01204aa4, name: fsm_usbcont1_call4}}
+            - { istate: 6,func: {addr: 0x01204afc, name: fsm_usbcont1_call0}}
+        - msg: 11
+          when: msg_id = 0xb404
+          states:
+            - { istate: 0,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 1,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 2,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 3,func: {addr: 0x01204990, name: fsm_usbcont1_halt}}
+            - { istate: 4,func: {addr: 0x01204ad8, name: fsm_usbcont1_call3_st3}}
+            - { istate: 5,func: {addr: 0x01204aa4, name: fsm_usbcont1_call4}}
+            - { istate: 6,func: {addr: 0x01204afc, name: fsm_usbcont1_call0}}
+        - msg: 12
+          when: msg_id = 0x1714
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2,func: {addr: 0x01204b20, name: fsm_usbcont1_m1714_on_off}}
+            - { istate: 3,func: {addr: 0x01204b20, name: fsm_usbcont1_m1714_on_off}}
+            - { istate: 4,func: {addr: 0x01204b20, name: fsm_usbcont1_m1714_on_off}}
+            - { istate: 5,func: {addr: 0x01204b30, name: fsm_usbcont1_m1714_on_off_hw}}
+            - { istate: 6,func: {addr: 0x01204b20, name: fsm_usbcont1_m1714_on_off}}
+        - msg: 13
+          when: default
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4,func: {addr: 0x01204b50, name: fsm_usbcont1_call3}}
+            - { istate: 5,func: {addr: 0x01204a94, name: fsm_usbcont1_m171b}}
+            - { istate: 6,func: {addr: 0x01204a44, name: fsm_usbcont1_call0_hw}}
+    - machine: 2
+      nstates: 1
+      nmsgs: 5
+      table:
+        - msg: 0
+          when: msg_id == 0x1707
+          states:
+            - { istate: 0,func: {addr: 0x01204b60, name: fsm_usbcont2_m1707_call_adj}}
+        - msg: 1
+          when: msg_id == 0x13f5
+          states:
+            - { istate: 0,func: {addr: 0x01204b80, name: fsm_usbcont2_m13f5}}
+        - msg: 2
+          when: msg_id == 0x1708
+          states:
+            - { istate: 0,func: {addr: 0x01204b90, name: fsm_usbcont2_m1708_lx21_fwupd}}
+        - msg: 3
+          when: msg_id == 0x1709
+          states:
+            - { istate: 0,func: {addr: 0x01204bac, name: fsm_usbcont2_m1709}}
+        - msg: 4
+          when: msg_id == 0x1706
+          states:
+            - { istate: 0,func: {addr: 0x01204bc8, name: fsm_usbcont2_m1706_stop_op}}
+    - machine: 3
+      nstates: 7
+      nmsgs: 12
+      table:
+        - msg: 0
+          when: msg_id == 0x1718
+          states:
+            - { istate: 0,func: {addr: 0x01204bd8, name: fsm_usbcont3_m1718}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 2,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 3,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 4,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 5,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 6,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+        - msg: 1
+          when: msg_id == 0x1719
+          states:
+            - { istate: 0,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 1,func: {addr: 0x01204c1c, name: fsm_usbcont3_m1719}, next_istate: 2}
+            - { istate: 2,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 3,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 4,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 5,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 6,func: {addr: 0x01204c1c, name: fsm_usbcont3_m1719}, next_istate: 5}
+        - msg: 2
+          when: msg_id == 0xb403
+          states:
+            - { istate: 0,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 1,func: {addr: 0x01204c38, name: fsm_usbcont3_mb403}, next_istate: 6}
+            - { istate: 2, next_istate: 4}
+            - { istate: 3,func: {addr: 0x01204c74, name: fsm_usbcont3_mb403_mb404}}
+            - { istate: 4,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 5,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 6,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+        - msg: 3
+          when: msg_id == 0xb404
+          states:
+            - { istate: 0,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 1,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 2, next_istate: 3}
+            - { istate: 3,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 4,func: {addr: 0x01204c74, name: fsm_usbcont3_mb403_mb404}}
+            - { istate: 5,func: {addr: 0x01204cd4, name: fsm_usbcont3_mb404}}
+            - { istate: 6,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+        - msg: 4
+          when: msg_id == 0x170e
+          states:
+            - { istate: 0,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 1,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 2,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 3,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 4,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 5,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 6,func: {addr: 0x01204d0c, name: fsm_usbcont3_m170e}}
+        - msg: 5
+          when: msg_id == 0x170f
+          states:
+            - { istate: 0,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 1,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 2,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 3,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 4,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 5,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 6,func: {addr: 0x01204d24, name: fsm_usbcont3_m170f}}
+        - msg: 6
+          when: msg_id == 0x1710
+          states:
+            - { istate: 0,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 1,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 2,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 3,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 4,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 5,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 6,func: {addr: 0x01204d3c, name: fsm_usbcont3_m1710}}
+        - msg: 7
+          when: msg_id == 0x1713
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01204d54, name: fsm_usbcont3_m1713_dps}}
+        - msg: 8
+          when: msg_id == 0x1715
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01204d68, name: fsm_usbcont3_m1715_dps}}
+        - msg: 9
+          when: msg_id == 0x1716
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01204d7c, name: fsm_usbcont3_m1716_dps}}
+        - msg: 10
+          when: msg_id == 0x1717
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01204d90, name: fsm_usbcont3_m1717_dps_paper}}
+        - msg: 11
+          when: msg_id == 0x171a
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x01204c08, name: fsm_usbcont3_halt}}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01204da4, name: fsm_usbcont3_m171a}}
+    - machine: 4
+      nstates: 7
+      nmsgs: 34
+      table:
+        - msg: 0
+          when: msg_id == 0x171b
+          states:
+            - { istate: 0,func: {addr: 0x01204db8, name: fsm_usbcont4_m171b_pcsh_init}, next_istate: 1}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+        - msg: 1
+          when: msg_id == 0x171c
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x01204de8, name: fsm_usbcont4_m171c_st1}, next_istate: 2}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01204e04, name: fsm_usbcont4_m171c_st6}, next_istate: 5}
+        - msg: 2
+          when: msg_id == 0xb403
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x01204e20, name: fsm_usbcont4_mb403_st1}, next_istate: 6}
+            - { istate: 2, next_istate: 4}
+            - { istate: 3,func: {addr: 0x01204e60, name: fsm_usbcont4_mb403_st3}}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+        - msg: 3
+          when: msg_id == 0xb404
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2, next_istate: 3}
+            - { istate: 3}
+            - { istate: 4,func: {addr: 0x01204ec8, name: fsm_usbcont4_mb404_st4}}
+            - { istate: 5,func: {addr: 0x01204f30, name: fsm_usbcont4_mb404_st5}}
+            - { istate: 6}
+        - msg: 4
+          when: msg_id == 0x171d
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01204f6c, name: fsm_usbcont4_m171d_capture_image}}
+        - msg: 5
+          when: msg_id == 0x171e
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01204f80, name: fsm_usbcont4_m171e}}
+        - msg: 6
+          when: msg_id == 0x171f
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01204fe8, name: fsm_usbcont4_m171f_start_live_image}}
+        - msg: 7
+          when: msg_id == 0x1720
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01204ffc, name: fsm_usbcont4_m1720}}
+        - msg: 8
+          when: msg_id == 0x1721
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205064, name: fsm_usbcont4_m1721_stop_live_image}}
+        - msg: 9
+          when: msg_id == 0x1722
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205078, name: fsm_usbcont4_m1722}}
+        - msg: 10
+          when: msg_id == 0x1723
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x012050e0, name: fsm_usbcont4_m1723_pcsh_get_dev_prop_desc}}
+        - msg: 11
+          when: msg_id == 0x1724
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x012050f4, name: fsm_usbcont4_m1724}}
+        - msg: 12
+          when: msg_id == 0x1725
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205164, name: fsm_usbcont4_m1725_get_dev_prop_value}}
+        - msg: 13
+          when: msg_id == 0x1726
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205178, name: fsm_usbcont4_m1726}}
+        - msg: 14
+          when: msg_id == 0x1727
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x012051e8, name: fsm_usbcont4_m1727_set_dev_prop_value}}
+        - msg: 15
+          when: msg_id == 0x1728
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x012051fc, name: fsm_usbcont4_m1728}}
+        - msg: 16
+          when: msg_id == 0x1729
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205264, name: fsm_usbcont4_m1729_reset_dev_prop_value}}
+        - msg: 17
+          when: msg_id == 0x172a
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205278, name: fsm_usbcont4_m172a}}
+        - msg: 18
+          when: msg_id == 0x172b
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x012052e0, name: fsm_usbcont4_m172b_pcsh_get_storage_info_1}}
+            - { istate: 2,func: {addr: 0x012052f4, name: fsm_usbcont4_m172b_pcsh_get_storage_info_2}}
+            - { istate: 3,func: {addr: 0x01205308, name: fsm_usbcont4_m172b_pcsh_get_storage_info_3}}
+            - { istate: 4,func: {addr: 0x0120531c, name: fsm_usbcont4_m172b_pcsh_get_storage_info_4}}
+            - { istate: 5,func: {addr: 0x01205330, name: fsm_usbcont4_m172b_pcsh_get_storage_info_5}}
+            - { istate: 6,func: {addr: 0x01205344, name: fsm_usbcont4_m172b_pcsh_get_storage_info_6}}
+        - msg: 19
+          when: msg_id == 0x172c
+          states:
+            - { istate: 0}
+            - { istate: 1,func: {addr: 0x01205358, name: fsm_usbcont4_m172c_1}}
+            - { istate: 2,func: {addr: 0x012053c8, name: fsm_usbcont4_m172c_2}}
+            - { istate: 3,func: {addr: 0x01205438, name: fsm_usbcont4_m172c_3}}
+            - { istate: 4,func: {addr: 0x012054a8, name: fsm_usbcont4_m172c_4}}
+            - { istate: 5,func: {addr: 0x01205518, name: fsm_usbcont4_m172c_5}}
+            - { istate: 6,func: {addr: 0x01205588, name: fsm_usbcont4_m172c_6}}
+        - msg: 20
+          when: msg_id == 0x172d
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x012055f8, name: fsm_usbcont4_m172d_get_image_info}}
+        - msg: 21
+          when: msg_id == 0x172e
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x0120560c, name: fsm_usbcont4_m172e}}
+        - msg: 22
+          when: msg_id == 0x172f
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x0120567c, name: fsm_usbcont4_m172f_del_image}}
+        - msg: 23
+          when: msg_id == 0x1730
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205690, name: fsm_usbcont4_m1730_st6}}
+        - msg: 24
+          when: msg_id == 0x1731
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x012056f8, name: fsm_usbcont4_m1731_receive_fw}}
+        - msg: 25
+          when: msg_id == 0x1732
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x0120570c, name: fsm_usbcont4_m1732}}
+        - msg: 26
+          when: msg_id == 0x1733
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205780, name: fsm_usbcont4_m1733_fwupdate}}
+        - msg: 27
+          when: msg_id == 0x1734
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205798, name: fsm_usbcont4_m1734}}
+        - msg: 28
+          when: msg_id == 0x1735
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205800, name: fsm_usbcont4_m1735}}
+        - msg: 29
+          when: msg_id == 0x9735
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205864, name: fsm_usbcont4_m9735_add_image}}
+        - msg: 30
+          when: msg_id == 0x1736
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205878, name: fsm_usbcont4_m1736}}
+        - msg: 31
+          when: msg_id == 0x9736
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x012058c8, name: fsm_usbcont4_m9736_clear_image}}
+        - msg: 32
+          when: msg_id == 0x1737
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x012058dc, name: fsm_usbcont4_m1737}}
+        - msg: 33
+          when: msg_id == 0x9737
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6,func: {addr: 0x01205928, name: fsm_usbcont4_m9737_pcsh_notify_dev_prop_chg}}
