@@ -13,6 +13,7 @@ enum SEMID {
     D88 = 0x5f,
     JIG = 0x5e,
     IFP = 0x61,
+    TRACK = 0x64, // not used
     POS = 0x66,
     JPG = 0x6d,
     CPU_BOUND = 0xba, //following id-s bound to cpu1
