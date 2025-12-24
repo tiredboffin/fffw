@@ -1,0 +1,327 @@
+fsm:
+  name: usb
+  mapping:
+    base_addr: 0xf6a9c0
+    file_offset: 0x0
+  tbl_addr: 0x13ccf08
+  machines: 1
+  transitions:
+    - machine: 0
+      nstates: 12
+      nmsgs: 21
+      table:
+        - msg: 0
+          when: msg_id == 0x340d
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2,func: {addr: 0x010c68d4, name: fsm_usb0_m340d_st2}}
+            - { istate: 3,func: {addr: 0x010c68e8, name: fsm_usb0_m340d_st3}}
+            - { istate: 4,func: {addr: 0x010c68fc, name: fsm_usb0_m340d_st4}}
+            - { istate: 5,func: {addr: 0x010c6910, name: fsm_usb0_m340d_st5}}
+            - { istate: 6,func: {addr: 0x010c6924, name: fsm_usb0_m340d_st6}}
+            - { istate: 7,func: {addr: 0x010c6938, name: fsm_usb0_m340d_st7}}
+            - { istate: 8,func: {addr: 0x010c694c, name: fsm_usb0_m340d_st8}}
+            - { istate: 9,func: {addr: 0x010c6960, name: fsm_usb0_m340d_st9}}
+            - { istate: 10,func: {addr: 0x010c6974, name: fsm_usb0_m340d_st10}}
+            - { istate: 11,func: {addr: 0x010c6988, name: fsm_usb0_m340d_st11}}
+        - msg: 1
+          when: msg_id == 0x340e
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8,func: {addr: 0x010c699c, name: fsm_usb0_m340e_st8}}
+            - { istate: 9}
+            - { istate: 10,func: {addr: 0x010c69b0, name: fsm_usb0_m340e_st10}}
+            - { istate: 11,func: {addr: 0x010c69c4, name: fsm_usb0_m340e_st11}}
+        - msg: 2
+          when: msg_id == 0x3407
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8}
+            - { istate: 9}
+            - { istate: 10,func: {addr: 0x010c69dc, name: fsm_usb0_m3407_st10}, next_istate: 11}
+            - { istate: 11}
+        - msg: 3
+          when: msg_id == 0x3408
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4,func: {addr: 0x010c6a04, name: fsm_usb0_m3408_st4}}
+            - { istate: 5,func: {addr: 0x010c6a28, name: fsm_usb0_m3408_st5}}
+            - { istate: 6,func: {addr: 0x010c6a4c, name: fsm_usb0_m3408_st6}}
+            - { istate: 7,func: {addr: 0x010c6a70, name: fsm_usb0_m3408_st7}}
+            - { istate: 8}
+            - { istate: 9}
+            - { istate: 10,func: {addr: 0x010c6a94, name: fsm_usb0_m3408_st10}}
+            - { istate: 11,func: {addr: 0x010c6ad8, name: fsm_usb0_m3408_st11}, next_istate: 10}
+        - msg: 4
+          when: msg_id == 0x3406
+          states:
+            - { istate: 0,func: {addr: 0x010c6b0c, name: fsm_usb0_m3406_st0}}
+            - { istate: 1,func: {addr: 0x010c6b34, name: fsm_usb0_m3406_st1}}
+            - { istate: 2,func: {addr: 0x010c6b5c, name: fsm_usb0_m3406_st2}}
+            - { istate: 3,func: {addr: 0x010c6b84, name: fsm_usb0_m3406_st3}}
+            - { istate: 4,func: {addr: 0x010c6bac, name: fsm_usb0_m3406_st4}}
+            - { istate: 5,func: {addr: 0x010c6bd4, name: fsm_usb0_m3406_st5}}
+            - { istate: 6,func: {addr: 0x010c6bfc, name: fsm_usb0_m3406_st6}}
+            - { istate: 7,func: {addr: 0x010c6c24, name: fsm_usb0_m3406_st7}}
+            - { istate: 8,func: {addr: 0x010c6c4c, name: fsm_usb0_m3406_st8}}
+            - { istate: 9,func: {addr: 0x010c6c74, name: fsm_usb0_m3406_st9}}
+            - { istate: 10,func: {addr: 0x010c6c9c, name: fsm_usb0_m3406_st10}}
+            - { istate: 11,func: {addr: 0x010c6cd0, name: fsm_usb0_m3406_st11}}
+        - msg: 5
+          when: msg_id == 0x3400
+          states:
+            - { istate: 0,func: {addr: 0x010c6ce8, name: fsm_usb0_m3400_st0}, next_istate: 1}
+            - { istate: 1,func: {addr: 0x010c6d18, name: fsm_usb0_m3400_st1}}
+            - { istate: 2,func: {addr: 0x010c6d3c, name: fsm_usb0_m3400_st2}}
+            - { istate: 3,func: {addr: 0x010c6d60, name: fsm_usb0_m3400_st3}}
+            - { istate: 4,func: {addr: 0x010c6d84, name: fsm_usb0_m3400_st4}}
+            - { istate: 5,func: {addr: 0x010c6da8, name: fsm_usb0_m3400_st5}}
+            - { istate: 6,func: {addr: 0x010c6dcc, name: fsm_usb0_m3400_st6}}
+            - { istate: 7,func: {addr: 0x010c6df0, name: fsm_usb0_m3400_st7}}
+            - { istate: 8,func: {addr: 0x010c6e14, name: fsm_usb0_m3400_st8}}
+            - { istate: 9,func: {addr: 0x010c6e38, name: fsm_usb0_m3400_st9}}
+            - { istate: 10,func: {addr: 0x010c6e5c, name: fsm_usb0_m3400_st10}}
+            - { istate: 11,func: {addr: 0x010c6e80, name: fsm_usb0_m3400_st11}}
+        - msg: 6
+          when: msg_id == 0x3401
+          states:
+            - { istate: 0,func: {addr: 0x010c6ea4, name: fsm_usb0_m3401_st0}}
+            - { istate: 1,func: {addr: 0x010c6ec4, name: fsm_usb0_m3401_st1}}
+            - { istate: 2,func: {addr: 0x010c6eec, name: fsm_usb0_m3401_st2}}
+            - { istate: 3,func: {addr: 0x010c6f28, name: fsm_usb0_m3401_st3}}
+            - { istate: 4,func: {addr: 0x010c6f54, name: fsm_usb0_m3401_st4}, next_istate: 7}
+            - { istate: 5,func: {addr: 0x010c6f84, name: fsm_usb0_m3401_st5}}
+            - { istate: 6,func: {addr: 0x010c6f9c, name: fsm_usb0_m3401_st6}, next_istate: 7}
+            - { istate: 7}
+            - { istate: 8,func: {addr: 0x010c6fc8, name: fsm_usb0_m3401_st8}}
+            - { istate: 9,func: {addr: 0x010c7004, name: fsm_usb0_m3401_st9}}
+            - { istate: 10,func: {addr: 0x010c7030, name: fsm_usb0_m3401_st10}}
+            - { istate: 11,func: {addr: 0x010c7068, name: fsm_usb0_m3401_st11}}
+        - msg: 7
+          when: msg_id == 0x3402
+          states:
+            - { istate: 0,func: {addr: 0x010c70a8, name: fsm_usb0_m3402_st0}}
+            - { istate: 1,func: {addr: 0x010c70d0, name: fsm_usb0_m3402_st1}}
+            - { istate: 2,func: {addr: 0x010c7118, name: fsm_usb0_m3402_st2}}
+            - { istate: 3,func: {addr: 0x010c7140, name: fsm_usb0_m3402_st3}}
+            - { istate: 4,func: {addr: 0x010c7168, name: fsm_usb0_m3402_st4}}
+            - { istate: 5,func: {addr: 0x010c7190, name: fsm_usb0_m3402_st5}}
+            - { istate: 6,func: {addr: 0x010c71b8, name: fsm_usb0_m3402_st6}}
+            - { istate: 7,func: {addr: 0x010c71e0, name: fsm_usb0_m3402_st7}}
+            - { istate: 8,func: {addr: 0x010c7208, name: fsm_usb0_m3402_st8}}
+            - { istate: 9,func: {addr: 0x010c7230, name: fsm_usb0_m3402_st9}}
+            - { istate: 10,func: {addr: 0x010c7258, name: fsm_usb0_m3402_st10}}
+            - { istate: 11,func: {addr: 0x010c7280, name: fsm_usb0_m3402_st11}}
+        - msg: 8
+          when: msg_id == 0x3403
+          states:
+            - { istate: 0,func: {addr: 0x010c72a8, name: fsm_usb0_m3403_st0}}
+            - { istate: 1,func: {addr: 0x010c72d0, name: fsm_usb0_m3403_st1}}
+            - { istate: 2,func: {addr: 0x010c72f8, name: fsm_usb0_m3403_st2}}
+            - { istate: 3,func: {addr: 0x010c7320, name: fsm_usb0_m3403_st3}}
+            - { istate: 4,func: {addr: 0x010c73c8, name: fsm_usb0_m3403_st4}}
+            - { istate: 5,func: {addr: 0x010c73f0, name: fsm_usb0_m3403_st5}}
+            - { istate: 6,func: {addr: 0x010c7418, name: fsm_usb0_m3403_st6}}
+            - { istate: 7,func: {addr: 0x010c7440, name: fsm_usb0_m3403_st7}}
+            - { istate: 8,func: {addr: 0x010c7468, name: fsm_usb0_m3403_st8}}
+            - { istate: 9,func: {addr: 0x010c7490, name: fsm_usb0_m3403_st9}}
+            - { istate: 10,func: {addr: 0x010c74b8, name: fsm_usb0_m3403_st10}}
+            - { istate: 11,func: {addr: 0x010c74e0, name: fsm_usb0_m3403_st11}}
+        - msg: 9
+          when: msg_id == 0x3404
+          states:
+            - { istate: 0,func: {addr: 0x010c7508, name: fsm_usb0_m3404_st0}}
+            - { istate: 1,func: {addr: 0x010c752c, name: fsm_usb0_m3404_st1}}
+            - { istate: 2,func: {addr: 0x010c7550, name: fsm_usb0_m3404_st2}}
+            - { istate: 3,func: {addr: 0x010c7574, name: fsm_usb0_m3404_st3}}
+            - { istate: 4,func: {addr: 0x010c7598, name: fsm_usb0_m3404_st4}, next_istate: 5}
+            - { istate: 5,func: {addr: 0x010c75c4, name: fsm_usb0_m3404_st5}}
+            - { istate: 6,func: {addr: 0x010c75e8, name: fsm_usb0_m3404_st6}}
+            - { istate: 7,func: {addr: 0x010c760c, name: fsm_usb0_m3404_st7}}
+            - { istate: 8,func: {addr: 0x010c7630, name: fsm_usb0_m3404_st8}, next_istate: 3}
+            - { istate: 9,func: {addr: 0x010c7678, name: fsm_usb0_m3404_st9}, next_istate: 3}
+            - { istate: 10,func: {addr: 0x010c76b0, name: fsm_usb0_m3404_st10}}
+            - { istate: 11,func: {addr: 0x010c772c, name: fsm_usb0_m3404_st11}}
+        - msg: 10
+          when: msg_id == 0x3405
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8}
+            - { istate: 9,func: {addr: 0x010c7748, name: fsm_usb0_m3405_st9}, next_istate: 10}
+            - { istate: 10}
+            - { istate: 11}
+        - msg: 11
+          when: msg_id == 0x3409
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2,func: {addr: 0x010c7790, name: fsm_usb0_m3409_st2}, next_istate: 3}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5,func: {addr: 0x010c77c0, name: fsm_usb0_m3409_st5}}
+            - { istate: 6,func: {addr: 0x010c77d8, name: fsm_usb0_m3409_st6}}
+            - { istate: 7}
+            - { istate: 8}
+            - { istate: 9}
+            - { istate: 10}
+            - { istate: 11}
+        - msg: 12
+          when: msg_id == 0x340a
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3,func: {addr: 0x010c77f0, name: fsm_usb0_m340a_st3}, next_istate: 2}
+            - { istate: 4,func: {addr: 0x010c7820, name: fsm_usb0_m340a_st4}, next_istate: 6}
+            - { istate: 5,func: {addr: 0x010c784c, name: fsm_usb0_m340a_st5}}
+            - { istate: 6,func: {addr: 0x010c7864, name: fsm_usb0_m340a_st6}}
+            - { istate: 7}
+            - { istate: 8,func: {addr: 0x010c787c, name: fsm_usb0_m340a_st8}, next_istate: 2}
+            - { istate: 9,func: {addr: 0x010c78c8, name: fsm_usb0_m340a_st9}, next_istate: 2}
+            - { istate: 10,func: {addr: 0x010c7904, name: fsm_usb0_m340a_st10}}
+            - { istate: 11,func: {addr: 0x010c797c, name: fsm_usb0_m340a_st11}}
+        - msg: 13
+          when: msg_id == 0x340b
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8,func: {addr: 0x010c7998, name: fsm_usb0_m340b_st8}, next_istate: 9}
+            - { istate: 9}
+            - { istate: 10,func: {addr: 0x010c79c8, name: fsm_usb0_m340b_st10}}
+            - { istate: 11}
+        - msg: 14
+          when: msg_id == 0x340c
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4,func: {addr: 0x010c79e8, name: fsm_usb0_m340c_st4}, next_istate: 8}
+            - { istate: 5,func: {addr: 0x010c7a38, name: fsm_usb0_m340c_st5}, next_istate: 3}
+            - { istate: 6,func: {addr: 0x010c7a7c, name: fsm_usb0_m340c_st6}, next_istate: 2}
+            - { istate: 7,func: {addr: 0x010c7ac4, name: fsm_usb0_m340c_st7}}
+            - { istate: 8}
+            - { istate: 9}
+            - { istate: 10}
+            - { istate: 11}
+        - msg: 15
+          when: msg_id == 0x340f
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8}
+            - { istate: 9}
+            - { istate: 10,func: {addr: 0x010c7afc, name: fsm_usb0_m340f_st10}}
+            - { istate: 11,func: {addr: 0x010c7b10, name: fsm_usb0_m340f_st11}}
+        - msg: 16
+          when: msg_id == 0x3410
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8}
+            - { istate: 9}
+            - { istate: 10,func: {addr: 0x010c7b24, name: fsm_usb0_m3410_st10}}
+            - { istate: 11}
+        - msg: 17
+          when: msg_id == 0x3412
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8}
+            - { istate: 9}
+            - { istate: 10,func: {addr: 0x010c7b48, name: fsm_usb0_m3412_st10}}
+            - { istate: 11,func: {addr: 0x010c7b84, name: fsm_usb0_m3412_st11}}
+        - msg: 18
+          when: msg_id == 0x3413
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8}
+            - { istate: 9}
+            - { istate: 10,func: {addr: 0x010c7b9c, name: fsm_usb0_m3413_st10}}
+            - { istate: 11,func: {addr: 0x010c7bd0, name: fsm_usb0_m3413_st11}}
+        - msg: 19
+          when: msg_id == 0x3414
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8}
+            - { istate: 9}
+            - { istate: 10,func: {addr: 0x010c7be8, name: fsm_usb0_m_3414_st10}}
+            - { istate: 11,func: {addr: 0x010c7c14, name: fsm_usb0_m_3414_st11}}
+        - msg: 20
+          when: msg_id == 0x3411
+          states:
+            - { istate: 0}
+            - { istate: 1}
+            - { istate: 2}
+            - { istate: 3}
+            - { istate: 4}
+            - { istate: 5}
+            - { istate: 6}
+            - { istate: 7}
+            - { istate: 8}
+            - { istate: 9}
+            - { istate: 10,func: {addr: 0x010c7c2c, name: fsm_usb0_m3411_st10}}
+            - { istate: 11}
