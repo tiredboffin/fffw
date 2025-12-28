@@ -9,6 +9,7 @@ enum SEMID {
     BATT = 0x3d,
     FILE_OP = 0x3e,
     HEAP = 0x43,
+    FLASHEXT=0x46,
     PACK = 0x4c,
     D88 = 0x5f,
     JIG = 0x5e,
