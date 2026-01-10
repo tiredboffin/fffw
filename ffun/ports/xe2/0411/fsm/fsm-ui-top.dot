@@ -508,4 +508,6 @@ digraph UI_FSM_TOP {
   m164 -> m34 [label=""];
   m164 -> m129 [label=""];
   m164 -> m142 [label=""];
+  ext_0 [shape=point, width=0.25, xlabel="_ui_fsm_entry"];
+  ext_0 -> m0 [penwidth=2];
 }
