@@ -2,17 +2,23 @@
 
 // Task attributes
 enum UTRON_TA {
-    HLNG = 0x00,
-    ASM = 0x01,
-    ACT = 0x02,
+    TA_HLNG = 0x00,
+    TA_ASM = 0x01,
+    TA_ACT = 0x02,
 };
 
+//mutex attributes
+enum UTRON_MA {
+    TA_INHERIT = 0x02,
+    TA_CEILING = 0x03,
+};
 
 // flag attributes
 enum UTRON_FA {
-    TFIFO = 0x00,
-    TPRI = 0x01,
-    CLR = 0x04,
+    TA_TFIFO = 0x00,
+    TA_PRI=0x01,
+    TA_WMUL=0x02,
+    TA_CLR = 0x04,
 };
 
 // Task execution state values

@@ -1,0 +1,11 @@
+enum EFLASH_CMD {
+    SET_ALL=0x00,
+    SET_CONTROL=0x01,
+    SET_GDN=0x02,
+    SET_ZPOS=0x03,
+    SET_PRM=0x04, //?
+    GET_INFO=0x20,
+    GET_CHRG=0x21,
+    GET_ZPOS=0x22,
+    GET_TYPE=0x23,
+};

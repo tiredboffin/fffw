@@ -7,6 +7,7 @@ enum SEMID {
     EEP = 0x27,
     PACK_MUX = 0x2c,
     DCN = 0x2d,
+    VGLIB = 0x37,
     GPS = 0x3c,
     BATT = 0x3d,
     FILE_OP = 0x3e,
@@ -330,4 +331,30 @@ enum ERR_MODE {
     RAID0 = 0x3,
     MVREC = 0x4,
     MAX = 0x05,
+};
+
+enum FFOS_ERR_LOG {
+    TASK_CRE = 0x03,
+    TASK_PRI = 0x05,
+    TASK_SUS = 0x06,
+    TASK_RES = 0x07,
+    TASK_DLY = 0x09,
+    DIS_DSP  = 0x0b,
+    ENA_DSP  = 0x0c,
+    FLAG_WAI_OR = 0x11,
+    FLAG_WAI_AND = 0x12,
+    FLAG_SET = 0x13,
+    FLAG_CLR = 0x14,
+    SEM_CRE = 0x15,
+    SEM_WAIT = 0x18,
+    SEM_PUT  = 0x19,
+    MSG_RCV  = 0x1f,
+    CRE_CYC  = 0x20,
+    CRE_MPF  = 0x22,
+    HEAP_MEM = 0x25,
+    CRE_DTQ  = 0x30,
+    SLP_TSK  = 0x37,
+    WUP_TSK  = 0x38,
+    GET_PRI  = 0x3c,
+    
 };
