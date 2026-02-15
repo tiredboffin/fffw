@@ -367,3 +367,25 @@ def _ramdata_dump(jig, argv):
         jig.set_config_usb_debug(xf7)
         print('read {:d} bytes in {:.02f} seconds {:.01f} kB/s'.format(count, elapsed, count/elapsed/1000.0))
         print('Dump RAM end address:', hex(ofs).upper())
+
+def cmd_rtc(jig,argv):
+    if argv.action == 'read':
+        return _rtc_read(jig, argv)
+    else:
+        print(argv.command, 'action', argv.action, 'not implemented')
+
+def _rtc_read(jig, argv):
+    rtc = bytearray()
+    for ofs in range(0,0x10):
+        jig.app80_request(0x06, bytearray([1, ofs&0xff]))
+        rtc.append(jig.app80_response()[3])
+    print(f"rtc: {rtc.hex()}")
+    sum = 0
+    for b in rtc[:-1]:
+        sum = (sum+b)&0xff
+    sum = (-sum)&0xff
+    if sum != rtc[-1]:
+        print(f"Wrong chksum=0x{sum:0x} expected 0x{rtc[-1]:0x}")
+    else:
+        print(f"chksum ok")
+    return

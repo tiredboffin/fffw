@@ -81,6 +81,15 @@ def cmd_parser():
     action.add_argument('-s', '--size', metavar='size', nargs='?', help = 'size of data to dump, default is as much as possible', default=0, const=0, type=Int)
     action.add_argument('-o', '--output', metavar='filename', help = 'output file name', required=True)
 
+    #command rtc
+    cmd = commands.add_parser('rtc', help='Read/Write/Reset RTC')
+    actions = cmd.add_subparsers(dest='action', required=True)
+    action = actions.add_parser('read', help='Read RTC')
+    action = actions.add_parser('reset', help='Reset RTC')
+    action = actions.add_parser('write', help='Write RTC')
+    action.add_argument('address', metavar='address', help='rtc address')
+    action.add_argument('data', metavar='data', help='hex string of data to write')
+
     #command xe2 -- experimenatl
     cmd = commands.add_parser('xe2', help='xe2 specifics, do not use!')
     actions = cmd.add_subparsers(dest='action', required=True)
