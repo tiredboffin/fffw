@@ -138,6 +138,8 @@ def cmd_cfgdata(jig, argv):
         return cfgdata_write(jig, argv)
     elif argv.action == 'dump':
         return _cfgdata_dump(jig, argv)
+    elif argv.action == 'save':
+        return _cfgdata_save(jig, argv)
     else:
         print(argv.command, 'action', argv.action, 'not implemented')
 
@@ -250,6 +252,18 @@ def _cfgdata_dump(jig,argv):
         with open(fn, 'wb') as out:
             l = out.write(data)
             print('saved {:d} bytes [0x{:0x}..0x{:0x}] to {:s}'.format(l, 0, len(data), fn))
+
+def _cfgdata_save(jig,argv):
+    import time
+    jig.app80_request(0x22, bytearray([0xff]))
+    print('saving cfg data from ram to EEP, please do not turn off the camera')
+    time.sleep(5)
+    print('nop', jig.ftl.nop().hex())
+    r = jig.app80_response()
+    if r[0] == 0x22 and r[1] == 0:
+        print('Success - remove the battery to activate the changes')
+    else:
+        print('Cmd', hex(r[0]), 'err code:', hex(r[1]), ' - flash eeprom failed?')
 
 def cmd_ram(jig, argv):
     if argv.action == 'read':
