@@ -7,6 +7,7 @@ enum SEMID {
     EEP = 0x27,
     PACK_MUX = 0x2c,
     DCN = 0x2d,
+    EEP_READ = 0x35,
     VGLIB = 0x37,
     GPS = 0x3c,
     BATT = 0x3d,
@@ -15,6 +16,7 @@ enum SEMID {
     HEAP = 0x43,
     FLASHEXT=0x46,
     PACK = 0x4c,
+    SEM4F = 0x4f,
     D88 = 0x5f,
     JIG = 0x5e,
     IFP = 0x61,
@@ -358,3 +360,32 @@ enum FFOS_ERR_LOG {
     GET_PRI  = 0x3c,
     
 };
+
+enum DIAG_COUNTER {
+   KEY       = 0x00,
+   SHUTTER   = 0x01,
+   FLASH     = 0x02,
+   BOOT      = 0x03,
+   ZOOM_STEP = 0x04,
+   BATT_END  = 0x05,
+   USB_ON    = 0x06,
+   DUST      = 0x07,
+   CNT8      = 0x08, //not used on xe2
+   CMOS_T0   = 0x09,   
+   CMOS_T1   = 0x0a,   
+   CMOS_T2   = 0x0b,   
+   CNT_C     = 0x0c, //not used on xe2
+   EVF_CNT_d = 0x0d,
+   CNT_e     = 0x0e,
+   CNT_f     = 0x0f,
+};
+
+enum DIAG_COUNTER2 {
+   KEY       = 0x00,
+   BOOT      = 0x01,
+   ZOOM_STEP = 0x02,
+   BATT_END  = 0x03,
+   USB_ON    = 0x04,
+   DUST      = 0x05,
+};
+
