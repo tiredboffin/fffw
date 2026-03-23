@@ -1,0 +1,11 @@
+enum V61_SYSCALLS {
+  DRV_INIT = 0x01,
+  DRV_SET_ENC = 0x02,
+  DRV_SET_DEC = 0x03,
+  DRV_PING1 = 0x04,
+  DRV_PING2 = 0x05,
+  DRV_STOP = 0x06,
+  DRV_DEINIT = 0x07,
+
+};
+
