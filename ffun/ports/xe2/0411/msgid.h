@@ -5304,3 +5304,4 @@ FONTDB_COLOR_ICON_MAX=0xff0006ff,
 };
 
 
+typedef signed MSGID_t;

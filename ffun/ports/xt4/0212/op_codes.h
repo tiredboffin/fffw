@@ -1,4 +1,7 @@
 enum OP_CODE {
+OP_STOP=0x1,
+OP_LOG=0xa,
+OP_LOAD1=0xb,
 OP_WAIT=0xc,
 OP_WAITSET=0xd,
 OP_IF=0xe,
@@ -18,4 +21,5 @@ OP_LOAD=0x16, //v2
 OP_RANDKEY=0x17, //v2
 OP_MENU=0x1d, //v2
 OP_JIG=0x1e, //v2
+OP_MAX=0x20,
 };
