@@ -467,3 +467,20 @@ class jig:
                 if size is not None:
                     size -= len(r)
             print('===Dump RAM:', hex(ofs))
+
+    def read_data_diag(self, id):
+        ff = self.ftl
+        cmd = bytearray(32)
+        cmd[0:4] = 0x450006.to_bytes(4, 'little')
+        cmd[16:20] = id.to_bytes(4, 'little')
+        ff.write_cmd(cmd)
+        r = ff.read_cmd(0x20)
+        if self.trace:
+            print('read_data_diag ..', r[0:min(0x40, len(r))].hex())
+        cmd_code, errcode1, errcode2, u1, u2, size, u3, u4  = struct.unpack('<8I', r[0:0x20])
+        assert cmd_code == 0x450006
+        if errcode1 == 0:
+            r = ff.read_data(size)
+        else:
+            raise jig_exception({'read_data_diag' : hex(id), 'err1': hex(errcode1), 'err2': hex(errcode2)})
+        return r

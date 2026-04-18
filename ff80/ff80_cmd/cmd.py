@@ -403,3 +403,14 @@ def _rtc_read(jig, argv):
     else:
         print(f"chksum ok")
     return
+
+def cmd_diagdata(jig, argv):
+    id = argv.id
+    fn = argv.output
+    r = jig.read_data_diag(id)
+    print(f"Diag data size: {len(r)}")
+    if not fn:
+        print(f"{r.hex()}")
+    else:
+        with open(fn, 'wb') as out:
+            out.write(r)

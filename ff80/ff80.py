@@ -35,6 +35,11 @@ def cmd_parser():
     cmd = commands.add_parser('syslog', help = 'Save debug syslog content')
     cmd.add_argument('-o', '--output', nargs = '?',  help = 'Output file name')
 
+    #command diagdata
+    cmd = commands.add_parser('diagdata', help = 'Save diag data')
+    cmd.add_argument('id', metavar='id', help = 'diag dataset id', type=Int)
+    cmd.add_argument('-o', '--output', nargs = '?',  help = 'Output file name')
+
     #command cfgdata
     cmd = commands.add_parser('cfgdata', help='Read/write/save/load config data')
     actions = cmd.add_subparsers(dest='action', required=True)
