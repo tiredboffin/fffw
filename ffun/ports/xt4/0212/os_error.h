@@ -49,3 +49,12 @@ enum ERR_STATUS {
     ERR_STATUS_1f = 0x1f,
     ERR_STATUS_20 = 0x20,
 };
+
+enum ERR_BITOP {
+    TEST_BIT = 0x30,
+    OR_ALL   = 0x32,
+    CLEAR_ALL= 0x44,
+    SET_BIT  = 0x85,
+    CLEAR_BIT= 0x86,
+};
+
