@@ -389,3 +389,13 @@ enum DIAG_COUNTER2 {
    DUST      = 0x05,
 };
 
+enum UI_MODE2 {
+  REC        = 1,
+  PLAY       = 2,
+  SETUP_REC  = 3,
+  SETUP_PLAY = 4,
+  DPS        = 5,
+  UPDATE     = 6,
+  JIG        = 7,
+  POWERON    = 8,
+};
