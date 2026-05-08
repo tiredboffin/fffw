@@ -73,6 +73,7 @@ enum IRQID {
     UNK2C = 0x2C,
     UNK2F = 0x2F,
     UNK30 = 0x30,
+    UNK31_D18 = 0x31,
     PFP = 0x35,
     DEV65 = 0x3a,
     GPU = 0x3b,
@@ -215,7 +216,7 @@ enum TS_ID {
     UNK_910     = 0x01091000,
     UNK_911     = 0x01091100,
     UNK_912     = 0x01091200,
-    UNK_913     = 0x01091300,
+    LENSDC_913  = 0x01091300,
     UNK_914     = 0x01091400,
     UNK_915     = 0x01091500,
     UNK_916     = 0x01091600,
@@ -398,4 +399,10 @@ enum UI_MODE2 {
   UPDATE     = 6,
   JIG        = 7,
   POWERON    = 8,
+};
+
+enum FACE_FILTER {
+    FACE  = 0x32,
+    DOG   = 0x33,
+    CAT   = 0x34,
 };
