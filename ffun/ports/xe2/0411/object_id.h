@@ -94,6 +94,7 @@ enum IRQID {
     UART = 0x5c,
     RECC = 0x5d,
     PACK = 0x64,
+    PFP_SCRATCH  = 0x67, //scratch correction
     LENS1 = 0x77
     LENS0 = 0x78
     LENS2 = 0x79
@@ -301,6 +302,8 @@ enum TS_ID {
     UNK11_180      = 0x01108000,
     UNK11_181      = 0x01108100,
     UNK11_182      = 0x01108200,
+    CORR_DEFECT    = 0x06000000,
+    CORR_DBG_FILE  = 0x06010700,
     S1LOCKEV    = 0x07000000,
     S1          = 0x0f000000,
     S2          = 0x0f010000,
@@ -405,4 +408,18 @@ enum FACE_FILTER {
     FACE  = 0x32,
     DOG   = 0x33,
     CAT   = 0x34,
+};
+
+
+enum FLASHLOADER {
+    MAIN     = 0,
+    EEP131   = 1
+    RSR      = 2,
+    ELF      = 3,
+    LANG     = 4,
+    FONT     = 5,
+    CORRDATA = 6,
+    LENSDATA = 7,
+    FACEDATA = 8,
+    INVALID  = 9
 };
