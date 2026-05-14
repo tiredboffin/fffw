@@ -38,3 +38,17 @@ enum DIAG_COUNTER2 {
    USB_ON    = 0x07,
    DUST      = 0x08,
 };
+
+enum FLASHLOADER {
+    MAIN     = 0,
+    EEP0     = 1,
+    RSR      = 2,
+    ELF      = 3,
+    LANG     = 4,
+    FONT     = 5,
+    CORRDATA = 6,
+    LENSDATA = 7,
+    FACEDATA = 8,
+    MPCODEC  = 9,
+    LAST     =10
+};

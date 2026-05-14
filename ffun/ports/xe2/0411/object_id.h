@@ -413,7 +413,7 @@ enum FACE_FILTER {
 
 enum FLASHLOADER {
     MAIN     = 0,
-    EEP131   = 1
+    EEP0     = 1,
     RSR      = 2,
     ELF      = 3,
     LANG     = 4,
@@ -421,5 +421,5 @@ enum FLASHLOADER {
     CORRDATA = 6,
     LENSDATA = 7,
     FACEDATA = 8,
-    INVALID  = 9
+    LAST     = 9
 };
