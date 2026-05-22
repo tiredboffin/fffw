@@ -3,8 +3,9 @@ enum SEMID {
     RECC2 = 2,
     SEM09 = 9,
     SOUND = 0x1e,
+    EEP25 = 0x25,
     RTC = 0x26,
-    EEP = 0x27,
+    EEP27 = 0x27,
     PACK_MUX = 0x2c,
     DCN = 0x2d,
     EEP_READ = 0x35,
@@ -294,6 +295,7 @@ enum TS_ID {
 //  UNK3_302    = 0x03030200,
     UNK3_400    = 0x03040000,
     UNK4_000    = 0x04000000,
+    
     WB_UNK4_100    = 0x04010000,
     WB_UNK4_101    = 0x04010100,
     WB_UNK4_102    = 0x04010200,
@@ -304,6 +306,8 @@ enum TS_ID {
     UNK11_182      = 0x01108200,
     CORR_DEFECT    = 0x06000000,
     CORR_DBG_FILE  = 0x06010700,
+    CORR_PFP       = 0x06023300,
+    PROC_YC        = 0x06023350
     S1LOCKEV    = 0x07000000,
     S1          = 0x0f000000,
     S2          = 0x0f010000,
@@ -459,4 +463,13 @@ enum FLASHLOADER {
     LENSDATA = 7,
     FACEDATA = 8,
     LAST     = 9
+};
+
+enum ERR_LENSCOM {
+    LENS_TERMINAL_ERROR = 5,
+    LENS_COMMUNICATION_ERROR = 6,
+    FW_COMPATIBLE_OLD_LEN = 7,
+    FW_COMPATIBLE_OLD_BODY = 8,
+    FW_UNSUPPORTED_LENS = 9,
+    LENS_MA = 10,
 };
