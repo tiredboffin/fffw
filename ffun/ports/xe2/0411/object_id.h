@@ -473,3 +473,32 @@ enum ERR_LENSCOM {
     FW_UNSUPPORTED_LENS = 9,
     LENS_MA = 10,
 };
+
+
+enum FONT_EXT {
+    FDL   = 0,
+    BDF   = 1,
+    TTF   = 2,
+    DIF   = 3,
+    UNK4  = 4,
+};
+
+enum FONT_TYPE {
+    FDL   = 1,
+    BDF   = 2,
+    TTF   = 3,
+    OTF   = 4,
+    TTC   = 5,
+    FONT6 = 6,
+    FONT7 = 7,
+};
+
+enum FONT_TYPE1 {
+    FDL   = 0,
+    BDF   = 1,
+    TTF   = 2,
+    OTF   = 3,
+    TTC   = 4,
+    FONT6 = 5,
+    FONT7 = 6,
+};
