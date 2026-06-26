@@ -93,6 +93,9 @@ enum OBJ_TYPE
     SEMAPHORE = 0x03,
     REGION = 0x04,
     PART = 0x05,
+    OBJ6 = 0x06,
+    OBJ7 = 0x07,
+    OBJ8 = 0x08,
 };
 enum SYSCALL
 {
@@ -118,6 +121,7 @@ enum SYSCALL
     EV_RECEIVE=0x2d,
     SM_CREATE=0x33,
     SM_DELETE=0x35,
+    DELAY=0x3c,
 };
 
 unsigned long t_create(char name[4], unsigned long prio, unsigned long sstack, unsigned long ustack, unsigned long flags, unsigned long *tid);
