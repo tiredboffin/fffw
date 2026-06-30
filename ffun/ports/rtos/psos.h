@@ -1,4 +1,4 @@
-enum PSOS_ERR
+enum PSOS_ERR	
 {
     ERR_TIMEOUT = 0x01,
     ERR_SSFN = 0x03,
@@ -69,9 +69,12 @@ enum PSOS_ERR
     ERR_STALEID=0x65,
     ERR_NDKLD=0x66,
     ERR_MASTER=0x67,
+    ERR_72=0x72,
     ERR_74=0x74,
+    ERR_IODN=0x101, //Ilelgal device number
     ERR_NODR=0x102,
     ERR_IOOP=0x103,
+    ERR_115=0x115,
     FAT_ALIGN=0xf00,
     FAT_OVSDA=0xf01, //Region 0 overflow while making system data area
     FAT_OVOBJT=0xf02, //Region 0 overflow while making object table
@@ -98,6 +101,7 @@ enum PSOS_ERR
     FAT_JN2SOON=0xf20,
     FAT_MAXSEQ=0xf21,
     FAT_JRQATSLV=0xf22,
+    ERR_F43=0xf43,
 };
     
 enum OBJ_TYPE
@@ -135,9 +139,11 @@ enum SYSCALL
     Q_RECEIVE=0x2a,
     SYSCALL_43=0x2b,
     EV_RECEIVE=0x2d,
+    SYSCALL_44=0x2c,
     SM_CREATE=0x33,
     SM_DELETE=0x35,
     SM_54=0x36,
+    SM_55=0x37,
     SYSCALL_57=0x39,
     DELAY=0x3c,
     SYSCALL_97=0x61, //rel timer
