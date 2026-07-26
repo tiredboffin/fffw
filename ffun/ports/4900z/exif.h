@@ -1,0 +1,138 @@
+// * draft
+enum EXIF_IFD0_TAG {
+    IMAGE_WIDTH                  = 0x0100,
+    IMAGE_LENGTH                 = 0x0101,
+    BITS_PER_SAMPLE              = 0x0102,
+    COMPRESSION                  = 0x0103,
+    PHOTOMETRIC_INTERPRETATION   = 0x0106,
+    IMAGE_DESCRIPTION            = 0x010E,
+    MAKE                         = 0x010F,
+    MODEL                        = 0x0110,
+    STRIP_OFFSETS                = 0x0111,
+    ORIENTATION                  = 0x0112,
+    SAMPLES_PER_PIXEL            = 0x0115,
+    ROWS_PER_STRIP               = 0x0116,
+    STRIP_BYTE_COUNTS            = 0x0117,
+    X_RESOLUTION                 = 0x011A,
+    Y_RESOLUTION                 = 0x011B,
+    PLANAR_CONFIGURATION         = 0x011C,
+    RESOLUTION_UNIT              = 0x0128,
+    TRANSFER_FUNCTION            = 0x012D,
+    SOFTWARE                     = 0x0131,
+    DATE_TIME                    = 0x0132,
+    ARTIST                       = 0x013B,
+    WHITE_POINT                  = 0x013E,
+    PRIMARY_CHROMATICITIES       = 0x013F,
+
+    JPEG_INTERCHANGE_FORMAT      = 0x0201,
+    JPEG_INTERCHANGE_FORMAT_LEN  = 0x0202,
+
+    YCBCR_COEFFICIENTS           = 0x0211,
+    YCBCR_SUB_SAMPLING           = 0x0212,
+    YCBCR_POSITIONING            = 0x0213,
+    REFERENCE_BLACK_WHITE        = 0x0214,
+
+    COPYRIGHT                    = 0x8298,
+
+    /* Offsets to subordinate IFDs. */
+    EXIF_IFD_POINTER             = 0x8769,
+    GPS_INFO_IFD_POINTER         = 0x8825
+
+    /* Sub tags */
+    EXPOSURE_TIME                = 0x829A,
+    F_NUMBER                     = 0x829D,
+
+    EXPOSURE_PROGRAM             = 0x8822,
+    SPECTRAL_SENSITIVITY         = 0x8824,
+    PHOTOGRAPHIC_SENSITIVITY     = 0x8827,
+    OECF                         = 0x8828,
+    SENSITIVITY_TYPE             = 0x8830,
+    STANDARD_OUTPUT_SENSITIVITY  = 0x8831,
+    RECOMMENDED_EXPOSURE_INDEX   = 0x8832,
+    ISO_SPEED                    = 0x8833,
+    ISO_SPEED_LATITUDE_YYY       = 0x8834,
+    ISO_SPEED_LATITUDE_ZZZ       = 0x8835,
+
+    EXIF_VERSION                 = 0x9000,
+    DATE_TIME_ORIGINAL           = 0x9003,
+    DATE_TIME_DIGITIZED          = 0x9004,
+    OFFSET_TIME                  = 0x9010,
+    OFFSET_TIME_ORIGINAL         = 0x9011,
+    OFFSET_TIME_DIGITIZED        = 0x9012,
+
+    COMPONENTS_CONFIGURATION     = 0x9101,
+    COMPRESSED_BITS_PER_PIXEL    = 0x9102,
+
+    SHUTTER_SPEED_VALUE          = 0x9201,
+    APERTURE_VALUE               = 0x9202,
+    BRIGHTNESS_VALUE             = 0x9203,
+    EXPOSURE_BIAS_VALUE          = 0x9204,
+    MAX_APERTURE_VALUE           = 0x9205,
+    SUBJECT_DISTANCE             = 0x9206,
+    METERING_MODE                = 0x9207,
+    LIGHT_SOURCE                 = 0x9208,
+    FLASH                        = 0x9209,
+    FOCAL_LENGTH                 = 0x920A,
+
+    SUBJECT_AREA                 = 0x9214,
+    MAKER_NOTE                   = 0x927C,
+    USER_COMMENT                 = 0x9286,
+    SUBSEC_TIME                  = 0x9290,
+    SUBSEC_TIME_ORIGINAL         = 0x9291,
+    SUBSEC_TIME_DIGITIZED        = 0x9292,
+
+    TEMPERATURE                  = 0x9400,
+    HUMIDITY                     = 0x9401,
+    PRESSURE                     = 0x9402,
+    WATER_DEPTH                  = 0x9403,
+    ACCELERATION                 = 0x9404,
+    CAMERA_ELEVATION_ANGLE       = 0x9405,
+
+    FLASHPIX_VERSION             = 0xA000,
+    COLOR_SPACE                  = 0xA001,
+    PIXEL_X_DIMENSION            = 0xA002,
+    PIXEL_Y_DIMENSION            = 0xA003,
+    RELATED_SOUND_FILE           = 0xA004,
+    INTEROPERABILITY_IFD_POINTER = 0xA005,
+
+    FLASH_ENERGY                 = 0xA20B,
+    SPATIAL_FREQUENCY_RESPONSE   = 0xA20C,
+    FOCAL_PLANE_X_RESOLUTION     = 0xA20E,
+    FOCAL_PLANE_Y_RESOLUTION     = 0xA20F,
+    FOCAL_PLANE_RESOLUTION_UNIT  = 0xA210,
+    SUBJECT_LOCATION             = 0xA214,
+    EXPOSURE_INDEX               = 0xA215,
+    SENSING_METHOD               = 0xA217,
+
+    FILE_SOURCE                  = 0xA300,
+    SCENE_TYPE                   = 0xA301,
+    CFA_PATTERN                  = 0xA302,
+
+    CUSTOM_RENDERED              = 0xA401,
+    EXPOSURE_MODE                = 0xA402,
+    WHITE_BALANCE                = 0xA403,
+    DIGITAL_ZOOM_RATIO           = 0xA404,
+    FOCAL_LENGTH_35MM            = 0xA405,
+    SCENE_CAPTURE_TYPE           = 0xA406,
+    GAIN_CONTROL                 = 0xA407,
+    CONTRAST                     = 0xA408,
+    SATURATION                   = 0xA409,
+    SHARPNESS                    = 0xA40A,
+    DEVICE_SETTING_DESCRIPTION   = 0xA40B,
+    SUBJECT_DISTANCE_RANGE       = 0xA40C,
+
+    IMAGE_UNIQUE_ID              = 0xA420,
+    CAMERA_OWNER_NAME            = 0xA430,
+    BODY_SERIAL_NUMBER           = 0xA431,
+    LENS_SPECIFICATION           = 0xA432,
+    LENS_MAKE                    = 0xA433,
+    LENS_MODEL                   = 0xA434,
+    LENS_SERIAL_NUMBER           = 0xA435,
+
+    GAMMA                        = 0xA500,
+
+    COMPOSITE_IMAGE              = 0xA460,
+    SOURCE_IMAGE_NUMBER          = 0xA461,
+    SOURCE_EXPOSURE_TIMES        = 0xA462
+
+};
