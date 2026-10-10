@@ -1,4 +1,4 @@
-enum UI_CODES {
+enum UI_CODE {
 UI=0x0,
 A_DPS_ABORT_JOB=0x1,
 A_DPS_CONNECT=0x2,
