@@ -1,0 +1,21 @@
+lz_check report, 2026-10-11 17:51
+
+compressor   Go (ffcompress, no version number; built from commit 215644fe of 2026-10-06 with local changes), id b33a6b2484d6
+cache        lz_check-cache.tsv
+cameras      192 (522 firmware); with compressed segments 71 (389 firmware)
+candidates   1165 LZ headers found, 1039 unique segments
+             checked now 1039, from the cache 126
+time         308.8 s wall, 8 workers, 1.11 s per checked segment on average
+throughput   8.0 MB/s unpacked per worker; for the run 30.2 MB/s unpacked, 14.1 MB/s packed
+
+match
+  OK                       1165 segments
+  FAILED                   0 segments (different 0, error 0)
+  NA                       133 firmware (no compressed segments 55, not decoded 78)
+  in unk/gap map blocks    0 segments
+
+not decoded (78)
+  AV10 AV100 AX200 EF500-0103 F480-0104 FTXH-0220 FTXH-0230 HS10-0104 INSTAX-EVO INSTAX-SQ10 INSTAX-SQ20 JX200 S1-0101 S1-0102 S1000FD-0105 S1600-0104 S1700-0104 S1800-0104 S1880-0104 S2000HD-0101 S2500HD-0104 S2700HD-0104 S2980-0101 S2995-0101 S4200-0101 S4300-0101 S4400-0101 S4500-0101 S5700-0102 S5800-0101 S5PRO-0103 S5PRO-0112 S700-0102 S800-0101 S8000FD-0102 S8200 S8300 S8400-0103 S8400W-0104 S8500 S8600 SL1000-0102 SL240-0101 SL260-0101 SL280-0101 SL300-0101 XA10 XA20 XA3-0200 XA3-0222 XA5 XA7 XF10-0112 XHALF-0101 XHALF-0120 XHALF-0130 XP100-0103 XP120-0101 XP130-0101 XP140-0103 XP150-0104 XP170-0102 XP20-0102 XP200-0102 XP30-0103 XP50-0103 XP55-0103 XP60-0103 XP70-0102 XP80-0102 XP90-0101 XT100 XT200 Z100fd Z10FD-0101 Z110-0101 Z115-0101 Z90-0102
+
+failures (0 segments in 0 firmware)
+  none

@@ -1,0 +1,40 @@
+.env.local
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+*.o
+*.elf
+*.map
+.vscode/
+
+#Ghidra
+*.gdt
+*.out
+
+build/
+downloads/
+samples/
+dumps/
+UILOG/
+
+#Binary files
+*.bin
+*.zip
+*.dump
+*.bak
+# ffbuild.py default work directory (firmware-derived files)
+ffun-work/
+
+# ffcompress build output (make -C ffcompress)
+ffcompress/ffcompress
+ffcompress/ffcompress.exe
+ffcompress/*.wasm
+
+# ffun packaging (make wheel)
+dist/
+*.egg-info/
+ffun/_build.py
