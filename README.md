@@ -11,12 +11,21 @@ Quick usage: python ff80 -h
   - can be used to copy (dump) RAM content, for code injections and to selectively enable native debug logging susbsytem(s). 
   - can read, modify and save adjustment and calibration data.
 
-- ffun (unpublished yet) - tool to manipulate firmware image DAT files. 
+- ffun (unpublished yet) - binwalk like tool to analyse and manipulate Fujifilm firmware image DAT files and EEPROM dumps 
   - split DAT files (camers, lenses etc) into pieces, decompress compressed 'segments' and construct a new valid DAT files out of the modified pieces. 
-  - convert the decompressed DAT into ELF container for furher analysis in Ghidra. Supports most models starting from EXR processor (for e.g XF1) and up to "X Processor 5" cameras (X-T5, X100VI).
+  - experimental support for some 'non-Fuji' Fuji cameras (Xacti/Sanyo - X-A3 etc)
+  - supports different built-in 'targets'
+    - elf: convert the decompressed DAT into ELF container for furher analysis in Ghidra. Supports most models starting from EXR processor (for e.g XF1) and up to "X Processor 5" cameras (X-T5, X100VI).
+    - ghidra: generate ghidra loader script
+    - ffre: provide input into ffre (recovery)
+    - ffupack: generates structures for C/Go ffunapck simple utility that splits/unsplits DAT file, to be used with patchers.
+  - ffun --help --json for agents
   - generate .h files with enums and structures for use in Ghidra scripts to load the image, and to name and identify specific code sections, functions, and constants (e.g., task IDs).
-  - Note: Only the ARM portions of the image are included in the ELF. IBIS RX/RL78, video codecs, DSP, and AI chip code are not supported.
+  - Note: Only the ARM portions of the main image are included in the ELF. IBIS, RX/RL78, video codecs, DSP, and AI chip code are not supported.
   - Note: The Linux subsystem can be extracted and later analyzed using various standard tools.
+
+- ffre (unpublished) - bricked camera recovery
+  - builds firmware updater to run from SD card. Tested only on XE2 and XE1. Should work on other cameras with EXR, EXR Pro and EXR-II SoC (XPro1, XE1, XE2, XA1, XA2, XM1 etc).
 
 - ffbt (unpublished): A CLI tool for researching Bluetooth functions.
   - ffbt app: emulate BLE functions of XApp and Camera Remote applications. This tool currently supports the following actions:
@@ -59,8 +68,6 @@ Quick usage: python ff80 -h
   - extract and convert UI localized text resources (menu, help etc) into an editable format (complete for XE2)
   - compile the resources back into camera format
 
-- ffre (unpublished, abandoned) - bricked camera recovery (put on hold)
-  - runs firmware updater from SD card. Partially tested only on XE2. Can be made to work on other cameras with EXR, EXR Pro and EXR-II SoC (XPro1, XE1, XE2, XA1, XA2, XM1 etc).
 
 ## Instructions ff80
 
