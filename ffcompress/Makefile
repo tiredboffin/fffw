@@ -1,8 +1,5 @@
 GOCMD=go
-TINYGO= tinygo
 BINARY=ffcompress
-WASM_BINARY=fflz.wasm
-TINYGO_WASM_BINARY=fflz-tiny.wasm
 WIN_BINARY=ffcompress.exe
 GOFLAGS=-trimpath -ldflags="-s -w"
 
@@ -10,26 +7,15 @@ GOFLAGS=-trimpath -ldflags="-s -w"
 WIN_GOOS=windows
 WIN_GOARCH=amd64
 
-# WASM settings
-WASM_GOOS=js
-WASM_GOARCH=wasm
+.PHONY: all native windows clean
 
-.PHONY: all native wasm windows clean
-
-# wasm/tinywasm need fflz_wasm.go (not in the repository yet) and are not built by default
 all: native
 
 native:
-	$(GOCMD) build $(GOFLAGS) 
-
-wasm:
-	GOOS=$(WASM_GOOS) GOARCH=$(WASM_GOARCH) $(GOCMD) build $(GOFLAGS) -o $(WASM_BINARY) fflz_wasm.go
-
-tinywasm:
-	$(TINYGO) build -target=wasi -o $(TINYGO_WASM_BINARY) 
+	$(GOCMD) build $(GOFLAGS)
 
 windows:
 	GOOS=$(WIN_GOOS) GOARCH=$(WIN_GOARCH) $(GOCMD) build $(GOFLAGS) -o $(WIN_BINARY)
 
 clean:
-	rm -f $(BINARY) $(WASM_BINARY)
+	rm -f $(BINARY) $(WIN_BINARY)
